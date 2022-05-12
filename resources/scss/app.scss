@@ -1,0 +1,20 @@
+@import "components";
+@import "layouts";
+@import "pages";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Jost", sans-serif;
+    font-size: 13px;
+    line-height: 1.66;
+}
+
+.section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
