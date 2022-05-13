@@ -23,18 +23,18 @@
                 </div>
                 <form class="login-form form show">
                     <div class="group">
-                        <label for="email">
+                        <label for="login-email">
                             Email address
                             <span>*</span>
                         </label>
-                        <input type="email" id="email" name="email" />
+                        <input type="email" id="login-email" name="email" />
                     </div>
                     <div class="group">
-                        <label for="password">
+                        <label for="login-password">
                             Password
                             <span>*</span>
                         </label>
-                        <input type="password" id="password" name="password" />
+                        <input type="password" id="login-password" name="password" />
                     </div>
                     <div class="actions">
                         <div class="remember-me-box">
@@ -57,18 +57,18 @@
                         <input type="text" id="fullname" name="fullname" />
                     </div>
                     <div class="group">
-                        <label for="email">
+                        <label for="register-email">
                             Email address
                             <span>*</span>
                         </label>
-                        <input type="email" id="email" name="email" />
+                        <input type="email" id="register-email" name="email" />
                     </div>
                     <div class="group">
-                        <label for="password">
+                        <label for="register-password">
                             Password
                             <span>*</span>
                         </label>
-                        <input type="password" id="password" name="password" />
+                        <input type="password" id="register-password" name="password" />
                     </div>
                     <div class="group">
                         <label for="re-password">

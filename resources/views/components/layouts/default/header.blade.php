@@ -22,8 +22,4 @@
     $('.menu-toggle').on('click', function() {
         $('.main-menu').toggleClass('show');
     });
-
-    $(function() {
-        $('.add-listing').click();
-    });
 </script>
