@@ -5,16 +5,23 @@
         </a>
     </div>
 
-    <div class="menu-toggle">
-        <div class="icon">
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="right">
+        <a href="#" class="login-toggler" data-toggle="modal" data-target="#login-register-form"
+            title="Open the login form">
+            <i class="lar la-user"></i>
+        </a>
+
+        <div class="menu-toggle">
+            <div class="icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </div>
-    <div class="main-menu">
-        <a href="#" class="add-listing" data-toggle="modal" data-target="#login-register-form">Add
-            listing</a>
+        <div class="main-menu">
+            <a href="#" class="add-listing" data-toggle="modal" data-target="#login-register-form">Add
+                listing</a>
+        </div>
     </div>
 </header>
 
