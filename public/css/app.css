@@ -127,6 +127,149 @@
   color: #333;
 }
 
+#login-register-form .modal-content {
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+#login-register-form .modal-header {
+  padding: 50px 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: #3270fc;
+}
+#login-register-form .modal-header .modal-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+#login-register-form .modal-header .modal-logo img {
+  width: auto;
+  height: 100%;
+}
+#login-register-form .modal-header .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+}
+#login-register-form .modal-body {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
+}
+#login-register-form .modal-body .tabs-menu {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#login-register-form .modal-body .tabs-menu .tab {
+  margin-bottom: 6.5px;
+  padding: 12px;
+  width: 48%;
+  background-color: #f5f7fb;
+  color: #7d93b2;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+#login-register-form .modal-body .tabs-menu .tab i {
+  margin-right: 10px;
+  font-size: 14px;
+}
+#login-register-form .modal-body .tabs-menu .tab.active {
+  background-color: #3270fc;
+  color: #fff;
+}
+#login-register-form .modal-body .form {
+  display: none;
+  margin-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#login-register-form .modal-body .form.show {
+  display: block;
+}
+#login-register-form .modal-body .form .group {
+  display: flex;
+  flex-direction: column;
+}
+#login-register-form .modal-body .form .group label {
+  margin-bottom: 10px;
+  color: #878c9f;
+  font-size: 12px;
+  font-weight: 500;
+}
+#login-register-form .modal-body .form .group input {
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  background-color: #f5f7fb;
+  color: #7d93b2;
+  font-size: 12px;
+  line-height: 14px;
+  border: 1px solid #e5e7f2;
+  border-radius: 4px;
+}
+#login-register-form .modal-body .form .btn-submit {
+  margin-top: 5px;
+  padding: 13px 40px;
+  background-color: #3270fc;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+}
+#login-register-form .modal-body .login-form .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+#login-register-form .modal-body .login-form .actions .remember-me-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+#login-register-form .modal-body .login-form .actions .remember-me-box #remember-me {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #e5e7f2;
+  border-radius: 2px;
+}
+#login-register-form .modal-body .login-form .actions .remember-me-box #remember-me:checked + i {
+  display: block;
+}
+#login-register-form .modal-body .login-form .actions .remember-me-box i {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(-50%, -50%);
+  color: #3270fc;
+}
+#login-register-form .modal-body .login-form .actions .remember-me-box label {
+  margin-bottom: 0;
+  color: #7d93b2;
+  font-size: 11px;
+  font-weight: 600;
+}
+#login-register-form .modal-body .login-form .actions .lost-your-password a {
+  color: #7d93b2;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 body {
   padding-top: 70px;
 }
@@ -144,7 +287,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 1060;
 }
 .header .logo a {
   height: 40px;
@@ -211,6 +354,9 @@ body {
   font-weight: 500;
   text-align: center;
   border-radius: 4px;
+}
+.header .main-menu .add-listing:hover {
+  text-decoration: none;
 }
 
 .footer {

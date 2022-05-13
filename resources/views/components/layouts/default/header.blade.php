@@ -13,12 +13,17 @@
         </div>
     </div>
     <div class="main-menu">
-        <a href="#" class="add-listing">Add listing</a>
+        <a href="#" class="add-listing" data-toggle="modal" data-target="#login-register-form">Add
+            listing</a>
     </div>
 </header>
 
 <script>
     $('.menu-toggle').on('click', function() {
         $('.main-menu').toggleClass('show');
+    });
+
+    $(function() {
+        $('.add-listing').click();
     });
 </script>

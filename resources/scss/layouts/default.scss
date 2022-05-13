@@ -15,7 +15,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 999;
+    z-index: 1060;
 
     .logo {
         a {
@@ -91,6 +91,10 @@ body {
             font-weight: 500;
             text-align: center;
             border-radius: 4px;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }

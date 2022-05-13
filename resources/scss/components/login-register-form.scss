@@ -1,0 +1,168 @@
+#login-register-form {
+    .modal-content {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+
+    .modal-header {
+        padding: 50px 30px;
+        justify-content: center;
+        align-items: center;
+        background-color: #3270fc;
+
+        .modal-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+        }
+    }
+
+    .modal-body {
+        padding-top: 40px;
+        padding-bottom: 20px;
+        padding-left: 0;
+        padding-right: 0;
+
+        .tabs-menu {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
+
+            .tab {
+                margin-bottom: 6.5px;
+                padding: 12px;
+                width: 48%;
+                background-color: #f5f7fb;
+                color: #7d93b2;
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 12px;
+                font-weight: 600;
+
+                i {
+                    margin-right: 10px;
+                    font-size: 14px;
+                }
+
+                &.active {
+                    background-color: #3270fc;
+                    color: #fff;
+                }
+            }
+        }
+
+        .form {
+            display: none;
+            margin-top: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+
+            &.show {
+                display: block;
+            }
+
+            .group {
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    margin-bottom: 10px;
+                    color: #878c9f;
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+
+                input {
+                    margin-bottom: 20px;
+                    padding: 15px 20px;
+                    background-color: #f5f7fb;
+                    color: #7d93b2;
+                    font-size: 12px;
+                    line-height: 14px;
+                    border: 1px solid #e5e7f2;
+                    border-radius: 4px;
+                }
+            }
+
+            .btn-submit {
+                margin-top: 5px;
+                padding: 13px 40px;
+                background-color: #3270fc;
+                color: #fff;
+                font-weight: 500;
+                border: none;
+                border-radius: 4px;
+            }
+        }
+
+        .login-form {
+            .actions {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+
+                .remember-me-box {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    position: relative;
+
+                    #remember-me {
+                        appearance: none;
+                        margin-right: 10px;
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid #e5e7f2;
+                        border-radius: 2px;
+
+                        &:checked + i {
+                            display: block;
+                        }
+                    }
+
+                    i {
+                        display: none;
+                        position: absolute;
+                        top: 50%;
+                        left: 10px;
+                        transform: translate(-50%, -50%);
+                        color: #3270fc;
+                    }
+
+                    label {
+                        margin-bottom: 0;
+                        color: #7d93b2;
+                        font-size: 11px;
+                        font-weight: 600;
+                    }
+                }
+
+                .lost-your-password {
+                    a {
+                        color: #7d93b2;
+                        font-size: 12px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

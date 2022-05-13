@@ -64,6 +64,7 @@
     @yield('main-content')
 
     @include('components.layouts.default.footer')
+    @include('components.common.login-register-form')
 </body>
 
 </html>
