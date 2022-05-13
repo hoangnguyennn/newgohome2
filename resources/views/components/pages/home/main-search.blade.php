@@ -29,16 +29,16 @@
     </div>
     <div class="collapse" id="advanceSearch">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Diện tích từ" name="acreage" />
+            <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage" />
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Số phòng ngủ" name="bedroom" />
+            <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom" />
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Số phòng tắm" name="toilet" />
+            <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet" />
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Số tầng" name="floor" />
+            <input type="number" min="0" class="form-control" placeholder="Số tầng" name="floor" />
         </div>
     </div>
     <div class="form-group d-flex">
