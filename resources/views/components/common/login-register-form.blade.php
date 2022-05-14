@@ -21,7 +21,7 @@
                         <span>Register</span>
                     </div>
                 </div>
-                <form class="login-form form show">
+                <form class="login-form form show" method="POST" action="{{ route('login') }}">
                     <div class="group">
                         <label for="login-email">
                             Email address
@@ -48,7 +48,7 @@
                     </div>
                     <button type="submit" class="btn-submit">Login</button>
                 </form>
-                <form class="register-form form">
+                <form class="register-form form" method="POST" action="{{ route('register') }}">
                     <div class="group">
                         <label for="fullname">
                             Fullname
