@@ -9,7 +9,7 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/avatar-1.jpg') }}" alt="" />
+                            <img src="{{ mix('images/webp/avatar-1.webp') }}" alt="" />
                         </div>
                         <div class="name">Antony Moore</div>
                     </div>
@@ -31,7 +31,7 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/avatar-2.jpg') }}" alt="" />
+                            <img src="{{ mix('images/webp/avatar-2.webp') }}" alt="" />
                         </div>
                         <div class="name">Antony Moore</div>
                     </div>
@@ -53,7 +53,7 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/avatar-3.jpg') }}" alt="" />
+                            <img src="{{ mix('images/webp/avatar-3.webp') }}" alt="" />
                         </div>
                         <div class="name">Antony Moore</div>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/avatar-4.jpg') }}" alt="" />
+                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
                         </div>
                         <div class="name">Antony Moore</div>
                     </div>
@@ -96,12 +96,35 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('.quotes-wrap').slick({
+            const mobileOptions = {
                 prevArrow: false,
                 nextArrow: false,
                 dots: true,
                 variableWidth: true,
                 centerMode: true
+            }
+
+            const pcOptions = {
+                ...mobileOptions,
+                slidesToShow: 3,
+                variableWidth: false,
+                centerMode: false
+            }
+
+            function initSlick() {
+                if ($(document).width() < 992) {
+                    $('.quotes-wrap').slick(mobileOptions);
+                } else {
+                    $('.quotes-wrap').slick(pcOptions);
+                }
+            }
+
+            initSlick();
+
+            $(window).resize(function() {
+                console.log('resize');
+                $('.quotes-wrap').slick('unslick');
+                initSlick();
             });
         });
     </script>

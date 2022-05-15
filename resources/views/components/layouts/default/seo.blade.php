@@ -1,4 +1,4 @@
-<meta name="robots" content="noindex" />
+{{-- <meta name="robots" content="noindex" /> --}}
 <link rel="icon" href="{{ mix('images/favicon.ico') }}" />
 
 @isset($seo)

@@ -1,19 +1,21 @@
 <div class="statistical section">
-    <div class="item">
-        <div class="counter" data-value="578"></div>
-        <h6>Agents and Agencys</h6>
-    </div>
-    <div class="item">
-        <div class="counter" data-value="12168"></div>
-        <h6>Happy customers every year</h6>
-    </div>
-    <div class="item">
-        <div class="counter" data-value="2172"></div>
-        <h6>Won Awards</h6>
-    </div>
-    <div class="item">
-        <div class="counter" data-value="732"></div>
-        <h6>New Listing Every Week</h6>
+    <div class="container">
+        <div class="item">
+            <div class="counter" data-value="578"></div>
+            <h6>Agents and Agencys</h6>
+        </div>
+        <div class="item">
+            <div class="counter" data-value="12168"></div>
+            <h6>Happy customers every year</h6>
+        </div>
+        <div class="item">
+            <div class="counter" data-value="2172"></div>
+            <h6>Won Awards</h6>
+        </div>
+        <div class="item">
+            <div class="counter" data-value="732"></div>
+            <h6>New Listing Every Week</h6>
+        </div>
     </div>
 </div>
 

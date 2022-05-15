@@ -82,5 +82,20 @@
             @endif
 
         </ul>
+        <div class="foot">
+            <div class="author">
+                <div class="avatar">
+                    <img src="{{ mix('images/default-avatar.jpg') }}" alt="" />
+                </div>
+                <p>By Admin</p>
+            </div>
+            <div class="rating">
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+                <i class="las la-star"></i>
+            </div>
+        </div>
     </div>
 </article>

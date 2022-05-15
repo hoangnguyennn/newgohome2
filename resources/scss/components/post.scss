@@ -160,5 +160,45 @@
                 }
             }
         }
+
+        .foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+
+            .author {
+                display: flex;
+                align-items: center;
+
+                .avatar {
+                    margin-right: 10px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                p {
+                    margin: 0;
+                    color: #70778b;
+                    font-weight: 700;
+                }
+            }
+
+            .rating {
+                display: flex;
+
+                i {
+                    color: #facc39;
+                }
+            }
+        }
     }
 }

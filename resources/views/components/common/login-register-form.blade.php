@@ -4,10 +4,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-logo">
-                    <img src="{{ mix('images/logo.png') }}" alt="" />
+                    <img src="{{ mix('images/webp/logo.webp') }}" alt="" />
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true"><i class="las la-times"></i></span>
                 </button>
             </div>
             <div class="modal-body">

@@ -9,7 +9,8 @@
     <div class="bottom">
         <div class="popular-cities-slider">
             <div class="city">
-                <div class="img-wrap" style="background-image: url({{ mix('images/slider-1-image.jpg') }});">
+                <div class="img-wrap"
+                    style="background-image: url({{ mix('images/webp/slider-1-image.webp') }});">
                 </div>
                 <div class="content">
                     <div class="property-count">
@@ -20,7 +21,8 @@
                 </div>
             </div>
             <div class="city">
-                <div class="img-wrap" style="background-image: url({{ mix('images/slider-2-image.jpg') }});">
+                <div class="img-wrap"
+                    style="background-image: url({{ mix('images/webp/slider-2-image.webp') }});">
                 </div>
                 <div class="content">
                     <div class="property-count">
@@ -31,7 +33,8 @@
                 </div>
             </div>
             <div class="city">
-                <div class="img-wrap" style="background-image: url({{ mix('images/slider-3-image.jpg') }});">
+                <div class="img-wrap"
+                    style="background-image: url({{ mix('images/webp/slider-3-image.webp') }});">
                 </div>
                 <div class="content">
                     <div class="property-count">
@@ -42,7 +45,8 @@
                 </div>
             </div>
             <div class="city">
-                <div class="img-wrap" style="background-image: url({{ mix('images/slider-4-image.jpg') }});">
+                <div class="img-wrap"
+                    style="background-image: url({{ mix('images/webp/slider-4-image.webp') }});">
                 </div>
                 <div class="content">
                     <div class="property-count">
@@ -53,7 +57,8 @@
                 </div>
             </div>
             <div class="city">
-                <div class="img-wrap" style="background-image: url({{ mix('images/slider-5-image.jpg') }});">
+                <div class="img-wrap"
+                    style="background-image: url({{ mix('images/webp/slider-5-image.webp') }});">
                 </div>
                 <div class="content">
                     <div class="property-count">
@@ -66,11 +71,32 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            $('.popular-cities-slider').slick({
+        $(function() {
+            const mobileOptions = {
                 prevArrow: false,
                 nextArrow: false,
-                dots: true
+                dots: true,
+            }
+
+            const pcOptions = {
+                ...mobileOptions,
+                slidesToShow: 3,
+            }
+
+            function initSlick() {
+                if ($(document).width() < 992) {
+                    $('.popular-cities-slider').slick(mobileOptions);
+                } else {
+                    $('.popular-cities-slider').slick(pcOptions);
+                }
+            }
+
+            initSlick();
+
+            $(window).resize(function() {
+                console.log('resize');
+                $('.popular-cities-slider').slick('unslick');
+                initSlick();
             });
         });
     </script>

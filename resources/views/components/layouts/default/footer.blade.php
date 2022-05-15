@@ -1,3 +1,5 @@
 <footer class="footer">
-    <div class="copyright">© Go Home. All Rights Reserved.</div>
+    <div class="container">
+        <div class="copyright">© Go Home. All Rights Reserved.</div>
+    </div>
 </footer>

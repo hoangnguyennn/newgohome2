@@ -1,0 +1,132 @@
+@media (min-width: 992px) {
+    .main-banner {
+        padding-top: 120px;
+        padding-bottom: 120px;
+
+        .wrap {
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-search {
+            padding: 30px;
+        }
+    }
+
+    .popular-posts {
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+    }
+
+    .explore-features {
+        .container {
+            display: flex;
+            justify-content: space-between;
+
+            .top {
+                max-width: 40%;
+            }
+
+            .bottom {
+                max-width: 50%;
+                position: relative;
+
+                .img-wrap {
+                    margin-top: 0;
+                }
+
+                .default-quote {
+                    position: absolute;
+                    bottom: 20px;
+                    right: -60px;
+                    width: 280px;
+                }
+            }
+        }
+    }
+
+    .popular-cities {
+        display: flex;
+
+        .top {
+            width: 33.33333333%;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bottom {
+            width: 66.66666667%;
+        }
+    }
+
+    .meet-our-agents {
+        .bottom {
+            position: relative;
+
+            .slider-control {
+                display: block;
+                width: 36px;
+                height: 36px;
+                background-color: #3270fc;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                box-shadow: 0 5px 5px rgb(0 0 0 / 5%);
+
+                position: absolute;
+                top: 50%;
+
+                &.prev {
+                    transform: rotate(90deg);
+                    left: -60px;
+                }
+
+                &.next {
+                    transform: rotate(-90deg);
+                    right: -60px;
+                }
+            }
+        }
+    }
+
+    .statistical {
+        .container {
+            display: flex;
+            justify-content: center;
+
+            .item {
+                width: 25%;
+            }
+        }
+    }
+
+    .newsletters {
+        .wrap {
+            padding: 90px 60px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            .subscribe-form {
+                input {
+                    width: 460px;
+                }
+            }
+        }
+    }
+
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
