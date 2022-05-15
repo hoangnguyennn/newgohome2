@@ -6,28 +6,22 @@
         </div>
 
         <div class="filters">
-            <a href="#" class="filter active">Tất cả</a>
-            <a href="#" class="filter">Giá rẻ</a>
-            <a href="#" class="filter">Nổi bật</a>
+            <a href="{{ route('home') }}" class="filter{{ ($category ?? 'all') == 'all' ? ' active' : '' }}">Tất
+                cả</a>
+            <a href="{{ route('home', ['category' => 'cheap']) }}"
+                class="filter{{ ($category ?? 'all') == 'cheap' ? ' active' : '' }}">Giá rẻ</a>
+            <a href="{{ route('home', ['category' => 'featured']) }}"
+                class="filter{{ ($category ?? 'all') == 'featured' ? ' active' : '' }}">Nổi bật</a>
         </div>
     </div>
 
     <div class="center post-list">
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
-        @include('components.common.post')
+        @foreach ($posts as $post)
+            @include('components.common.post', ['post' => $post])
+        @endforeach
     </div>
 
     <div class="bottom view-all-list">
-        <a href="#" class="btn-view-all-list">Xem tất cả</a>
+        <a href="{{ route('posts') }}" class="btn-view-all-list">Xem tất cả</a>
     </div>
 </div>

@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Apis\PostController;
+use App\Http\Controllers\Apis\PostRequestController;
+use App\Http\Controllers\Apis\WardController;
+use App\Http\Controllers\Apis\UploadImageController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('wards', WardController::class)->only(['index']);
+
+Route::post('upload-single', [UploadImageController::class, 'uploadSingle'])->name('api.post-images.upload-single');
+Route::get('posts/{post}/download-images', [PostController::class, 'downloadImages'])->name('api.posts.download');
+Route::get('posts/export-excel', [PostController::class, 'exportExcel'])->name('api.posts.export');
+Route::get('posts/featured', [PostController::class, 'featured'])->name('api.posts.featured');
+Route::get('posts', [PostController::class, 'index'])->name('api.posts.index');
+Route::get('post-requests/export-excel', [PostRequestController::class, 'exportExcel'])->name('api.post-requests.export');
+
+Route::post('notifications/mark-as-read', [NotificationController::class, 'markAllAsRead'])->name('api.notifications.mark-all-as-read');

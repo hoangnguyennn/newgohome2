@@ -1,15 +1,20 @@
-<form class="main-search search-form" novalidate>
+<form class="main-search search-form" action="{{ route('posts') }}" novalidate>
     <div class="form-group">
         <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q" />
     </div>
     <div class="form-group multiselect-localtion">
         <select id="location" name="location[]" class="form-control" multiple="multiple">
-            <option value="">Khu vực</option>
+            @foreach ($wards as $ward)
+                <option value="{{ $ward->id }}">{{ $ward->district->name }} - {{ $ward->name }}</option>
+            @endforeach
         </select>
     </div>
     <div class="form-group">
         <select id="category" name="category" class="form-control">
             <option value="">Loại nhà đất</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
         </select>
     </div>
     <div class="form-group">

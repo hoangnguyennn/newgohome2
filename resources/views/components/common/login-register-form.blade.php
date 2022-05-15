@@ -22,6 +22,8 @@
                     </div>
                 </div>
                 <form class="login-form form show" method="POST" action="{{ route('login') }}">
+                    @csrf
+
                     <div class="group">
                         <label for="login-email">
                             Email address
@@ -49,6 +51,8 @@
                     <button type="submit" class="btn-submit">Login</button>
                 </form>
                 <form class="register-form form" method="POST" action="{{ route('register') }}">
+                    @csrf
+
                     <div class="group">
                         <label for="fullname">
                             Fullname

@@ -1,7 +1,7 @@
 <div class="quick-menu section">
     <div class="quick-menu-item">
         <div class="logo">
-            <a href="#">
+            <a href="{{ route('home') }}">
                 <img src="{{ mix('images/logo.png') }}" alt="" />
             </a>
         </div>
@@ -34,16 +34,16 @@
         <div class="contact-item">
             <span>
                 <i class="las la-map-marker"></i>
-                Address :
+                Địa chỉ :
             </span>
-            <a href="#">USA 27TH Brooklyn NY</a>
+            <a href="#">Lô 170 TT8-K98 Trần Nhật Duật, ACC Vườn Xoài, Phước Hòa, Nha Trang, Khánh Hòa</a>
         </div>
         <div class="contact-item">
             <span>
                 <i class="las la-phone"></i>
-                Phone :
+                Số điện thoại :
             </span>
-            <a href="tel:+7(111)123456789">+7(111)123456789</a>
+            <a href="tel:0797016179">0797 016 179</a>
         </div>
     </div>
 </div>

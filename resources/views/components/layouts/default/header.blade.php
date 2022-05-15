@@ -1,6 +1,6 @@
 <header class="header">
     <div class="logo">
-        <a href="#">
+        <a href="{{ route('home') }}" title="GoHome's logo">
             <img src="{{ mix('images/logo.png') }}" alt="" />
         </a>
     </div>
