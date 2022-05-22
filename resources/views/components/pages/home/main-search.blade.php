@@ -42,38 +42,6 @@
         </div>
     </div>
 
-    <div class="collapse" id="advanceSearch">
-        <div class="row">
-            <div class="col-12 col-lg-3">
-                <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage" />
-                </div>
-            </div>
-            <div class="col-12 col-lg-3">
-                <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom" />
-                </div>
-            </div>
-            <div class="col-12 col-lg-3">
-                <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet" />
-                </div>
-            </div>
-            <div class="col-12 col-lg-3">
-                <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số tầng" name="floor" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group d-flex">
-        <span data-toggle="collapse" data-target="#advanceSearch" aria-expanded="false" aria-controls="advanceSearch">
-            <i class="las la-filter size-19"></i>
-            <span class="show-text">Mở rộng</span>
-            <span class="hide-text">Thu gọn</span>
-        </span>
-    </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary form-control">
             <span>Tìm kiếm</span>
@@ -82,39 +50,10 @@
     </div>
 </form>
 
-{{-- apply bootstrap multiselect for location --}}
-<script>
-    $('[name="location[]"]').each(function() {
-        $(this).multiselect({
-            widthSynchronizationMode: 'ifPopupIsSmaller',
-            maxHeight: 400,
-            nonSelectedText: 'Khu vực',
-            nSelectedText: ' khu vực được chọn',
-            buttonTitle: function(options, select) {
-                let labels = [];
-                options.each(function() {
-                    labels.push($(this).text().trim());
-                });
-                return labels.join(', ');
-            }
-        });
-    });
-
-    $('.multiselect-localtion .btn-group').css('width', '100%');
-    $('.multiselect').addClass('form-control text-left');
-    $('.multiselect').removeClass('text-center');
-</script>
-
-{{-- remove non-value fields before submit --}}
-{{-- <script>
-    $('.search-form').each(function() {
-        $(this).submit(function() {
-            $(':input', this).each(function() {
-                this.disabled = !($(this).val());
-            });
-        });
-    });
-</script> --}}
+<div class="search-form-notifer">
+    Need more search options?
+    <button class="btn btn-primary" data-toggle="modal" data-target="#advanced-search-form">Tìm kiếm nâng cao</button>
+</div>
 
 {{-- apply slider for price --}}
 <script>

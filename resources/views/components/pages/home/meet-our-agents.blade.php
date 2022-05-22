@@ -120,7 +120,6 @@
                 initSlick();
 
                 $(window).resize(function() {
-                    console.log('resize');
                     $('.meet-our-agents-slider').slick('unslick');
                     initSlick();
                 });

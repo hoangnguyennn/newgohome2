@@ -1,3 +1,208 @@
-@media (min-width:992px){.main-banner{padding-bottom:120px;padding-top:120px}.main-banner .wrap{margin-left:auto;margin-right:auto;max-width:960px}.main-banner .main-search{padding:30px}.popular-posts .top{align-items:flex-end}.explore-features .container,.popular-posts .top{display:flex;justify-content:space-between}.explore-features .container .top{max-width:40%}.explore-features .container .bottom{max-width:50%;position:relative}.explore-features .container .bottom .img-wrap{margin-top:0}.explore-features .container .bottom .default-quote{bottom:20px;position:absolute;right:-60px;width:280px}.popular-cities{display:flex}.popular-cities .top{display:flex;flex-direction:column;height:550px;justify-content:center;width:33.33333333%}.popular-cities .bottom{width:66.66666667%}.meet-our-agents .bottom{position:relative}.meet-our-agents .bottom .slider-control{align-items:center;background-color:#3270fc;border:none;border-radius:4px;box-shadow:0 5px 5px rgba(0,0,0,.05);color:#fff;cursor:pointer;display:block;display:flex;height:36px;justify-content:center;position:absolute;top:50%;width:36px}.meet-our-agents .bottom .slider-control.prev{left:-60px;transform:rotate(90deg)}.meet-our-agents .bottom .slider-control.next{right:-60px;transform:rotate(-90deg)}.statistical .container{display:flex;justify-content:center}.statistical .container .item{width:25%}.newsletters .wrap{border-radius:10px;display:flex;justify-content:space-between;padding:90px 60px}.newsletters .wrap .subscribe-form input{width:460px}.container{padding-left:0;padding-right:0}}
+@media (min-width: 992px) {
+  #login-register-form .modal-dialog {
+    max-width: 850px;
+  }
+  #login-register-form .modal-dialog .modal-content {
+    flex-direction: row;
+  }
+  #login-register-form .modal-dialog .modal-content .modal-header {
+    width: 40%;
+  }
+  #login-register-form .modal-dialog .modal-content .modal-header .close {
+    color: #3270fc;
+  }
+  #login-register-form .modal-dialog .modal-content .modal-body {
+    width: 60%;
+  }
+  #login-register-form .modal-dialog .modal-content .modal-body .tabs-menu {
+    padding: 0 90px;
+  }
+  #login-register-form .modal-dialog .modal-content .modal-body .form {
+    padding: 0 90px;
+  }
+}
+@media (min-width: 992px) {
+  .header .right .login-toggler {
+    padding: 0 25px;
+    height: 70px;
+    line-height: 70px;
+    color: #144273;
+    font-weight: 700;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+  }
+  .header .right .login-toggler:hover {
+    text-decoration: none;
+  }
+  .header .right .login-toggler:hover i {
+    color: #3270fc;
+  }
+  .header .right .login-toggler i {
+    margin-right: 10px;
+    color: #ccc;
+  }
+  .header .right .login-toggler span {
+    display: inline-block;
+    font-size: 13px;
+    vertical-align: baseline;
+  }
+  .header .right .menu-toggle {
+    display: none;
+  }
+  .header .right .main-menu-pc {
+    display: inline-block;
+  }
+  .header .right .main-menu-pc .add-listing {
+    display: inline-block;
+    margin-left: 34px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    background: #3270fc;
+    color: #fff;
+    border-radius: 4px;
+  }
+  .header .right .main-menu-pc .add-listing:hover {
+    text-decoration: none;
+    background: linear-gradient(to right, #3c6afd, #57c7fa);
+  }
+  .header .right .main-menu-pc .add-listing i {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    line-height: 25px;
+    text-align: center;
+  }
+}
+@media (min-width: 992px) {
+  .main-banner {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    position: relative;
+  }
+  .main-banner:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.4;
+    z-index: -1;
+  }
+  .main-banner:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 85%;
+    top: 0;
+    left: 15%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.99) 20%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0) 95%);
+  }
+  .main-banner .main-search {
+    padding: 30px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .popular-posts .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .explore-features .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .explore-features .container .top {
+    max-width: 40%;
+  }
+  .explore-features .container .bottom {
+    max-width: 50%;
+    position: relative;
+  }
+  .explore-features .container .bottom .img-wrap {
+    margin-top: 0;
+  }
+  .explore-features .container .bottom .default-quote {
+    position: absolute;
+    bottom: 20px;
+    right: -60px;
+    width: 280px;
+  }
+
+  .popular-cities {
+    display: flex;
+  }
+  .popular-cities .top {
+    width: 33.33333333%;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .popular-cities .bottom {
+    width: 66.66666667%;
+  }
+
+  .meet-our-agents .bottom {
+    position: relative;
+  }
+  .meet-our-agents .bottom .slider-control {
+    display: block;
+    width: 36px;
+    height: 36px;
+    background-color: #3270fc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 50%;
+  }
+  .meet-our-agents .bottom .slider-control.prev {
+    transform: rotate(90deg);
+    left: -60px;
+  }
+  .meet-our-agents .bottom .slider-control.next {
+    transform: rotate(-90deg);
+    right: -60px;
+  }
+
+  .statistical .container {
+    display: flex;
+    justify-content: center;
+  }
+  .statistical .container .item {
+    width: 25%;
+  }
+
+  .newsletters .wrap {
+    padding: 90px 60px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .newsletters .wrap .subscribe-form input {
+    width: 460px;
+  }
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .modal-dialog {
+    max-width: 1140px;
+  }
+}
 
 /*# sourceMappingURL=app-992.css.map*/

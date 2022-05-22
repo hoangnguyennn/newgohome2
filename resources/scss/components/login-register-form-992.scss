@@ -1,0 +1,31 @@
+@media (min-width: 992px) {
+    #login-register-form {
+        .modal-dialog {
+            max-width: 850px;
+
+            .modal-content {
+                flex-direction: row;
+
+                .modal-header {
+                    width: 40%;
+
+                    .close {
+                        color: #3270fc;
+                    }
+                }
+
+                .modal-body {
+                    width: 60%;
+
+                    .tabs-menu {
+                        padding: 0 90px;
+                    }
+
+                    .form {
+                        padding: 0 90px;
+                    }
+                }
+            }
+        }
+    }
+}

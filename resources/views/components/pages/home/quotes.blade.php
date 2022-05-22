@@ -122,7 +122,6 @@
             initSlick();
 
             $(window).resize(function() {
-                console.log('resize');
                 $('.quotes-wrap').slick('unslick');
                 initSlick();
             });

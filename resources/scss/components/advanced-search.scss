@@ -1,0 +1,106 @@
+.advanced-search-modal {
+    .modal-content {
+        margin-top: 150px;
+        margin-bottom: 50px;
+
+        .modal-body {
+            padding: 30px 15px;
+            background-color: #fff;
+            border-radius: 6px;
+
+            .multiselect-localtion {
+                .multiselect-option {
+                    .form-check-label {
+                        color: #7d93b2;
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            .form-control {
+                height: 50px;
+
+                &:not([type="submit"]),
+                &::placeholder {
+                    color: #7d93b2;
+                    font-size: 12px;
+                }
+
+                &:not([type="submit"]) {
+                    background-color: #f5f7fb;
+                    border: 1px solid #e5e7f2;
+                }
+
+                &[type="submit"] {
+                    font-size: 13px;
+                }
+            }
+
+            #price-zone-2 {
+                position: relative;
+                cursor: all-scroll;
+
+                #price-display-2 {
+                    border: none;
+                    background-color: transparent;
+                    outline: none;
+                    cursor: all-scroll;
+                }
+
+                .dropdown-menu.price-dropdown {
+                    width: 100%;
+                    padding: 30px 20px;
+                    box-sizing: border-box;
+
+                    .ui-widget-header {
+                        background: #3270fc;
+                    }
+
+                    .ui-slider-handle {
+                        border-radius: 50%;
+                    }
+
+                    .price-inputs {
+                        margin-bottom: 20px;
+                        display: flex;
+
+                        input {
+                            display: flex;
+                            width: calc(100% / 2 - 5px);
+                            height: 30px;
+                            padding: 6px 12px;
+                            border: 1px solid #e0e1e6;
+                            border-radius: 6px;
+
+                            &:first-child {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            [data-target="#advanceSearch"] {
+                cursor: pointer;
+
+                .show-text {
+                    display: inline-block;
+                }
+
+                .hide-text {
+                    display: none;
+                }
+
+                &[aria-expanded="true"] {
+                    .show-text {
+                        display: none;
+                    }
+
+                    .hide-text {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

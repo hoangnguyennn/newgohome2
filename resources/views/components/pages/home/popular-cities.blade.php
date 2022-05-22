@@ -94,7 +94,6 @@
             initSlick();
 
             $(window).resize(function() {
-                console.log('resize');
                 $('.popular-cities-slider').slick('unslick');
                 initSlick();
             });

@@ -1,4 +1,4 @@
-<div class="modal fade" id="login-register-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="login-register-form" tabindex="-1" role="dialog" aria-labelledby="login-register-form"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -84,10 +84,6 @@
                     <button type="submit" class="btn-submit">Register</button>
                 </form>
             </div>
-            {{-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> --}}
         </div>
     </div>
 </div>

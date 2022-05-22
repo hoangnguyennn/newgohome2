@@ -18,3 +18,15 @@ body {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
+@media screen and (max-width: 992px) {
+    .multiselect-container button.dropdown-item {
+        pointer-events: none;
+    }
+    .multiselect-container span.form-check input {
+        pointer-events: all;
+    }
+    .multiselect-container span.form-check label {
+        pointer-events: none;
+    }
+}

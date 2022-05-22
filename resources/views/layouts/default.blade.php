@@ -55,6 +55,8 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
         integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -64,11 +66,47 @@
 
 <body>
     @include('components.layouts.default.header')
+    @include('components.common.logout-form')
 
     @yield('main-content')
 
     @include('components.layouts.default.footer')
     @include('components.common.login-register-form')
+    @include('components.common.advanced-search')
+
+    {{-- apply bootstrap multiselect for location --}}
+    <script>
+        $('[name="location[]"]').each(function() {
+            $(this).multiselect({
+                widthSynchronizationMode: 'ifPopupIsSmaller',
+                maxHeight: 400,
+                nonSelectedText: 'Khu vực',
+                nSelectedText: ' khu vực được chọn',
+                buttonTitle: function(options, select) {
+                    let labels = [];
+                    options.each(function() {
+                        labels.push($(this).text().trim());
+                    });
+                    return labels.join(', ');
+                }
+            });
+        });
+
+        $('.multiselect-localtion .btn-group').css('width', '100%');
+        $('.multiselect').addClass('form-control text-left');
+        $('.multiselect').removeClass('text-center');
+    </script>
+
+    {{-- remove non-value fields before submit --}}
+    {{-- <script>
+        $('.search-form').each(function() {
+            $(this).submit(function() {
+                $(':input', this).each(function() {
+                    this.disabled = !($(this).val());
+                });
+            });
+        });
+    </script> --}}
 </body>
 
 </html>
