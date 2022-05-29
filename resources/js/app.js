@@ -19,19 +19,10 @@ $(function () {
     function toCurrency(num) {
         const numNum = Number(num);
         if (!isNaN(numNum)) {
-            if (numNum > 1_000_000_000) {
-                return Math.round(numNum / 1_000_000) / 1_000 + " tỉ";
-            }
-
-            if (numNum > 1_000_000) {
-                return Math.round(numNum / 1_000) / 1_000 + " triệu";
-            }
-
-            if (numNum > 1_000) {
-                return Math.round(numNum / 1_000) + " nghìn";
-            }
-
-            return numNum;
+            return Number(num).toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+            });
         }
 
         return num;

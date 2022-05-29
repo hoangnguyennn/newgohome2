@@ -8,10 +8,11 @@
 
     @include('components.layouts.default.seo')
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
@@ -62,9 +63,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="{{ mix('/js/app.js') }}"></script>
+    @php
+        setlocale(LC_MONETARY, 'vi-VN');
+    @endphp
 </head>
 
-<body>
+<body id="{{ $page_id ?? '' }}">
     @include('components.layouts.default.header')
     @include('components.common.logout-form')
 
@@ -73,6 +77,7 @@
     @include('components.layouts.default.footer')
     @include('components.common.login-register-form')
     @include('components.common.advanced-search')
+    @include('components.common.back-to-top')
 
     {{-- apply bootstrap multiselect for location --}}
     <script>

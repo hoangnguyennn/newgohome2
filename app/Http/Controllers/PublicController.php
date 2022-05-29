@@ -161,6 +161,12 @@ class PublicController extends Controller
         $posts = $posts->orderBy('created_at', 'desc');
         // dd($posts->toSql(), $posts->getBindings());
         $posts = $posts->paginate(12);
+
+        if ($request->ajax()) {
+            $view = view('components.common.post-list', compact('posts'))->render();
+            return response()->json(['html' => $view]);
+        }
+
         $posts->appends(['q' => $q]);
         $posts->appends(['location' => $location]);
         $posts->appends(['category' => $category]);

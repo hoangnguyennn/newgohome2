@@ -30,13 +30,15 @@
         </div>
     </a>
     <div class="post-content">
-        <h3 class="title">{{ $post->name }}</h3>
+        <h3 class="title">
+            <a href="{{ route('post', $post->slug) }}">{{ $post->name }}</a>
+        </h3>
 
         @php
             $currentPrice = ($post->price * (100 - $post->discount)) / 100;
             $oldPrice = $post->price;
         @endphp
-        <div class="price currency">{{ ($post->price * (100 - $post->discount)) / 100 }}</div>
+        <div class="price currency">{{ $currentPrice }}</div>
 
         <div class="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque.
@@ -87,7 +89,7 @@
                 <div class="avatar">
                     <img src="{{ mix('images/default-avatar.jpg') }}" alt="" />
                 </div>
-                <p>By Admin</p>
+                <p>By {{ $post->user->fullname }}</p>
             </div>
             <div class="rating">
                 <i class="las la-star"></i>

@@ -106,7 +106,8 @@
         border-top: none;
         border-radius: 0 0 6px 6px;
 
-        .title {
+        .title a {
+            text-decoration: none;
             margin-bottom: 14px;
             color: #757b8d;
             font-size: 18px;
@@ -117,6 +118,10 @@
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             overflow: hidden;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
         .price {

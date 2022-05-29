@@ -86,7 +86,8 @@
   border-top: none;
   border-radius: 0 0 6px 6px;
 }
-.post .post-content .title {
+.post .post-content .title a {
+  text-decoration: none;
   margin-bottom: 14px;
   color: #757b8d;
   font-size: 18px;
@@ -95,6 +96,9 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+}
+.post .post-content .title a:hover {
+  text-decoration: none;
 }
 .post .post-content .price {
   color: #3270fc;
@@ -397,6 +401,24 @@
   display: inline-block;
 }
 
+.back-to-top {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background-color: #3270fc;
+  color: #fff;
+  font-size: 12px;
+  line-height: 36px;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+  z-index: 10;
+}
+
 body {
   padding-top: 70px;
 }
@@ -410,6 +432,7 @@ body {
   right: 0;
   z-index: 1060;
   height: 70px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.07);
 }
 .header .container {
   padding-left: 10px;
@@ -1322,6 +1345,216 @@ body {
   font-weight: 700;
 }
 
+#post-list {
+  background-color: #f5f7fb;
+}
+#post-list .content.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+#post-list .footer {
+  background-color: #fff;
+}
+#post-list .footer .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+#post-list .footer .container .copyright {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.posts {
+  padding: 30px 15px;
+}
+.posts .post {
+  margin-bottom: 12px;
+}
+
+.search-form-posts {
+  margin-bottom: 20px;
+  padding: 30px 30px 0 30px;
+}
+.search-form-posts .show-search-form {
+  padding: 12px 0;
+  width: 48%;
+  background-color: #3270fc;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.sidebar-search-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.sidebar-search-form.show {
+  z-index: 800;
+}
+.sidebar-search-form.show .overlay {
+  display: block;
+}
+.sidebar-search-form.show .content {
+  left: 0;
+}
+.sidebar-search-form .overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.sidebar-search-form .content {
+  position: absolute;
+  left: -80%;
+  bottom: 0;
+  width: 80%;
+  height: calc(100% - 70px);
+  background-color: #fff;
+  transition: left 0.2s linear;
+  padding: 80px 30px 30px 30px;
+}
+.sidebar-search-form .content .top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #f5f7fb;
+}
+.sidebar-search-form .content .top .close {
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  color: #3270fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.sidebar-search-form .content .multiselect-localtion {
+  cursor: pointer;
+}
+.sidebar-search-form .content .multiselect-localtion .multiselect-option .form-check-label {
+  font-size: 13px;
+}
+.sidebar-search-form .content #category {
+  cursor: pointer;
+}
+.sidebar-search-form .content .form-control {
+  height: 50px;
+}
+.sidebar-search-form .content .form-control::-moz-placeholder {
+  color: #7d93b2;
+  font-size: 12px;
+}
+.sidebar-search-form .content .form-control:-ms-input-placeholder {
+  color: #7d93b2;
+  font-size: 12px;
+}
+.sidebar-search-form .content .form-control:not([type=submit]), .sidebar-search-form .content .form-control::placeholder {
+  color: #7d93b2;
+  font-size: 12px;
+}
+.sidebar-search-form .content .form-control:not([type=submit]) {
+  background-color: #f5f7fb;
+  border: 1px solid #e5e7f2;
+}
+.sidebar-search-form .content .form-control[type=submit] {
+  font-size: 13px;
+}
+.sidebar-search-form .content #price-zone {
+  position: relative;
+  cursor: pointer;
+}
+.sidebar-search-form .content #price-zone #price-display {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.sidebar-search-form .content #price-zone .dropdown-menu.price-dropdown {
+  width: 100%;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+.sidebar-search-form .content #price-zone .dropdown-menu.price-dropdown .ui-widget-header {
+  background: #3270fc;
+}
+.sidebar-search-form .content #price-zone .dropdown-menu.price-dropdown .ui-slider-handle {
+  border-radius: 50%;
+}
+.sidebar-search-form .content #price-zone .dropdown-menu.price-dropdown .price-inputs {
+  margin-bottom: 20px;
+  display: flex;
+}
+.sidebar-search-form .content #price-zone .dropdown-menu.price-dropdown .price-inputs input {
+  display: flex;
+  width: calc(50% - 5px);
+  height: 30px;
+  padding: 6px 12px;
+  border: 1px solid #e0e1e6;
+  border-radius: 6px;
+}
+.sidebar-search-form .content #price-zone .dropdown-menu.price-dropdown .price-inputs input:first-child {
+  margin-right: 10px;
+}
+.sidebar-search-form .content [data-target="#advanceSearch"] {
+  cursor: pointer;
+}
+.sidebar-search-form .content [data-target="#advanceSearch"] .show-text {
+  display: inline-block;
+}
+.sidebar-search-form .content [data-target="#advanceSearch"] .hide-text {
+  display: none;
+}
+.sidebar-search-form .content [data-target="#advanceSearch"][aria-expanded=true] .show-text {
+  display: none;
+}
+.sidebar-search-form .content [data-target="#advanceSearch"][aria-expanded=true] .hide-text {
+  display: inline-block;
+}
+.sidebar-search-form .content .form-actions {
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #eee;
+}
+.sidebar-search-form .content .form-actions [type=submit] {
+  padding: 12px 30px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.list-title {
+  padding: 0 15px;
+}
+.list-title h2 {
+  color: #566985;
+  font-size: 16px;
+  font-weight: 500;
+  vertical-align: baseline;
+}
+.list-title h2 span {
+  color: #3270fc;
+}
+.list-title h2 strong {
+  padding: 3px 10px;
+  background-color: #fff;
+  font-size: 11px;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1329,7 +1562,7 @@ body {
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 13px;
   line-height: 1.66;
 }
