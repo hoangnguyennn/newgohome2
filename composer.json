@@ -1,8 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "GoHomeNhaTrang.com",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "GoHomeNhaTrang.com",
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",

@@ -430,7 +430,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1060;
+  z-index: 1040;
   height: 70px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.07);
 }
@@ -1553,6 +1553,174 @@ body {
   font-size: 11px;
   border-radius: 4px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+}
+
+.hero-section {
+  position: relative;
+}
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 90%);
+  z-index: 1;
+}
+.hero-section .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #aaa;
+  z-index: -1;
+}
+.hero-section .bg .bg-slider {
+  width: 100%;
+  height: 100%;
+}
+.hero-section .bg .bg-slider .slick-list,
+.hero-section .bg .bg-slider .slick-track {
+  height: 100%;
+}
+.hero-section .bg .bg-slider .img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+  padding-top: 130px;
+  padding-bottom: 45px;
+}
+.hero-section .container .labels {
+  display: flex;
+  margin-bottom: 15px;
+}
+.hero-section .container .labels .label {
+  padding: 7px 20px;
+  background: #3270fc;
+  color: #fff;
+  font-weight: 600;
+  font-size: 11px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.hero-section .container .title {
+  padding-bottom: 8px;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.hero-section .container .foot .left .price-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+.hero-section .container .foot .left .price-wrap strong {
+  margin-right: 12px;
+  color: #fff;
+  font-size: 13px;
+}
+.hero-section .container .foot .left .price-wrap .price {
+  color: #3270fc;
+  font-size: 22px;
+  font-weight: 500;
+}
+.hero-section .container .foot .left .date-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 6px;
+}
+.hero-section .container .foot .left .date-wrap strong {
+  margin-right: 12px;
+  color: #fff;
+  font-size: 13px;
+}
+.hero-section .container .foot .left .date-wrap .date {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.gallery-section {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 50px;
+  background-color: #f6f6f6;
+}
+.gallery-section .gallery .gallery-item {
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  background-color: #fff;
+}
+.gallery-section .gallery .gallery-item img {
+  width: 100%;
+}
+
+.description {
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #f6f6f6;
+}
+.description .wrapper {
+  padding: 35px 30px;
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+.description .wrapper .title {
+  margin-bottom: 20px;
+  color: #566985;
+  font-size: 18px;
+  font-weight: 600;
+}
+.description .wrapper .content {
+  color: #878c9f;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.description .wrapper .content.des {
+  white-space: pre-wrap;
+}
+.description .wrapper .detail {
+  padding: 0;
+  list-style-type: none;
+  color: #878c9f;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.description .wrapper .detail li {
+  padding-bottom: 15px;
+}
+.description .wrapper .detail li b {
+  padding-right: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.description .wrapper .detail li span {
+  color: #000;
+}
+
+.new-posts {
+  padding-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #f6f6f6;
+}
+.new-posts .title {
+  margin: 20px 0 15px;
+  color: #566985;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 * {
