@@ -56,7 +56,7 @@
                             </td>
                             <td>
                                 <div class="d-flex flex-column flex-lg-row">
-                                    @if (!$user->isAdmin())
+                                    @if (Auth::user()->isRoot() || !$user->isAdmin())
                                         <a class="btn btn-primary mr-md-2 mb-2"
                                             href={{ route('users.edit', $user->id) }}>Chỉnh sửa</a>
                                     @endif

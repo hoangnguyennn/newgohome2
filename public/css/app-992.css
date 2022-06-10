@@ -22,6 +22,11 @@
   }
 }
 @media (min-width: 992px) {
+  .advanced-search-modal .modal-content {
+    margin-top: 320px;
+  }
+}
+@media (min-width: 992px) {
   .header .right .login-toggler {
     padding: 0 25px;
     height: 70px;
@@ -197,6 +202,130 @@
   .container {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  #post-list {
+    padding-top: 190px;
+  }
+
+  .search-form-posts {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    padding: 16px 0;
+    height: 80px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  .search-form-posts .btn-actions {
+    display: none;
+  }
+  .search-form-posts .pc-search-form {
+    display: flex;
+    align-items: center;
+  }
+  .search-form-posts .pc-search-form .label {
+    padding: 0 30px;
+  }
+  .search-form-posts .pc-search-form .label label {
+    margin-bottom: 0;
+    color: #566985;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .search-form-posts .pc-search-form .form-group {
+    margin-bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .search-form-posts .pc-search-form .form-control {
+    padding: 16px 20px;
+    height: 48px;
+    background: #f5f7fb;
+    color: #7d93b2;
+    font-size: 12px;
+    border: 1px solid #e5e7f2;
+    border-radius: 4px;
+  }
+  .search-form-posts .pc-search-form .search-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .search-form-posts .pc-search-form .search-content .q,
+.search-form-posts .pc-search-form .search-content .price-wrap,
+.search-form-posts .pc-search-form .search-content .multiselect-localtion,
+.search-form-posts .pc-search-form .search-content .category,
+.search-form-posts .pc-search-form .search-content .submit-form {
+    width: 20%;
+  }
+  .search-form-posts .pc-search-form .advanced-search-wrap {
+    padding: 15px;
+    cursor: pointer;
+    color: #566985;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .search-form-posts .pc-search-form .submit-form button {
+    background: #3270fc;
+    color: #fff;
+  }
+  .search-form-posts .pc-search-form .submit-form button:hover {
+    background: linear-gradient(to right, #3c6afd, #57c7fa);
+  }
+  .search-form-posts .pc-search-form #price-zone2 {
+    position: relative;
+    cursor: pointer;
+  }
+  .search-form-posts .pc-search-form #price-zone2 #price-display {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: -webkit-grab;
+    cursor: grab;
+  }
+  .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown {
+    width: 100%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+  }
+  .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown .ui-widget-header {
+    background: #3270fc;
+  }
+  .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown .ui-slider-handle {
+    border-radius: 50%;
+  }
+  .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown .price-inputs {
+    margin-bottom: 20px;
+    display: flex;
+  }
+  .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown .price-inputs input {
+    display: flex;
+    width: calc(50% - 5px);
+    height: 30px;
+    padding: 6px 12px;
+    border: 1px solid #e0e1e6;
+    border-radius: 6px;
+  }
+  .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown .price-inputs input:first-child {
+    margin-right: 10px;
+  }
+
+  .sidebar-search-form {
+    display: none;
+  }
+
+  .posts .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .posts .row [class^=col-] {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 @media (min-width: 992px) {

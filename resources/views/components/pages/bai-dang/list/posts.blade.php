@@ -11,8 +11,8 @@
 <script>
     let page = 1;
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() == $(document).height()) {
-			page++;
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+            page++;
             fetchPosts();
         }
     });
@@ -21,17 +21,17 @@
         const url = new URL(window.location.href);
         url.searchParams.set('page', page);
 
-		$.ajax({
-			url: url.href,
-			type: 'get',
-		}).done(function (data) {
-			if (data.html !== '') {
-				$('.posts .row').append(data.html);
-                $(".currency").each(function () {
+        $.ajax({
+            url: url.href,
+            type: 'get',
+        }).done(function(data) {
+            if (data.html !== '') {
+                $('.posts .row').append(data.html);
+                $(".currency").each(function() {
                     $(this).text(toCurrency($(this).text()));
                 });
-			}
-		});
+            }
+        });
     }
 
     // convert currency to VND value

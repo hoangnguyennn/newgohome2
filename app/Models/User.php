@@ -43,9 +43,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    private $rootAccountEmails = [
+        'nvanhoang188@gmail.com'
+    ];
+
     public function isAdmin()
     {
         return $this->role == 'admin';
+    }
+
+    public function isRoot()
+    {
+        return in_array($this->email, $this->rootAccountEmails);
     }
 
     public function hasRole($role)

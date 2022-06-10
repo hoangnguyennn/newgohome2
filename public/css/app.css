@@ -315,7 +315,7 @@
 }
 
 .advanced-search-modal .modal-content {
-  margin-top: 150px;
+  margin-top: 70px;
   margin-bottom: 50px;
 }
 .advanced-search-modal .modal-content .modal-body {
@@ -682,10 +682,15 @@ body {
 .main-banner .search-form-notifer button {
   margin-left: 10px;
   padding: 8px 14px;
+  background-color: #3270fc;
   color: #fff;
   font-size: 12px;
   font-weight: 500;
   border-radius: 2px;
+}
+.main-banner .search-form-notifer button:hover {
+  background-color: #fff;
+  color: #3270fc;
 }
 
 .popular-posts {
@@ -758,6 +763,9 @@ body {
   font-size: 12px;
   font-weight: 500;
   border-radius: 4px;
+}
+.popular-posts .view-all-list .btn-view-all-list:hover {
+  background: linear-gradient(to right, #3c6afd, #57c7fa);
 }
 
 .explore-features {
@@ -1384,6 +1392,9 @@ body {
 .search-form-posts {
   margin-bottom: 20px;
   padding: 30px 30px 0 30px;
+}
+.search-form-posts .pc-search-form {
+  display: none;
 }
 .search-form-posts .show-search-form {
   padding: 12px 0;

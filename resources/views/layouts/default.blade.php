@@ -90,25 +90,27 @@
 
     {{-- apply bootstrap multiselect for location --}}
     <script>
-        $('[name="location[]"]').each(function() {
-            $(this).multiselect({
-                widthSynchronizationMode: 'ifPopupIsSmaller',
-                maxHeight: 400,
-                nonSelectedText: 'Khu vực',
-                nSelectedText: ' khu vực được chọn',
-                buttonTitle: function(options, select) {
-                    let labels = [];
-                    options.each(function() {
-                        labels.push($(this).text().trim());
-                    });
-                    return labels.join(', ');
-                }
+        $(function() {
+            $('[name="location[]"]').each(function() {
+                $(this).multiselect({
+                    widthSynchronizationMode: 'ifPopupIsSmaller',
+                    maxHeight: 400,
+                    nonSelectedText: 'Khu vực',
+                    nSelectedText: ' khu vực được chọn',
+                    buttonTitle: function(options, select) {
+                        let labels = [];
+                        options.each(function() {
+                            labels.push($(this).text().trim());
+                        });
+                        return labels.join(', ');
+                    }
+                });
             });
-        });
 
-        $('.multiselect-localtion .btn-group').css('width', '100%');
-        $('.multiselect').addClass('form-control text-left');
-        $('.multiselect').removeClass('text-center');
+            $('.multiselect-localtion .btn-group').css('width', '100%');
+            $('.multiselect').addClass('form-control text-left');
+            $('.multiselect').removeClass('text-center');
+        });
     </script>
 
     {{-- remove non-value fields before submit --}}

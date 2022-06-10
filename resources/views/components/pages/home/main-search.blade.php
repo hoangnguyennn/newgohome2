@@ -52,7 +52,7 @@
 
 <div class="search-form-notifer">
     Need more search options?
-    <button class="btn btn-primary" data-toggle="modal" data-target="#advanced-search-form">Tìm kiếm nâng cao</button>
+    <button class="btn" data-toggle="modal" data-target="#advanced-search-form">Tìm kiếm nâng cao</button>
 </div>
 
 {{-- apply slider for price --}}
