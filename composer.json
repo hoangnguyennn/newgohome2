@@ -1,7 +1,7 @@
 {
-    "name": "GoHomeNhaTrang.com",
+    "name": "hoangnguyen/gohome",
     "type": "project",
-    "description": "GoHomeNhaTrang.com",
+    "description": "hoangnguyen/gohome",
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",

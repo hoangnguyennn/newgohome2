@@ -1,4 +1,4 @@
-<div class="description">
+<div class="post-description">
     <div class="wrapper">
         <div class="title">Mô tả</div>
         @php

@@ -214,11 +214,11 @@ class PublicController extends Controller
             ->where('id', '!=', $post->id)
             ->paginate(3);
 
-        $relativePosts = Post::where('ward_id', $post->ward_id)
+        $relatedPosts = Post::where('ward_id', $post->ward_id)
             ->where('is_hide', 0)
             ->where('verify_status', 0)
             ->where('id', '!=', $post->id)
-            ->paginate(3);
+            ->paginate(4);
 
         $phoneNumbers = array(
             array("0797.016.179", "0797016179"),
@@ -232,7 +232,7 @@ class PublicController extends Controller
             }
         }
 
-        return view('pages.bai-dang.detail', compact('seo', 'post', 'posts', 'categories', 'wards', 'latestPosts', 'relativePosts', 'postRequestTypes'));
+        return view('pages.bai-dang.detail', compact('seo', 'post', 'posts', 'categories', 'wards', 'latestPosts', 'relatedPosts', 'postRequestTypes'));
     }
 
     public function update()

@@ -1,3 +1,11 @@
+#post-detail {
+    background-color: #f6f6f6;
+
+    .quick-menu {
+        background-color: #fff;
+    }
+}
+
 .hero-section {
     position: relative;
 
@@ -118,10 +126,7 @@
 }
 
 .gallery-section {
-    padding-left: 15px;
-    padding-right: 15px;
     padding-top: 50px;
-    background-color: #f6f6f6;
 
     .gallery {
         .gallery-item {
@@ -137,10 +142,10 @@
     }
 }
 
-.description {
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: #f6f6f6;
+.post-description {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow: hidden;
 
     .wrapper {
         padding: 35px 30px;
@@ -192,14 +197,183 @@
 
 .new-posts {
     padding-top: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: #f6f6f6;
 
     .title {
         margin: 20px 0 15px;
         color: #566985;
         font-weight: 600;
         font-size: 18px;
+    }
+
+    .content {
+        padding: 25px 30px;
+        background-color: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+
+        .post {
+            display: flex;
+            align-items: flex-start;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            border-radius: 0;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            .post-thumbnail {
+                width: 30%;
+                min-height: 55px;
+                border-radius: 4px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #eee;
+                }
+            }
+
+            .post-content {
+                flex: 1;
+                padding: 0 0 0 20px;
+                border: none;
+
+                .post-title {
+                    h3 {
+                        padding-bottom: 2px;
+                        color: #566985;
+                        font-weight: 600;
+                        font-size: 13px;
+                    }
+                }
+
+                .post-address {
+                    margin-top: 4px;
+
+                    i {
+                        color: #3270fc;
+                    }
+
+                    span {
+                        color: #999;
+                        font-size: 10px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                    }
+                }
+
+                .post-price {
+                    margin-top: 6px;
+                    color: #7d93b2;
+                    font-size: 13px;
+                    font-weight: 600;
+
+                    .price-label {
+                        margin-right: 6px;
+                        color: #3270fc;
+                    }
+                }
+            }
+        }
+    }
+
+    .view-all {
+        display: flex;
+        margin-top: 15px;
+
+        .btn-view-all {
+            padding: 12px 30px;
+            background-color: #3270fc;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 4px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.related-posts {
+    padding-top: 50px;
+
+    .title {
+        margin: 20px 0 15px;
+        color: #566985;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .content {
+        margin-left: -15px;
+        margin-right: -15px;
+
+        .content-slider {
+            .post {
+                padding-left: 15px;
+                padding-right: 15px;
+
+                .post-thumb {
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                    overflow: hidden;
+                }
+            }
+
+            .slick-dots {
+                margin-top: 20px;
+                margin-bottom: 0;
+                padding-bottom: 30px;
+                width: auto;
+                display: flex;
+                justify-content: center;
+
+                li {
+                    position: relative;
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    margin: 0 3px;
+                    padding: 0;
+                    cursor: pointer;
+
+                    button {
+                        font-size: 0;
+                        line-height: 0;
+                        display: block;
+                        width: 6px;
+                        height: 6px;
+                        cursor: pointer;
+                        color: transparent;
+                        border: 0;
+                        outline: none;
+                        background: rgba(160, 160, 160, 0.51);
+                        border-radius: 100%;
+                    }
+
+                    &.slick-active button {
+                        background: #3270fc;
+                    }
+                }
+            }
+        }
+    }
+
+    .slider-control {
+        display: none;
     }
 }

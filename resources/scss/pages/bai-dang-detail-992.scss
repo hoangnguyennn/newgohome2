@@ -1,0 +1,45 @@
+@media (min-width: 992px) {
+    .gallery-section {
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+
+            [class^="col-"] {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+
+    .related-posts {
+        position: relative;
+
+        .slider-control {
+            display: block;
+            width: 36px;
+            height: 36px;
+            background-color: #fff;
+            color: #3270fc;
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgb(0 0 0 / 5%);
+
+            position: absolute;
+            top: 50%;
+
+            &.prev {
+                transform: rotate(90deg);
+                left: -60px;
+            }
+
+            &.next {
+                transform: rotate(-90deg);
+                right: -60px;
+            }
+        }
+    }
+}

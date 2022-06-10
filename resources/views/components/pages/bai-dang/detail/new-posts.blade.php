@@ -25,9 +25,16 @@
                         <span>{{ $post->ward->name }}, {{ $post->ward->district->name }}</span>
                     </div>
 
-                    <div class="post-price currency">{{ $post->price }}</div>
+                    <div class="post-price">
+                        <span class="price-label">Giá: </span>
+                        <span class="currency">{{ $post->price }}</span>
+                    </div>
                 </div>
             </a>
         @endforeach
+
+        <div class="view-all">
+            <a href="{{ route('posts') }}" class="btn-view-all">Xem tất cả</a>
+        </div>
     </div>
 </div>
