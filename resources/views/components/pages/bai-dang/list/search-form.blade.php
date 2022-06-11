@@ -87,6 +87,8 @@ if ($price) {
             <span>Tìm kiếm nâng cao</span>
             <i class="las la-caret-down"></i>
         </div>
+
+        @include('components.pages.bai-dang.list.advanced-search')
     </form>
 </div>
 
@@ -293,16 +295,11 @@ if ($price) {
         });
     });
 </script>
-{{-- <script>
-    $(function() {
-        $('#q').on("keypress", function(event) {
-            if (event.keyCode === 13) {
-                $('.pc-search-form').submit();
-            }
-        });
 
-        $('#category').on('change', function() {
-            $('.pc-search-form').submit();
+<script>
+    $(function() {
+        $('.advanced-search-wrap').on('click', function() {
+            $('.post-list-advanced-search').toggleClass('show');
         });
     });
-</script> --}}
+</script>

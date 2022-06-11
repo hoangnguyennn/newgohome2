@@ -1396,6 +1396,9 @@ body {
 .search-form-posts .pc-search-form {
   display: none;
 }
+.search-form-posts .pc-search-form .post-list-advanced-search {
+  display: none;
+}
 .search-form-posts .show-search-form {
   padding: 12px 0;
   width: 48%;

@@ -20,7 +20,6 @@
         .was-validated .dropzone.form-control.is-valid {
             border-color: #38c172;
         }
-
     </style>
 @endsection
 
@@ -155,8 +154,7 @@
                             <span class="text-danger">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả"
-                                required></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả" required></textarea>
                             <div class="invalid-feedback">
                                 Mô tả là trường bắt buộc
                             </div>
@@ -382,7 +380,9 @@
         }
     </script>
 
-    <script src="{{ mix('assets/dropzone.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"
+        integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         const form = document.querySelector('#add-post-form');

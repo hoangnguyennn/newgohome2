@@ -9,13 +9,12 @@ use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\User;
 use App\Models\Ward;
-use App\Notifications\PostNotification;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Exception;
 
 class PostController extends Controller
 {
@@ -222,6 +221,12 @@ class PostController extends Controller
             $post->category_id = $request->input('category');
             $category->count = $category->count + 1;
             $category->save();
+        }
+
+        // nếu bài viết đang ẩn và trạng thái mới là hiện thì verify_status = 1 (chưa duyệt)
+        if ($post->is_hide == 1 && $request->input('status') == 0) {
+            $post->verify_status = 1;
+            $post->deny_reason = '';
         }
 
         $post->name = $request->input('title');

@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostRequestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

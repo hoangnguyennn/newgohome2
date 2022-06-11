@@ -35,6 +35,10 @@
 
     .pc-search-form {
         display: none;
+
+        .post-list-advanced-search {
+            display: none;
+        }
     }
 
     .show-search-form {

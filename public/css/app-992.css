@@ -269,6 +269,10 @@
     font-size: 10px;
     font-weight: 500;
     text-transform: uppercase;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
   }
   .search-form-posts .pc-search-form .submit-form button {
     background: #3270fc;
@@ -313,6 +317,65 @@
   }
   .search-form-posts .pc-search-form #price-zone2 .dropdown-menu.price-dropdown .price-inputs input:first-child {
     margin-right: 10px;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 30px 40px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search.show {
+    display: block;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .top .title {
+    color: #566985;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .top .title i {
+    margin-right: 15px;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .top .close {
+    cursor: pointer;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .top .close i {
+    color: #3270fc;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .center .row {
+    margin-bottom: 20px;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .center .form-group {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .center .form-group label {
+    margin-bottom: 10px;
+    color: #70778b;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .bottom button {
+    padding: 12px 30px;
+    background-color: #3270fc;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #e5e7f2;
+    border-radius: 4px;
+  }
+  .search-form-posts .pc-search-form .post-list-advanced-search .bottom button:hover {
+    background: linear-gradient(to right, #3c6afd, #57c7fa);
   }
 
   .sidebar-search-form {
