@@ -15,6 +15,7 @@
                     <span>{{ Auth::user()->fullname }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
+                    <a class="dropdown-item" href="{{ route('posts.index') }}">Quản lý</a>
                     <a class="dropdown-item btn-logout" href="{{ route('logout') }}">Đăng xuất</a>
                 </div>
             @else

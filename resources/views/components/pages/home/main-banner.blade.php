@@ -10,4 +10,11 @@
 
         @include('components/pages/home/main-search')
     </div>
+
+    <div class="scroll-down-wrap">
+        <div class="mousey">
+            <div class="scroller"></div>
+        </div>
+        <span>Scroll Down To Discover</span>
+    </div>
 </div>

@@ -28,6 +28,11 @@
                 <div class="label">Giá rẻ</div>
             @endif
         </div>
+
+        <div class="image-count">
+            <i class="las la-camera"></i>
+            <span>{{ count($post->images) }}</span>
+        </div>
     </a>
     <div class="post-content">
         <h3 class="title">

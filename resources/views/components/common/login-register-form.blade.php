@@ -3,8 +3,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-logo">
-                    <img src="{{ mix('images/webp/logo.webp') }}" alt="" />
+                <div class="deco">
+                    {{-- <div class="modal-logo">
+                        <img src="{{ mix('images/webp/logo.webp') }}" alt="" />
+                    </div> --}}
+                    <div class="modal-header-bg">
+                        <div class="deco-1"></div>
+                        <div class="deco-2"></div>
+                    </div>
+                    <div class="deco-3"></div>
+                    <div class="deco-4"></div>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="las la-times"></i></span>

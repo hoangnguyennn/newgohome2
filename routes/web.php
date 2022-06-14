@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostRequestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\StatisticalController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -44,6 +45,8 @@ Route::prefix('manager')->group(function () {
         Route::post('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
 
         Route::post('/users/move-posts', [PostController::class, 'movePosts'])->name('users.move-posts');
+
+        Route::get('/statistical', [StatisticalController::class, 'index'])->middleware('role:admin')->name('statistical');
 
         Route::get('/update', [PublicController::class, 'update'])->name('update');
     });

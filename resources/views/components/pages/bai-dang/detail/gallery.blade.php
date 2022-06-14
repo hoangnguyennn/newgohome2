@@ -1,7 +1,7 @@
 <div class="gallery-section">
     <div class="gallery row">
         @foreach ($post->images as $image)
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6" data-src="https://homeradar.cththemes.co/wp-content/uploads/2021/04/1.jpg">
                 {{-- <a href="{{ url('/uploads/' . $image->filename) }}">
                     <img src="{{ url('/uploads/' . $image->filename) }}" alt="{{ $loop->index + 1 }}" />
                 </a> --}}

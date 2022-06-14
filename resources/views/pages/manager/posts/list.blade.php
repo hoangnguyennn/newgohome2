@@ -53,6 +53,29 @@
     </div>
 
     <div class="container-fluid my-5">
+        <h3 class="title">Số lượng bài đăng</h3>
+
+        <ul>
+            @php
+                $total = 0;
+            @endphp
+            @foreach ($postsCount as $postCount)
+                @php
+                    $total += $postCount->total;
+                @endphp
+                <li>
+                    <span>{{ $postCount->category->name }}: </span>
+                    <span>{{ $postCount->total }}</span>
+                </li>
+            @endforeach
+            <li>
+                <span>Tổng: </span>
+                <span>{{ $total }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid my-5">
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng</h3>
             <div class="d-flex">

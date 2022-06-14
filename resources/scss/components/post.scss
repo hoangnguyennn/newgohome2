@@ -94,6 +94,14 @@
                 }
             }
         }
+
+        .image-count {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: #fff;
+            z-index: 5;
+        }
     }
 
     .post-content {

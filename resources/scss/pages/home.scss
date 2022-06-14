@@ -13,6 +13,40 @@
         padding-right: 0;
     }
 
+    .scroll-down-wrap {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+
+        .mousey {
+            width: 20px;
+            height: 30px;
+            padding: 0 6px;
+            border: 1px solid rgba(255, 255, 255, 0.41);
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+
+            .scroller {
+                position: relative;
+                top: 6px;
+                width: 3px;
+                height: 3px;
+                border-radius: 25%;
+                background-color: #fff;
+                animation: scroll 2s linear infinite;
+            }
+        }
+
+        span {
+            margin-left: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+    }
+
     .hero-title {
         margin-bottom: 40px;
 
@@ -984,5 +1018,15 @@
                 }
             }
         }
+    }
+}
+
+@keyframes scroll {
+    0% {
+        top: 6px;
+    }
+
+    100% {
+        top: 100%;
     }
 }

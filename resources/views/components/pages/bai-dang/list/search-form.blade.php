@@ -24,8 +24,8 @@ if ($price) {
     </div>
 
     <form class="pc-search-form" action="{{ route('posts') }}" novalidate>
-        <div class="form-group label">
-            <label for="q">Tìm kiếm</label>
+        <div class="deco">
+            <i class="las la-sliders-h"></i>
         </div>
 
         <div class="search-content">
@@ -158,22 +158,26 @@ if ($price) {
         <div class="row">
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage" />
+                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage"
+                        value="{{ request()->input('acreage') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom"
+                        value="{{ request()->input('bedroom') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet"
+                        value="{{ request()->input('toilet') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số tầng" name="floor" />
+                    <input type="number" min="0" class="form-control" placeholder="Số tầng" name="floor"
+                        value="{{ request()->input('floor') }}" />
                 </div>
             </div>
         </div>

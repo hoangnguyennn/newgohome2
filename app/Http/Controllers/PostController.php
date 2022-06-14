@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class PostController extends Controller
@@ -87,7 +88,14 @@ class PostController extends Controller
             $posts->appends(['phone' => $phone]);
         }
 
-        return view('pages.manager.posts.list', compact('posts'));
+        $postsCount = Post::where('is_hide', 0)
+            ->where('verify_status', '!=', 2)
+            ->select('category_id', DB::raw('count(*) as total'))
+            ->groupBy('category_id')
+            ->orderBy('total', 'desc')
+            ->get();
+
+        return view('pages.manager.posts.list', compact('posts', 'postsCount'));
     }
 
     /**

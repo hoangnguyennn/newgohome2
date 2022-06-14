@@ -215,7 +215,7 @@
     left: 0;
     right: 0;
     z-index: 9;
-    padding: 16px 0;
+    padding: 0;
     height: 80px;
     background-color: #fff;
     border-bottom: 1px solid #eee;
@@ -226,6 +226,18 @@
   .search-form-posts .pc-search-form {
     display: flex;
     align-items: center;
+  }
+  .search-form-posts .pc-search-form .deco {
+    width: 80px;
+    height: 80px;
+    background-color: #3270fc;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search-form-posts .pc-search-form .deco i {
+    font-size: 19px;
   }
   .search-form-posts .pc-search-form .label {
     padding: 0 30px;

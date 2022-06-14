@@ -12,78 +12,79 @@
 
     <div class="wrapper">
         <div class="title">Chi tiết</div>
-        <ul class="detail">
-            <li>
+        <div class="row detail">
+            <div class="col-12 col-lg-6">
                 <b>Khu vực: </b>
                 <span>{{ $post->ward->type->name }} {{ $post->ward->name }}</span>
-            </li>
+            </div class="col-12 col-lg-6">
 
-            <li>
+            <div class="col-12 col-lg-6">
                 <b>Giá cả: </b>
                 <span class="currency">
                     {{ ($post->price * (100 - $post->discount)) / 100 }}
                 </span>
-            </li>
+            </div class="col-12 col-lg-6">
 
-            <li>
+            <div class="col-12 col-lg-6">
                 <b>Diện tích: </b>
                 <span>{{ (int) $post->acreage }} m2</span>
-            </li>
+            </div class="col-12 col-lg-6">
 
             @if ($post->floor)
-                <li>
+                <div class="col-12 col-lg-6">
                     <b>Số tầng: </b>
                     <span>{{ $post->floor }} tầng</span>
-                </li>
+                </div class="col-12 col-lg-6">
             @endif
 
             @if ($post->bedroom)
-                <li>
+                <div class="col-12 col-lg-6">
                     <b>Số phòng ngủ: </b>
                     <span>{{ $post->bedroom }} phòng</span>
-                </li>
+                </div class="col-12 col-lg-6">
             @endif
 
             @if ($post->toilet)
-                <li>
+                <div class="col-12 col-lg-6">
                     <b>Số phòng tắm: </b>
                     <span>{{ $post->toilet }} phòng</span>
-                </li>
+                </div class="col-12 col-lg-6">
             @endif
 
-            <li>
+            <div class="col-12 col-lg-6">
                 <b>Loại: </b>
                 <span>{{ $post->category->name }}</span>
-            </li>
+            </div class="col-12 col-lg-6">
 
             @if (Auth::check())
                 @if (Auth::user()->isAdmin())
-                    <li>
+                    <div class="col-12 col-lg-6">
                         <b>Họ tên chủ nhà: </b>
                         <span>{{ $post->owner_name }}</span>
-                    </li>
+                    </div class="col-12 col-lg-6">
 
-                    <li>
+                    <div class="col-12 col-lg-6">
                         <b>Địa chỉ chủ nhà: </b>
                         <span>{{ $post->owner_address }}</span>
-                    </li>
+                    </div class="col-12 col-lg-6">
 
-                    <li>
+                    <div class="col-12 col-lg-6">
                         <b>Số điện thoại chủ nhà: </b>
                         <span>{{ $post->owner_phone }}</span>
-                    </li>
+                    </div class="col-12 col-lg-6">
 
-                    <li>
+                    <div class="col-12 col-lg-6">
                         <b>Hoa hồng: </b>
-                        <span class="currency" title="{{ $post->commission }}">{{ $post->commission }}</span>
-                    </li>
+                        <span class="currency"
+                            title="{{ $post->commission }}">{{ $post->commission }}</span>
+                    </div class="col-12 col-lg-6">
                 @endif
             @endif
 
-            <li>
+            <div class="col-12 col-lg-6">
                 <b>Người đăng: </b>
                 <span>{{ $post->user->fullname }}</span>
-            </li>
-        </ul>
+            </div class="col-12 col-lg-6">
+        </div>
     </div>
 </div>

@@ -10,6 +10,7 @@
                 @include('components.pages.bai-dang.detail.description')
             </div>
             <div class="col-12 col-lg-4">
+                @include('components.pages.bai-dang.detail.contact')
                 @include('components.pages.bai-dang.detail.new-posts')
             </div>
         </div>
