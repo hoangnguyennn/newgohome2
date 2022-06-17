@@ -10,7 +10,8 @@
                             <div class="form-group row">
                                 <label for="id" class="col-sm-3 col-form-label">Mã bài đăng</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="GH-xxx" />
+                                    <input type="text" class="form-control" id="id" name="id"
+                                        placeholder="GH-xxx" />
                                 </div>
                             </div>
                         </div>
@@ -52,28 +53,30 @@
         </div>
     </div>
 
-    <div class="container-fluid my-5">
-        <h3 class="title">Số lượng bài đăng</h3>
+    @if (Auth::user()->isAdmin())
+        <div class="container-fluid my-5">
+            <h3 class="title">Số lượng bài đăng</h3>
 
-        <ul>
-            @php
-                $total = 0;
-            @endphp
-            @foreach ($postsCount as $postCount)
+            <ul>
                 @php
-                    $total += $postCount->total;
+                    $total = 0;
                 @endphp
+                @foreach ($postsCount as $postCount)
+                    @php
+                        $total += $postCount->total;
+                    @endphp
+                    <li>
+                        <span>{{ $postCount->category->name }}: </span>
+                        <span>{{ $postCount->total }}</span>
+                    </li>
+                @endforeach
                 <li>
-                    <span>{{ $postCount->category->name }}: </span>
-                    <span>{{ $postCount->total }}</span>
+                    <span>Tổng: </span>
+                    <span>{{ $total }}</span>
                 </li>
-            @endforeach
-            <li>
-                <span>Tổng: </span>
-                <span>{{ $total }}</span>
-            </li>
-        </ul>
-    </div>
+            </ul>
+        </div>
+    @endif
 
     <div class="container-fluid my-5">
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
@@ -102,7 +105,7 @@
                         <td style="min-width: 100px;">Ẩn/hiện</td>
                         <td style="min-width: 100px;">Ngày tạo</td>
                         <td style="min-width: 140px;">Ngày cập nhật</td>
-                        <td style="min-width: 345px;">Hành động</td>
+                        <td style="min-width: 355px;">Hành động</td>
                     </tr>
                 </thead>
                 <tbody>

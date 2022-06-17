@@ -83,11 +83,11 @@
                         <input type="password" id="register-password" name="password" />
                     </div>
                     <div class="group">
-                        <label for="re-password">
+                        <label for="password_confirmation">
                             Re-Password
                             <span>*</span>
                         </label>
-                        <input type="password" id="re-password" name="re-password" />
+                        <input type="password" id="password_confirmation" name="password_confirmation" />
                     </div>
                     <button type="submit" class="btn-submit">Register</button>
                 </form>
