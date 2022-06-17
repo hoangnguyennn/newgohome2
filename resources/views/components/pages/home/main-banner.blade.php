@@ -8,13 +8,13 @@
             </h2>
         </div>
 
-        @include('components/pages/home/main-search')
-    </div>
+        @include('components.pages.home.main-search')
 
-    <div class="scroll-down-wrap">
-        <div class="mousey">
-            <div class="scroller"></div>
+        <div class="scroll-down-wrap">
+            <div class="mousey">
+                <div class="scroller"></div>
+            </div>
+            <span>Scroll Down To Discover</span>
         </div>
-        <span>Scroll Down To Discover</span>
     </div>
 </div>
