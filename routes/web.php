@@ -48,6 +48,9 @@ Route::prefix('manager')->group(function () {
 
         Route::get('/statistical', [StatisticalController::class, 'index'])->middleware('role:admin')->name('statistical');
 
+        Route::get('/account/edit', [UserController::class, 'editAccount'])->name('account.edit');
+        Route::post('/account/update', [UserController::class, 'updateAccount'])->name('account.update');
+
         Route::get('/update', [PublicController::class, 'update'])->name('update');
     });
 });

@@ -88,12 +88,12 @@
 
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->fullname }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
-                        <a class="dropdown-item" href="#">Cập nhật hồ sơ</a>
+                        <a class="dropdown-item" href="{{ route('account.edit') }}">Cập nhật hồ sơ</a>
                         <a class="dropdown-item btn-logout" href="{{ route('logout') }}">Đăng xuất</a>
                     </div>
                 </li>

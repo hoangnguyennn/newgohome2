@@ -117,4 +117,26 @@ class UserController extends Controller
 
         return back()->with('danger', 'Bạn không có quyền thực hiện chức năng này');
     }
+
+    public function editAccount()
+    {
+        $user = Auth::user();
+        return view('pages.manager.users.edit-account', compact('user'));
+    }
+
+    public function updateAccount()
+    {
+        $user = Auth::user();
+        $user->fullname = request()->input('fullname');
+        if (request()->input('password')) {
+            if (request()->input('confirm-password') && request()->input('password') === request()->input('confirm-password')) {
+                $user->password = Hash::make(request()->input('password'));
+            } else {
+                return back()->with('danger', 'Mật khẩu không trùng khớp');
+            }
+        }
+
+        $user->save();
+        return redirect()->route('account.edit')->with('success', 'Cập nhật thành công');
+    }
 }
