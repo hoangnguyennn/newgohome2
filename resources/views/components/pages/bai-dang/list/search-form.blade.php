@@ -61,20 +61,10 @@ if ($price) {
             </div>
 
             <div class="form-group price-wrap">
-                <div class="form-control d-flex align-items-center" id="price-zone2" type="button"
-                    data-toggle="dropdown" aria-expanded="false">
-                    <span>Giá (triệu đồng):&nbsp;</span>
-                    <div id="price-display2" class="text-primary">{{ request()->input('price') }}</div>
-                    <input type="hidden" name="price" id="price2" value="{{ request()->input('price') }}" />
-                    <div class="dropdown-menu price-dropdown" aria-labelledby="price">
-                        <div class="price-inputs">
-                            <input type="number" class="form-control" id="min2" min="0" max="100"
-                                value="{{ $min }}" />
-                            <input type="number" class="form-control" id="max2" min="0" max="100"
-                                value="{{ $max }}" />
-                        </div>
-                        <div id="slider-range2"></div>
-                    </div>
+                <div class="range-slider">
+                    <label for="price2">Giá:</label>
+                    <input type="text" class="form-control price-range2" name="price" id="price2"
+                        value="{{ request()->input('price') }}" />
                 </div>
             </div>
 
@@ -135,12 +125,19 @@ if ($price) {
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <div class="form-group">
+                <div class="form-group price-wrap">
+                    <div class="range-slider">
+                        <input type="text" class="form-control price-range" name="price" id="price"
+                            value="{{ request()->input('price') }}" />
+                    </div>
+                </div>
+                {{-- <div class="form-group">
                     <div class="form-control d-flex align-items-center" id="price-zone" type="button"
                         data-toggle="dropdown" aria-expanded="false">
                         <span>Giá (triệu đồng):&nbsp;</span>
                         <div id="price-display" class="text-primary">{{ request()->input('price') }}</div>
-                        <input type="hidden" name="price" id="price" value="{{ request()->input('price') }}" />
+                        <input type="hidden" name="price" id="price"
+                            value="{{ request()->input('price') }}" />
                         <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                             <div class="price-inputs">
                                 <input type="number" class="form-control" id="min" min="0" max="100"
@@ -151,7 +148,7 @@ if ($price) {
                             <div id="slider-range"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -203,7 +200,7 @@ if ($price) {
 </script>
 
 {{-- apply slider for price --}}
-<script>
+{{-- <script>
     $(function() {
         $('#slider-range').slider({
             range: true,
@@ -249,54 +246,34 @@ if ($price) {
             $('#max').val(max);
         });
     });
+</script> --}}
+
+<script>
+    let min = 0;
+    let max = 150;
+
+    $(".price-range").ionRangeSlider({
+        skin: "round",
+        type: "double",
+        min: min,
+        max: max,
+        from: {{ $min }},
+        to: {{ $max }},
+        input_values_separator: '-',
+        postfix: ' triệu'
+    });
 </script>
 
-{{-- apply slider for price 2 --}}
 <script>
-    $(function() {
-        $('#slider-range2').slider({
-            range: true,
-            min: 0,
-            max: 500,
-            values: [{{ $min }}, {{ $max }}],
-            slide: function(event, ui) {
-                const min = ui.values[0];
-                const max = ui.values[1];
-                $('#price-display2').html(`${min} - ${max}`);
-                $('#price2').val(`${min}-${max}`);
-                $('#min2').val(min);
-                $('#max2').val(max);
-            },
-        });
-
-        $('#slider-range2').draggable();
-
-        $('#min2').change(function() {
-            console.log('min change');
-            const maxValue = Number($('#max2').val()) || 500;
-            const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
-            $('#slider-range2').slider('values', 0, minValue);
-
-            const min = $('#slider-range2').slider('values', 0);
-            const max = $('#slider-range2').slider('values', 1);
-            $('#price-display2').html(`${min} - ${max}`);
-            $('#price2').val(`${min}-${max}`);
-            $('#min2').val(min);
-            $('#max2').val(max);
-        });
-
-        $('#max2').change(function() {
-            const minValue = Number($('#min2').val()) || 0;
-            const maxValue = Number($('#max2').val()) < minValue ? minValue : Number($('#max2').val());
-            $('#slider-range2').slider('values', 1, maxValue);
-
-            const min = $('#slider-range2').slider('values', 0);
-            const max = $('#slider-range2').slider('values', 1);
-            $('#price-display2').html(`${min} - ${max}`);
-            $('#price2').val(`${min}-${max}`);
-            $('#min2').val(min);
-            $('#max2').val(max);
-        });
+    $(".price-range2").ionRangeSlider({
+        skin: "round",
+        type: "double",
+        min: min,
+        max: max,
+        from: {{ $min }},
+        to: {{ $max }},
+        input_values_separator: '-',
+        postfix: ' triệu'
     });
 </script>
 

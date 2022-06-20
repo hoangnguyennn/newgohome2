@@ -225,6 +225,35 @@
             }
         }
     }
+
+    .irs {
+        width: 100%;
+    }
+
+    .irs-from,
+    .irs-to,
+    .irs-single {
+        padding: 2px 7px;
+        color: #fff;
+        background: rgba(6, 27, 65, 0.5);
+
+        &:before {
+            border-top-color: rgba(6, 27, 65, 0.5);
+        }
+    }
+
+    .irs-min,
+    .irs-max {
+        padding: 2px 3px;
+        background: rgba(0, 0, 0, 0.1);
+        color: #999;
+    }
+
+    .irs--round .irs-handle {
+        top: 28px;
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .list-title {

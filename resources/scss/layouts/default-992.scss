@@ -1,7 +1,58 @@
 @media (min-width: 992px) {
     .header {
+        .header-search {
+            left: 225px;
+            right: unset;
+            width: 150px;
+            height: 40px;
+            background-color: #f5f7fb;
+            font-weight: 500;
+            line-height: 40px;
+            border-radius: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            i {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            span {
+                display: inline-block;
+                color: #144273;
+                font-size: 13px;
+                white-space: nowrap;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            & + .header-search-form {
+                left: 250px !important;
+                width: 300px;
+            }
+
+            &.show {
+                width: 40px;
+                justify-content: center;
+
+                i {
+                    margin: 0;
+                }
+
+                span {
+                    display: none;
+                    opacity: 0;
+                    visibility: hidden;
+                    width: 0;
+                }
+            }
+        }
+
         .right {
             .login-toggler {
+                margin-left: 0;
+                margin-right: 0;
                 padding: 0 25px;
                 height: 70px;
                 line-height: 70px;
@@ -27,6 +78,24 @@
                     display: inline-block;
                     font-size: 13px;
                     vertical-align: baseline;
+                }
+            }
+
+            .notification {
+                margin-right: 4px;
+                width: 70px;
+                height: 70px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-right: 1px solid #eee;
+
+                .noti-counter {
+                    top: 16px;
+                    left: unset;
+                    right: 14px;
+                    width: 16px;
+                    height: 16px;
                 }
             }
 

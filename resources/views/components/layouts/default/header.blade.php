@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="container">
+    <div class="wrap">
         <div class="logo">
             <a href="{{ route('home') }}" title="Go to GoHome's homepage">
                 <span class="d-none">Go to GoHome's homepage</span>
@@ -7,10 +7,18 @@
             </a>
         </div>
 
+        <a href="#" class="header-search">
+            <i class="las la-search"></i>
+            <i class="las la-times"></i>
+            <span>Tìm kiếm...</span>
+        </a>
+
+        @include('components.layouts.default.header-search')
+
         <div class="right">
             @if (Auth::check())
-                <a class="login-toggler dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="login-toggler dropdown-toggle" href="#" id="user-dropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="lar la-user mr-1 size-16"></i>
                     <span>{{ Auth::user()->fullname }}</span>
                 </a>
@@ -25,6 +33,11 @@
                     <span>Đăng nhập</span>
                 </a>
             @endif
+
+            <a href="#" class="notification">
+                <i class="las la-bell"></i>
+                <span class="noti-counter">0</span>
+            </a>
 
             <div class="menu-toggle">
                 <div class="icon">
@@ -63,5 +76,10 @@
 <script>
     $('.menu-toggle').on('click', function() {
         $('.main-menu').toggleClass('show');
+    });
+
+    $('.header-search').on('click', function(event) {
+        event.preventDefault();
+        $('.header-search').toggleClass('show');
     });
 </script>
