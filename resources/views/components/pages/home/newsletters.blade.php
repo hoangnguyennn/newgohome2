@@ -1,4 +1,6 @@
 <div class="newsletters">
+    <div class="deco-1"></div>
+    <div class="deco-2"></div>
     <div class="wrap container">
         <div>
             <h4>newsletter</h4>

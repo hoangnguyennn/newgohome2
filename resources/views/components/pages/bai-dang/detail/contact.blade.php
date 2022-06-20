@@ -7,36 +7,36 @@
                     alt="" />
             </div>
             <div class="right">
-                <h4 class="name">CTH Themes</h4>
+                <h4 class="name">{{ $post->user->fullname }}</h4>
             </div>
         </div>
     </div>
     <div class="contact-body">
         <ul>
             <li>
-                <span>
+                <span style="width: 174px;">
                     <i class="las la-map-marker"></i>
                     Địa chỉ
                 </span>
-                <span>123 Brooklyn, New York, US</span>
+                <span>54 đường số 22, KĐT Lê Hồng Phong Ⅱ, Phước Hải</span>
             </li>
             <li>
                 <span>
                     <i class="las la-phone"></i>
                     Điện thoại
                 </span>
-                <span>999999999</span>
+                <span>0797018179</span>
             </li>
             <li>
                 <span>
                     <i class="las la-envelope"></i>
                     Email
                 </span>
-                <span>test.cth@gmail.com</span>
+                <span>gohome.forrent@gmail.com</span>
             </li>
             <li>
                 <span>
-                    <i class="lab la-internet-explorer"></i>
+                    <i class="lab la-chrome"></i>
                     Website
                 </span>
                 <span>https://gohomenhatrang.com</span>
@@ -44,7 +44,7 @@
         </ul>
 
         <div class="contact-footer">
-            <button class="view-profile">View Profile</button>
+            <button class="view-profile">Xem thông tin</button>
             <div class="right">
                 <i class="las la-paper-plane"></i>
             </div>

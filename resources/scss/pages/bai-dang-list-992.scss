@@ -140,6 +140,8 @@
 
             .submit-form {
                 button {
+                    display: flex;
+                    align-items: center;
                     background: #3270fc;
                     color: #fff;
 

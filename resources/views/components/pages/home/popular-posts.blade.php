@@ -19,8 +19,15 @@
         <div class="center post-list">
             <div class="row">
                 @foreach ($posts as $post)
+                    @php
+                        if ($loop->index % 2 === 0) {
+                            $rating = 5;
+                        } else {
+                            $rating = 4;
+                        }
+                    @endphp
                     <div class="col-12 col-md-6 col-lg-4">
-                        @include('components.common.post', ['post' => $post])
+                        @include('components.common.post', ['post' => $post, 'rating' => $rating])
                     </div>
                 @endforeach
             </div>

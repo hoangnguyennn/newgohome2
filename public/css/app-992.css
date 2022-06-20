@@ -247,6 +247,9 @@
     padding: 30px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   }
+  .main-banner .hero-title h2 {
+    line-height: 50px;
+  }
 
   .popular-posts .top {
     display: flex;
@@ -462,6 +465,8 @@
             user-select: none;
   }
   .search-form-posts .pc-search-form .submit-form button {
+    display: flex;
+    align-items: center;
     background: #3270fc;
     color: #fff;
   }

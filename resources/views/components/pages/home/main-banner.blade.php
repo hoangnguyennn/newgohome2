@@ -1,10 +1,10 @@
 <div class="main-banner">
     <div class="wrap container">
         <div class="hero-title">
-            <h1>Real Estate Searching Platform</h1>
+            <h1>Nền tảng cho thuê bất động sản</h1>
             <h2>
-                Find The House of Your Dream <br />
-                Using Our Platform
+                GOHOME NỀN TẢNG CHO THUÊ BẤT ĐỘNG SẢN <br />
+                SỐ 1 NHA TRANG
             </h2>
         </div>
 
@@ -14,7 +14,7 @@
             <div class="mousey">
                 <div class="scroller"></div>
             </div>
-            <span>Scroll Down To Discover</span>
+            <span>Cuộn xuống để khám phá</span>
         </div>
     </div>
 </div>

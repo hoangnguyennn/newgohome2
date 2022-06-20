@@ -44,11 +44,7 @@
             $oldPrice = $post->price;
         @endphp
         <div class="price currency">{{ $currentPrice }}</div>
-
-        <div class="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque.
-            Nulla finibus lobortis pulvinar. Donec a consectetur nulla.
-        </div>
+        <div class="description">{{ $post->description }}</div>
         <div class="divider"></div>
         <ul class="convenient">
             @if ($post->bedroom)
@@ -97,11 +93,16 @@
                 <p>By {{ $post->user->fullname }}</p>
             </div>
             <div class="rating">
-                <i class="las la-star"></i>
-                <i class="las la-star"></i>
-                <i class="las la-star"></i>
-                <i class="las la-star"></i>
-                <i class="las la-star"></i>
+                @php
+                    $rating = isset($rating) ? $rating : 5;
+                @endphp
+                @for ($i = 1; $i <= $rating; $i++)
+                    <i class="las la-star"></i>
+                @endfor
+
+                @if ($rating < 5)
+                    <i class="lar la-star"></i>
+                @endif
             </div>
         </div>
     </div>

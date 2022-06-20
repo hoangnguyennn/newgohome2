@@ -25,8 +25,8 @@
         </div>
         <div class="col-12 col-lg-6">
             <div class="form-group">
-                <div class="form-control d-flex align-items-center" id="price-zone" type="button" data-toggle="dropdown"
-                    aria-expanded="false">
+                <div class="form-control d-flex align-items-center" id="price-zone" type="button"
+                    data-toggle="dropdown" aria-expanded="false">
                     <span>Giá (triệu đồng):&nbsp;</span>
                     <div id="price-display" class="text-primary"></div>
                     <input type="hidden" name="price" id="price" />
@@ -51,7 +51,7 @@
 </form>
 
 <div class="search-form-notifer">
-    Need more search options?
+    Cần thêm lựa chọn tìm kiếm?
     <button class="btn" data-toggle="modal" data-target="#advanced-search-form">Tìm kiếm nâng cao</button>
 </div>
 
