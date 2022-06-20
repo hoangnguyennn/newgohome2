@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+require("laravel-mix-purgecss");
 
 /*
  |--------------------------------------------------------------------------
@@ -12,9 +13,11 @@ const mix = require("laravel-mix");
  */
 
 mix.js("resources/js/app.js", "public/js")
+    .extract()
     .sass("resources/scss/app.scss", "public/css/app.css")
     .sass("resources/scss/app-992.scss", "public/css/app-992.css")
+    .purgeCss()
     .copyDirectory("resources/images", "public/images")
     .copyDirectory("resources/images/webp", "public/images/webp")
-    .sourceMaps(true, "source-map")
+    // .sourceMaps(true, "source-map")
     .version();

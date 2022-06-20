@@ -2,8 +2,8 @@
     <div class="container">
         <div class="top">
             <div class="section-title">
-                <h4 class="subtitle">Khám phá</h4>
-                <h3 class="title">Bất động sản cho bạn</h3>
+                <h3 class="subtitle">Khám phá</h3>
+                <h4 class="title">Bất động sản cho bạn</h4>
             </div>
 
             <div class="filters">

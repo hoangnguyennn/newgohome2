@@ -1,4 +1,4 @@
-<button class="back-to-top">
+<button class="back-to-top" aria-label="Back to top">
     <i class="las la-caret-up"></i>
 </button>
 

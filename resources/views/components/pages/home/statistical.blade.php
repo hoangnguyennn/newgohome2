@@ -39,22 +39,22 @@
     <div class="container">
         <div class="item">
             <div class="counter" data-value="578"></div>
-            <h6>...</h6>
+            <h3>...</h3>
             {{-- Agents and Agencys --}}
         </div>
         <div class="item">
             <div class="counter" data-value="12168"></div>
-            <h6>...</h6>
+            <h3>...</h3>
             {{-- Happy customers every year --}}
         </div>
         <div class="item">
             <div class="counter" data-value="2172"></div>
-            <h6>...</h6>
+            <h3>...</h3>
             {{-- Won Awards --}}
         </div>
         <div class="item">
             <div class="counter" data-value="732"></div>
-            <h6>...</h6>
+            <h3>...</h3>
             {{-- New Listing Every Week --}}
         </div>
     </div>

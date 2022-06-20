@@ -4,9 +4,9 @@
             @foreach ($post->images as $image)
                 <div class="img" style="background-image: url({{ url('/uploads/' . $image->filename) }});">
                 </div>
-                <div class="img"
+                {{-- <div class="img"
                     style="background-image: url('https://homeradar.cththemes.co/wp-content/uploads/2021/04/1.jpg');">
-                </div>
+                </div> --}}
             @endforeach
         </div>
     </div>

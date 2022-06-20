@@ -3,14 +3,14 @@
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q" />
         </div>
-        <div class="form-group multiselect-localtion">
+        <div class="form-group multiselect-location">
             <select id="location" name="location[]" class="form-control" multiple="multiple">
                 @foreach ($wards as $ward)
                     <option value="{{ $ward->id }}">{{ $ward->district->name }} - {{ $ward->name }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group category-wrap">
             <select id="category" name="category" class="form-control">
                 <option value="">Loại nhà đất</option>
                 @foreach ($categories as $category)

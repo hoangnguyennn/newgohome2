@@ -121,7 +121,7 @@
                 });
             });
 
-            $('.multiselect-localtion .btn-group').css('width', '100%');
+            $('.multiselect-location .btn-group').css('width', '100%');
             $('.multiselect').addClass('form-control text-left');
             $('.multiselect').removeClass('text-center');
         });

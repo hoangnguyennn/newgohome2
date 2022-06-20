@@ -7,7 +7,7 @@
             </a>
         </div>
 
-        <a href="#" class="header-search">
+        <a href="#" class="header-search" title="Header's search">
             <i class="las la-search"></i>
             <i class="las la-times"></i>
             <span>Tìm kiếm...</span>

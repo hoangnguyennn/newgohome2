@@ -84,7 +84,7 @@
         background-color: #fff;
         border-radius: 6px;
 
-        .multiselect-localtion {
+        .multiselect-location {
             cursor: pointer;
 
             .multiselect-option {
@@ -196,6 +196,14 @@
                     display: inline-block;
                 }
             }
+        }
+
+        .nice-select {
+            width: 100%;
+        }
+
+        .category-wrap {
+            display: flex;
         }
     }
 
@@ -727,7 +735,7 @@
             text-align: center;
         }
 
-        h6 {
+        h5 {
             margin-bottom: 7px;
             font-size: 14px;
             text-align: center;
@@ -959,7 +967,7 @@
         opacity: 0.2;
         background-position: left;
         background-repeat: repeat;
-        background-image: url(https://homeradar.cththemes.co/wp-content/themes/homeradar/assets/images/city-bg.png);
+        background-image: url(/images/webp/city-bg.webp);
     }
 
     .deco-2 {

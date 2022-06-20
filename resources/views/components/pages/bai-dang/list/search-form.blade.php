@@ -34,7 +34,7 @@ if ($price) {
                     placeholder="Nhập tên bất động sản cần tìm" name="q" />
             </div>
 
-            <div class="form-group multiselect-localtion">
+            <div class="form-group multiselect-location">
                 <select id="location" name="location[]" class="form-control" multiple="multiple">
                     @foreach ($wards as $ward)
                         @php
@@ -98,7 +98,7 @@ if ($price) {
 
         <div class="row">
             <div class="col-12 col-lg-3">
-                <div class="form-group multiselect-localtion">
+                <div class="form-group multiselect-location">
                     <select name="location[]" class="form-control" multiple="multiple">
                         @foreach ($wards as $ward)
                             @php
