@@ -1,7 +1,6 @@
 @media (min-width: 992px) {
     .main-banner {
-        padding-top: 120px;
-        padding-bottom: 120px;
+        padding: 160px 0;
 
         position: relative;
 
@@ -33,8 +32,72 @@
         }
 
         .main-search {
-            padding: 30px;
+            padding: 0;
+            max-width: 800px;
+            display: flex;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+
+            .search-body {
+                flex: 1;
+                display: flex;
+
+                .form-group {
+                    width: calc(100% / 3);
+                }
+            }
+
+            .form-group {
+                margin-bottom: 0;
+
+                .form-control {
+                    padding: 15px 20px;
+                    height: 60px;
+                    background-color: #fff;
+                    border-radius: 0;
+                    box-shadow: none;
+                }
+
+                &:first-child {
+                    .form-control {
+                        border-top-left-radius: 6px;
+                        border-bottom-left-radius: 6px;
+                    }
+                }
+
+                &:not(:last-child) {
+                    .form-control {
+                        border-right: none;
+                    }
+                }
+
+                [type="submit"] {
+                    background-color: #3270fc;
+                    border-top-right-radius: 6px;
+                    border-bottom-right-radius: 6px;
+                }
+
+                .nice-select {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+
+                    .list {
+                        margin-top: 0;
+                        width: 100%;
+                        border-radius: 0;
+
+                        .selected {
+                            background-color: #3270fc !important;
+                            color: #fff;
+                            font-weight: normal;
+                        }
+                    }
+
+                    &:after {
+                        border-color: #3270fc;
+                    }
+                }
+            }
         }
 
         .hero-title {

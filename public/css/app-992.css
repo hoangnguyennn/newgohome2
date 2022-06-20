@@ -219,8 +219,7 @@
 }
 @media (min-width: 992px) {
   .main-banner {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding: 160px 0;
     position: relative;
   }
   .main-banner:before {
@@ -244,8 +243,57 @@
     background: linear-gradient(to left, rgba(255, 255, 255, 0.99) 20%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0) 95%);
   }
   .main-banner .main-search {
-    padding: 30px;
+    padding: 0;
+    max-width: 800px;
+    display: flex;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+  .main-banner .main-search .search-body {
+    flex: 1;
+    display: flex;
+  }
+  .main-banner .main-search .search-body .form-group {
+    width: 33.3333333333%;
+  }
+  .main-banner .main-search .form-group {
+    margin-bottom: 0;
+  }
+  .main-banner .main-search .form-group .form-control {
+    padding: 15px 20px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .main-banner .main-search .form-group:first-child .form-control {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+  .main-banner .main-search .form-group:not(:last-child) .form-control {
+    border-right: none;
+  }
+  .main-banner .main-search .form-group [type=submit] {
+    background-color: #3270fc;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+  .main-banner .main-search .form-group .nice-select {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .main-banner .main-search .form-group .nice-select .list {
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+  .main-banner .main-search .form-group .nice-select .list .selected {
+    background-color: #3270fc !important;
+    color: #fff;
+    font-weight: normal;
+  }
+  .main-banner .main-search .form-group .nice-select:after {
+    border-color: #3270fc;
   }
   .main-banner .hero-title h2 {
     line-height: 50px;

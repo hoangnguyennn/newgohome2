@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
 
     position: relative;
-    z-index: 1;
+    z-index: 6;
 
     .container {
         padding-left: 0;
@@ -55,6 +55,7 @@
             color: #fff;
             font-size: 14px;
             font-weight: 600;
+            text-transform: capitalize;
         }
 
         h2 {
@@ -63,6 +64,7 @@
             font-size: 34px;
             line-height: 40px;
             font-weight: 600;
+            text-transform: capitalize;
         }
     }
 
@@ -78,7 +80,7 @@
     }
 
     .main-search {
-        padding: 30px 15px;
+        padding: 25px 20px 20px;
         background-color: #fff;
         border-radius: 6px;
 
@@ -156,6 +158,21 @@
                         }
                     }
                 }
+            }
+        }
+
+        [type="submit"] {
+            height: 45px;
+            background: #3270fc;
+            color: #fff;
+            border: none;
+
+            i {
+                transform: rotate(-90deg);
+            }
+
+            &:hover {
+                background: linear-gradient(to right, #3c6afd, #57c7fa);
             }
         }
 
