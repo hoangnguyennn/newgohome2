@@ -7,7 +7,7 @@
                 $image = '';
             }
         @endphp
-        <img src="{{ url('/uploads/' . $image) }}" alt="{{ $post->name }}" loading="lazy" />
+        <img src="{{ url('/uploads/' . $image) }}" alt="{{ $post->name }}" height="280" loading="lazy" />
         <div class="overlay"></div>
 
         <div class="post-location">

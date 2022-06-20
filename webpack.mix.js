@@ -13,10 +13,10 @@ require("laravel-mix-purgecss");
  */
 
 mix.js("resources/js/app.js", "public/js")
-    .extract()
+    // .extract()
     .sass("resources/scss/app.scss", "public/css/app.css")
     .sass("resources/scss/app-992.scss", "public/css/app-992.css")
-    .purgeCss()
+    // .purgeCss()
     .copyDirectory("resources/images", "public/images")
     .copyDirectory("resources/images/webp", "public/images/webp")
     // .sourceMaps(true, "source-map")
