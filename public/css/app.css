@@ -525,8 +525,8 @@ body {
 }
 .header .container,
 .header .wrap {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   height: 70px;
   display: flex;
   justify-content: space-between;
@@ -542,7 +542,7 @@ body {
 }
 .header .header-search {
   position: absolute;
-  right: 78px;
+  right: 58px;
   margin-left: 6px;
   font-size: 20px;
   text-decoration: none;
@@ -700,6 +700,14 @@ body {
   text-align: center;
   border-radius: 50%;
 }
+.header .right .language {
+  display: none;
+}
+.header .right .language-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  margin-right: -20px;
+}
 .header .menu-toggle {
   margin-left: 16px;
   width: 36px;
@@ -750,8 +758,36 @@ body {
   opacity: 1;
   visibility: visible;
 }
+.header .main-menu .language-wrap {
+  padding: 6px 10px 0;
+  border: 1px solid #eee;
+}
+.header .main-menu .language-wrap .item {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.header .main-menu .language-wrap .item h4 {
+  position: relative;
+  margin-bottom: 6.5px;
+  padding: 3px 4px;
+  color: #144273;
+  font-size: 13px;
+  font-weight: 600;
+}
+.header .main-menu .language-wrap .item h4 span {
+  margin-left: 4px;
+  color: #3270fc;
+}
+.header .main-menu .language-wrap .item h4 i {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+}
 .header .main-menu .add-listing {
   display: inline-block;
+  margin-top: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;

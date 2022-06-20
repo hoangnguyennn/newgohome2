@@ -15,8 +15,8 @@ body {
 
     .container,
     .wrap {
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
         height: 70px;
         display: flex;
         justify-content: space-between;
@@ -37,7 +37,7 @@ body {
 
     .header-search {
         position: absolute;
-        right: 78px;
+        right: 58px;
         margin-left: 6px;
         font-size: 20px;
         text-decoration: none;
@@ -215,6 +215,16 @@ body {
                 border-radius: 50%;
             }
         }
+
+        .language {
+            display: none;
+        }
+
+        .language-dropdown {
+            opacity: 0;
+            visibility: hidden;
+            margin-right: -20px;
+        }
     }
 
     .menu-toggle {
@@ -272,8 +282,41 @@ body {
             visibility: visible;
         }
 
+        .language-wrap {
+            padding: 6px 10px 0;
+            border: 1px solid #eee;
+
+            .item {
+                padding-top: 6px;
+                padding-bottom: 6px;
+
+                h4 {
+                    position: relative;
+                    margin-bottom: 6.5px;
+                    padding: 3px 4px;
+                    color: #144273;
+                    font-size: 13px;
+                    font-weight: 600;
+
+                    span {
+                        margin-left: 4px;
+                        color: #3270fc;
+                    }
+
+                    i {
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+
         .add-listing {
             display: inline-block;
+            margin-top: 20px;
             padding-top: 10px;
             padding-bottom: 10px;
             width: 100%;

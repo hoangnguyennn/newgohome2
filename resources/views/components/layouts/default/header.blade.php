@@ -39,6 +39,26 @@
                 <span class="noti-counter">0</span>
             </a>
 
+            <a href="#" class="language">
+                <i class="las la-globe"></i>
+                <i class="las la-angle-down"></i>
+            </a>
+
+            <div class="language-dropdown">
+                <div class="language-wrap">
+                    <div class="item">
+                        <h4>Ngôn ngữ: <span>VN</span>
+                            <i class="las la-angle-down"></i>
+                        </h4>
+                    </div>
+                    <div class="item">
+                        <h4>Tiền tệ: <span>VND</span></span>
+                            <i class="las la-angle-down"></i>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
             <div class="menu-toggle">
                 <div class="icon">
                     <span></span>
@@ -47,6 +67,19 @@
                 </div>
             </div>
             <div class="main-menu">
+                <div class="language-wrap">
+                    <div class="item">
+                        <h4>Ngôn ngữ: <span>VN</span>
+                            <i class="las la-angle-down"></i>
+                        </h4>
+                    </div>
+                    <div class="item">
+                        <h4>Tiền tệ: <span>VND</span></span>
+                            <i class="las la-angle-down"></i>
+                        </h4>
+                    </div>
+                </div>
+
                 @if (Auth::check())
                     <a href="{{ route('posts.index') }}" class="add-listing">Add listing</a>
                 @else
@@ -82,4 +115,9 @@
         event.preventDefault();
         $('.header-search').toggleClass('show');
     });
+
+    $('.language').on('click', function(event) {
+        event.preventDefault();
+        $('.language-dropdown').toggleClass('show');
+    })
 </script>
