@@ -825,7 +825,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  z-index: 1;
+  z-index: 6;
 }
 .main-banner .container {
   padding-left: 0;
@@ -870,6 +870,7 @@ body {
   color: #fff;
   font-size: 14px;
   font-weight: 600;
+  text-transform: capitalize;
 }
 .main-banner .hero-title h2 {
   margin-bottom: 17px;
@@ -877,6 +878,7 @@ body {
   font-size: 34px;
   line-height: 40px;
   font-weight: 600;
+  text-transform: capitalize;
 }
 .main-banner:after {
   content: "";
@@ -889,7 +891,7 @@ body {
   z-index: -1;
 }
 .main-banner .main-search {
-  padding: 30px 15px;
+  padding: 25px 20px 20px;
   background-color: #fff;
   border-radius: 6px;
 }
@@ -960,6 +962,18 @@ body {
 }
 .main-banner .main-search #price-zone .dropdown-menu.price-dropdown .price-inputs input:first-child {
   margin-right: 10px;
+}
+.main-banner .main-search [type=submit] {
+  height: 45px;
+  background: #3270fc;
+  color: #fff;
+  border: none;
+}
+.main-banner .main-search [type=submit] i {
+  transform: rotate(-90deg);
+}
+.main-banner .main-search [type=submit]:hover {
+  background: linear-gradient(to right, #3c6afd, #57c7fa);
 }
 .main-banner .main-search [data-target="#advanceSearch"] {
   cursor: pointer;
