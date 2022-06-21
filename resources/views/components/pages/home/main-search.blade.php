@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <button type="submit" class="btn form-control">
-            <span>Tìm kiếm</span>
+            {{-- <span>Tìm kiếm</span> --}}
             <i class="las la-search rotate-270"></i>
         </button>
     </div>

@@ -90,7 +90,7 @@
                 <div class="avatar">
                     <img src="{{ mix('images/default-avatar.jpg') }}" alt="" />
                 </div>
-                <p>By {{ $post->user->fullname }}</p>
+                <p>{{ $post->user->fullname }}</p>
             </div>
             <div class="rating">
                 @php

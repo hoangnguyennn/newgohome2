@@ -16,16 +16,16 @@
             <li>
                 <span style="width: 174px;">
                     <i class="las la-map-marker"></i>
-                    Địa chỉ
+                    Trụ sở
                 </span>
-                <span>54 đường số 22, KĐT Lê Hồng Phong Ⅱ, Phước Hải</span>
+                <span>54 đường số 2, KĐT Lê Hồng Phong Ⅱ, Phước Hải</span>
             </li>
             <li>
                 <span>
                     <i class="las la-phone"></i>
                     Điện thoại
                 </span>
-                <span>0797018179</span>
+                <span>0797016179 - 0797018179</span>
             </li>
             <li>
                 <span>
@@ -43,11 +43,11 @@
             </li>
         </ul>
 
-        <div class="contact-footer">
+        {{-- <div class="contact-footer">
             <button class="view-profile">Xem thông tin</button>
             <div class="right">
                 <i class="las la-paper-plane"></i>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>

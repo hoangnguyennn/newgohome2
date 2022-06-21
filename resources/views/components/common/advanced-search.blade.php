@@ -85,7 +85,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                <button type="submit" class="btn">Tìm kiếm</button>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
                         }
                     @endphp
                     <img src="{{ url('/uploads/' . $image) }}" alt="" loading="lazy" />
-                    <div class="overlay"></div>
+                    {{-- <div class="overlay"></div> --}}
                 </div>
 
                 <div class="post-content">

@@ -52,7 +52,7 @@
                             <i class="las la-map-marker"></i>
                             Địa chỉ :
                         </span>
-                        <a href="#">54 đường số 22, KĐT Lê Hồng Phong Ⅱ, Phước Hải, Nha Trang, Khánh Hòa.</a>
+                        <a href="#">54 đường số 2, KĐT Lê Hồng Phong Ⅱ, Phước Hải, Nha Trang, Khánh Hòa.</a>
                     </div>
                     <div class="contact-item">
                         <span>

@@ -23,10 +23,10 @@
                     <li class="nav-item {{ str_contains(Request::fullUrl(), route('users.index')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('users.index') }}">Quản lý người dùng</a>
                     </li>
+                    <li class="nav-item {{ str_contains(Request::fullUrl(), route('statistical')) ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('statistical') }}">Thống kê</a>
+                    </li>
                 @endif
-                <li class="nav-item {{ str_contains(Request::fullUrl(), route('statistical')) ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('statistical') }}">Thống kê</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Xem website</a>
                 </li>

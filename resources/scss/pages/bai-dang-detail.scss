@@ -63,7 +63,7 @@
 
             .label {
                 padding: 7px 20px;
-                background: #3270fc;
+                background: #20c997;
                 color: #fff;
                 font-weight: 600;
                 font-size: 11px;
@@ -95,7 +95,7 @@
                     }
 
                     .price {
-                        color: #3270fc;
+                        color: #20c997;
                         font-size: 22px;
                         font-weight: 500;
                     }
@@ -194,12 +194,17 @@
     }
 }
 
+.verify-post {
+    padding-top: 50px;
+    margin-top: -20px;
+}
+
 .contact {
     padding-top: 50px;
 
     .contact-header {
         padding: 100px 30px 20px;
-        background-color: #3270fc;
+        background-color: #20c997;
         border-radius: 6px 6px 0 0;
         position: relative;
 
@@ -252,7 +257,7 @@
                 padding-left: 20px;
 
                 .name {
-                    color: #3270fc;
+                    color: #20c997;
                     font-size: 17px;
                     font-weight: 600;
                 }
@@ -279,7 +284,7 @@
 
                     i {
                         margin-right: 6px;
-                        color: #3270fc;
+                        color: #20c997;
                     }
                 }
 
@@ -300,16 +305,12 @@
 
             .view-profile {
                 padding: 12px 30px;
-                background: #3270fc;
+                background: #20c997;
                 color: #fff;
                 font-size: 12px;
                 font-weight: 500;
                 border: none;
                 border-radius: 6px;
-
-                &:hover {
-                    background: linear-gradient(to right, #3c6afd, #57c7fa);
-                }
             }
 
             .right {
@@ -395,7 +396,7 @@
                     margin-top: 4px;
 
                     i {
-                        color: #3270fc;
+                        color: #20c997;
                     }
 
                     span {
@@ -414,7 +415,7 @@
 
                     .price-label {
                         margin-right: 6px;
-                        color: #3270fc;
+                        color: #20c997;
                     }
                 }
             }
@@ -427,7 +428,7 @@
 
         .btn-view-all {
             padding: 12px 30px;
-            background: #3270fc;
+            background: #20c997;
             color: #fff;
             font-size: 12px;
             font-weight: 500;
@@ -435,7 +436,6 @@
 
             &:hover {
                 text-decoration: none;
-                background: linear-gradient(to right, #3c6afd, #57c7fa);
             }
         }
     }
@@ -499,7 +499,7 @@
                     }
 
                     &.slick-active button {
-                        background: #3270fc;
+                        background: #20c997;
                     }
                 }
             }

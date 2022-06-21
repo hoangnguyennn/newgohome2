@@ -118,7 +118,7 @@ body {
         [type="submit"] {
             padding: 12px 30px;
             width: 100%;
-            background: #3270fc;
+            background: #20c997;
             color: #fff;
             font-size: 12px;
             font-weight: 500;
@@ -130,10 +130,6 @@ body {
                 margin-right: 10px;
                 font-size: 16px;
                 transform: rotate(-90deg);
-            }
-
-            &:hover {
-                background: linear-gradient(to right, #3c6afd, #57c7fa);
             }
         }
 
@@ -207,7 +203,7 @@ body {
                 padding: 0 4px;
                 min-width: 16px;
                 height: 16px;
-                background-color: #3270fc;
+                background-color: #20c997;
                 color: #fff;
                 font-size: 10px;
                 line-height: 16px;
@@ -232,7 +228,7 @@ body {
         margin-left: 16px;
         width: 36px;
         height: 36px;
-        background-color: #3270fc;
+        background-color: #20c997;
         border-radius: 4px;
         display: flex;
         justify-content: center;
@@ -301,7 +297,7 @@ body {
 
                     span {
                         margin-left: 4px;
-                        color: #3270fc;
+                        color: #20c997;
                     }
 
                     i {
@@ -321,7 +317,7 @@ body {
             padding-top: 10px;
             padding-bottom: 10px;
             width: 100%;
-            background-color: #3270fc;
+            background-color: #20c997;
             color: #fff;
             font-weight: 500;
             text-align: center;

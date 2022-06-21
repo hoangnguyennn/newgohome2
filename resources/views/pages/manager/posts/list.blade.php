@@ -94,8 +94,7 @@
                 <thead>
                     <tr>
                         <td style="min-width: 100px;">#</td>
-                        <td style="min-width: 100px;">Hình ảnh</td>
-                        <td style="min-width: 400px;">Tiêu đề</td>
+                        <td style="min-width: 200px;">Tiêu đề</td>
                         @if (Auth::user()->isAdmin())
                             <td style="min-width: 120px;">Người đăng</td>
                         @endif
@@ -110,14 +109,12 @@
                 </thead>
                 <tbody>
                     @foreach ($posts as $post)
+                        @php
+                            $postId = $post->category->shorthand . '-' . $post->id_by_category;
+                        @endphp
+
                         <tr>
-                            <td>{{ $post->category->shorthand }}-{{ $post->id_by_category }}</td>
-                            <td>
-                                @if ($post->images->count() !== 0)
-                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
-                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
-                                @endif
-                            </td>
+                            <td>{{ $postId }}</td>
                             <td>{{ $post->name }}</td>
                             @if (Auth::user()->isAdmin())
                                 <td>{{ $post->user->fullname }}</td>
@@ -181,7 +178,7 @@
                                         {{ Form::open([
                                             'route' => ['posts.destroy', $post->id],
                                             'method' => 'delete',
-                                            'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng GH-' . $post->id . '?");',
+                                            'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng ' . $postId . '?");',
                                             'class' => 'm-0 mr-md-2 mb-2',
                                         ]) }}
                                         <button type="submit" class="btn btn-danger w-100">Xóa</button>
@@ -190,6 +187,7 @@
                                         {{ Form::open([
                                             'route' => ['posts.hide', $post->id],
                                             'method' => 'post',
+                                            'onsubmit' => 'return confirm("Sau khi đã thuê, bài đăng sẽ bị ẩn, bạn có muốn ẩn bài đăng ' . $postId . '?");',
                                             'class' => 'm-0 mr-md-2 mb-2',
                                         ]) }}
                                         <button type="submit" class="btn btn-warning w-100">Đã thuê</button>
