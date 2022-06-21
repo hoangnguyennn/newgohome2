@@ -10,7 +10,8 @@
                             <div class="form-group row">
                                 <label for="id" class="col-sm-3 col-form-label">Mã bài đăng</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="GH-xxx" />
+                                    <input type="text" class="form-control" id="id" name="id"
+                                        placeholder="GH-xxx" />
                                 </div>
                             </div>
                         </div>
@@ -63,8 +64,7 @@
                 <thead>
                     <tr>
                         <td style="min-width: 100px;">#</td>
-                        <td style="min-width: 100px;">Hình ảnh</td>
-                        <td style="min-width: 100px;">Tiêu đề</td>
+                        <td style="min-width: 200px;">Tiêu đề</td>
                         @if (Auth::user()->isAdmin())
                             <td style="min-width: 120px;">Người đăng</td>
                         @endif
@@ -74,19 +74,13 @@
                         <td style="min-width: 100px;">Ẩn/hiện</td>
                         <td style="min-width: 100px;">Ngày tạo</td>
                         <td style="min-width: 140px;">Ngày cập nhật</td>
-                        <td style="min-width: 250px;">Hành động</td>
+                        <td style="min-width: 265px;">Hành động</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{ $post->category->shorthand }}-{{ $post->id_by_category }}</td>
-                            <td>
-                                @if ($post->images->count() !== 0)
-                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
-                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
-                                @endif
-                            </td>
                             <td>{{ $post->name }}</td>
                             @if (Auth::user()->isAdmin())
                                 <td>{{ $post->user->fullname }}</td>
@@ -184,6 +178,13 @@
             </table>
         </div>
     </div>
+    <style>
+        @media(max-width: 991.98px) {
+            table thead tr td:last-child {
+                min-width: 140px !important;
+            }
+        }
+    </style>
 @endsection
 
 @section('scripts')

@@ -226,6 +226,14 @@
             </table>
         </div>
     </div>
+
+    <style>
+        @media(max-width: 991.98px) {
+            table thead tr td:last-child {
+                min-width: 140px !important;
+            }
+        }
+    </style>
 @endsection
 
 @section('scripts')
