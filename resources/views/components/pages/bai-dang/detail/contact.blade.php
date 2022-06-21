@@ -8,6 +8,7 @@
             </div>
             <div class="right">
                 <h4 class="name">{{ $post->user->fullname }}</h4>
+                <p>Số bài đăng: {{ $totalPost ?? 0 }}</p>
             </div>
         </div>
     </div>

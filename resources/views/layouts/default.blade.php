@@ -127,6 +127,31 @@
         });
     </script>
 
+    {{-- apply bootstrap multiselect for location --}}
+    <script>
+        $(function() {
+            $('[name="category[]"]').each(function() {
+                $(this).multiselect({
+                    widthSynchronizationMode: 'ifPopupIsSmaller',
+                    maxHeight: 400,
+                    nonSelectedText: 'Loại nhà đất',
+                    nSelectedText: ' loại được chọn',
+                    buttonTitle: function(options, select) {
+                        let labels = [];
+                        options.each(function() {
+                            labels.push($(this).text().trim());
+                        });
+                        return labels.join(', ');
+                    }
+                });
+            });
+
+            $('.category-wrap .btn-group').css('width', '100%');
+            $('.multiselect').addClass('form-control text-left');
+            $('.multiselect').removeClass('text-center');
+        });
+    </script>
+
     {{-- remove non-value fields before submit --}}
     {{-- <script>
         $('.search-form').each(function() {

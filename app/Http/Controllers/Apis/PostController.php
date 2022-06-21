@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Excel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class PostController extends Controller
 {
@@ -36,24 +38,24 @@ class PostController extends Controller
                 array("0797.018.179", "0797018179")
             );
             $replacePhoneNumber = ["0️⃣7️⃣9️⃣7️⃣0️⃣1️⃣6️⃣1️⃣7️⃣9️⃣", "0️⃣7️⃣9️⃣7️⃣0️⃣1️⃣8️⃣1️⃣7️⃣9️⃣"];
-            
-            foreach($posts as $index => $post) {
-                foreach($phoneNumbers as $i => $phoneNumber) {
-                    foreach($phoneNumber as $number) {
+
+            foreach ($posts as $index => $post) {
+                foreach ($phoneNumbers as $i => $phoneNumber) {
+                    foreach ($phoneNumber as $number) {
                         $posts[$index]["description"] = str_replace($number, $replacePhoneNumber[$i], $posts[$index]["description"]);
                     }
                 }
             }
-            
-            foreach($posts as $index => $post) {
+
+            foreach ($posts as $index => $post) {
                 $pie = explode("\r\n", $post["description"]);
-                $code = "- Mã nhà: ".$post["category"]["shorthand"].'-'.$post["id_by_category"];
-                
+                $code = "- Mã nhà: " . $post["category"]["shorthand"] . '-' . $post["id_by_category"];
+
                 array_splice($pie, 1, 0, $code);
                 // var_dump($pie);
                 $posts[$index]["description"] = implode("\r\n", $pie);
             }
-            
+
             return $posts;
         }
 
@@ -72,21 +74,28 @@ class PostController extends Controller
 
     public function downloadImages(Post $post)
     {
-        $zip = new \ZipArchive();
+        $zip = new ZipArchive();
         $fileName = Str::slug($post->name) . '-' . Carbon::now()->format('Y-m-d') . '.zip';
 
-        if ($zip->open(public_path($fileName), \ZipArchive::CREATE) == true) {
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) == true) {
             $postImages = $post->images;
             foreach ($postImages as $image) {
                 $file = public_path('uploads/' . $image->filename);
                 $relativeName = basename($file);
-                $zip->addFile($file, $relativeName);
+
+                if (Storage::disk('local')->exists($file)) {
+                    $zip->addFile($file, $relativeName);
+                }
             }
 
             $zip->close();
         }
 
-        return response()->download(public_path($fileName));
+        if (Storage::disk('local')->exists($file)) {
+            return response()->download(public_path($fileName));
+        }
+
+        abort(404, "Hiện tại không thể tải được hình ảnh, vui lòng thử lại sau");
     }
 
     public function exportExcel(Request $request)

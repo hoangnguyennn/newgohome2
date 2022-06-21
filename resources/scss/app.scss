@@ -24,6 +24,19 @@ a:hover {
     padding-bottom: 50px;
 }
 
+.loading {
+    .fa-spinner {
+        display: none;
+        animation: spin 2s linear infinite;
+    }
+
+    &.show {
+        .fa-spinner {
+            display: inline-block;
+        }
+    }
+}
+
 @media screen and (max-width: 992px) {
     .multiselect-container button.dropdown-item {
         pointer-events: none;

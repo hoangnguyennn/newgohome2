@@ -1,3 +1,49 @@
+@if (Auth::check())
+    <button class="btn my-4 download-images loading">
+        Tải tất cả ảnh
+        <i class="fas fa-spinner"></i>
+    </button>
+
+    <script>
+        const btnDownloadImages = document.querySelector('.download-images');
+        let isFetching = false;
+        btnDownloadImages.addEventListener('click', downloadImages);
+
+        function downloadImages() {
+            if (isFetching) {
+                return;
+            }
+            isFetching = true;
+            btnDownloadImages.classList.add('show');
+            btnDownloadImages.classList.add('disabled');
+            const url = "{{ route('api.posts.download', $post->id) }}";
+            axios
+                .get(url, {
+                    responseType: 'blob'
+                })
+                .then((res) => {
+                    let filename = '';
+                    const disposition = res.headers['content-disposition'];
+                    if (disposition) {
+                        const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                        const matches = filenameRegex.exec(disposition);
+                        if (matches != null && matches[1]) {
+                            filename = matches[1].replace(/['"]/g, '');
+                        }
+                    }
+                    const data = res.data;
+                    const anchor = document.createElement('a');
+                    anchor.href = URL.createObjectURL(data);
+                    anchor.download = filename || 'download.zip';
+                    anchor.click();
+                    anchor.remove();
+                    btnDownloadImages.classList.remove('show');
+                    btnDownloadImages.classList.remove('disabled');
+                })
+                .finally(() => (isFetching = false));
+        }
+    </script>
+@endif
 <div class="post-description">
     <div class="wrapper">
         <div class="title">Mô tả</div>
@@ -75,8 +121,7 @@
 
                     <div class="col-12 col-lg-6">
                         <b>Hoa hồng: </b>
-                        <span class="currency"
-                            title="{{ $post->commission }}">{{ $post->commission }}</span>
+                        <span class="currency" title="{{ $post->commission }}">{{ $post->commission }}</span>
                     </div class="col-12 col-lg-6">
                 @endif
             @endif

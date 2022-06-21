@@ -12,10 +12,10 @@
                         <i class="las la-headset"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">24 Hours Support</h4>
+                        <h4 class="title">Tìm kiếm đa khu vực</h4>
                         <p class="description">
-                            Cam kết tư vấn cho khách hàng những sản phẩm bất động sản không phải là tốt nhất nhưng là
-                            những sản phẩm bất động sản phù hợp với quý khách hàng nhất.
+                            Go Home có hệ thống sản phẩm bất động sản phủ khắp thành phố Nha Trang. Thuận lợi nhất cho
+                            công việc và đời sống của bạn.
                         </p>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
                         <i class="las la-user-cog"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">24 Hours Support</h4>
+                        <h4 class="title">Đa dạng sản phẩm</h4>
                         <p class="description">
-                            Đội ngũ chuyên viên tư vấn chuyên nghiệp, luôn tư vấn khách hàng một cách ân cần, nhiệt
-                            tình và vui vẻ, luôn mang đến cho khách hàng sự hài lòng tuyệt đối.
+                            Go Home là nơi tập hợp tất cả các loại hình nhà ở từ căn hộ cao cấp, mặt bằng kinh doanh cho
+                            đến nhà ở giá rẻ. Đáp ứng với mọi nhu cầu của khách hàng.
                         </p>
                     </div>
                 </div>
@@ -38,9 +38,10 @@
                         <i class="las la-laptop"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">24 Hours Support</h4>
+                        <h4 class="title">Hỗ trợ 24/7</h4>
                         <p class="description">
-                            Luôn đề cao và ý thức giữ gìn sự uy tín của công ty
+                            Luôn sẵn sàng hỗ trợ, giải đáp mọi thắc mắc của khách hàng. Đảm bảo khách hàng có trải
+                            nghiệm tốt nhất khi đến với Go Home.
                         </p>
                     </div>
                 </div>

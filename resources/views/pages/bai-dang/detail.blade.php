@@ -10,7 +10,11 @@
                 @include('components.pages.bai-dang.detail.description')
             </div>
             <div class="col-12 col-lg-4">
-                @include('components.common.verify-post')
+                @if (Auth::check())
+                    @if (Auth::user()->isAdmin())
+                        @include('components.common.verify-post')
+                    @endif
+                @endif
                 @include('components.pages.bai-dang.detail.contact')
                 @include('components.pages.bai-dang.detail.new-posts')
             </div>

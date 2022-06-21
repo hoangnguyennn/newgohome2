@@ -182,7 +182,6 @@ class PublicController extends Controller
             $ogImage = $request->getSchemeAndHttpHost() . '/uploads/logo.jpg';
         }
 
-
         $seo = (object) [
             'title' => 'Danh sách nhà cho thuê',
             'description' => 'Cho thuê nhà đất thành phố Nha Trang giá rẻ',
@@ -225,6 +224,7 @@ class PublicController extends Controller
             array("0797.018.179", "0797018179")
         );
         $replacePhoneNumber = ["0️⃣7️⃣9️⃣7️⃣0️⃣1️⃣6️⃣1️⃣7️⃣9️⃣", "0️⃣7️⃣9️⃣7️⃣0️⃣1️⃣8️⃣1️⃣7️⃣9️⃣"];
+        $totalPost = Post::where('is_hide', 0)->where('verify_status', 0)->where('user_id', $post->user_id)->count();
 
         foreach ($phoneNumbers as $i => $phoneNumber) {
             foreach ($phoneNumber as $number) {
@@ -232,7 +232,7 @@ class PublicController extends Controller
             }
         }
 
-        return view('pages.bai-dang.detail', compact('seo', 'post', 'posts', 'categories', 'wards', 'latestPosts', 'relatedPosts', 'postRequestTypes'));
+        return view('pages.bai-dang.detail', compact('seo', 'post', 'posts', 'categories', 'wards', 'latestPosts', 'relatedPosts', 'postRequestTypes', 'totalPost'));
     }
 
     public function update()

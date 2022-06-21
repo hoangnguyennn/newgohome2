@@ -33,7 +33,7 @@
 
         .main-search {
             padding: 0;
-            max-width: 800px;
+            max-width: 1000px;
             display: flex;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 
@@ -95,6 +95,14 @@
 
                     &:after {
                         border-color: #20c997;
+                    }
+                }
+            }
+
+            .submit-wrap {
+                button {
+                    span {
+                        display: none;
                     }
                 }
             }
