@@ -96,8 +96,8 @@
         $('#slider-range-2').slider({
             range: true,
             min: 0,
-            max: 150,
-            values: [0, 150],
+            max: 250,
+            values: [0, 250],
             slide: function(event, ui) {
                 const min = ui.values[0];
                 const max = ui.values[1];
@@ -119,7 +119,7 @@
 
         $('#min-2').change(function() {
             console.log('min change');
-            const maxValue = Number($('#max-2').val()) || 150;
+            const maxValue = Number($('#max-2').val()) || 250;
             const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range-2').slider('values', 0, minValue);
 

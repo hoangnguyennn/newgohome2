@@ -18,8 +18,8 @@
             <label for="price3">Giá:</label>
             <input type="text" class="form-control price-range3" name="price" id="price3" />
             <div class="manual-input">
-                <input type="text" class="min3" />
-                <input type="text" class="max3" />
+                <input type="number" class="min3" />
+                <input type="number" class="max3" />
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
 
 <script>
     let min3 = 0;
-    let max3 = 150;
+    let max3 = 250;
 
     function updateInputs3(data) {
         from = data.from;

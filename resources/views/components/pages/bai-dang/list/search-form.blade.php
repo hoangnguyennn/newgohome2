@@ -1,6 +1,6 @@
 @php
 $min = 0;
-$max = 150;
+$max = 250;
 $price = request()->input('price');
 if ($price) {
     $priceRange = explode('-', $price);
@@ -138,8 +138,8 @@ if ($price) {
                         <input type="text" class="form-control price-range" name="price" id="price"
                             value="{{ request()->input('price') }}" />
                         <div class="manual-input">
-                            <input type="text" class="min" />
-                            <input type="text" class="max" />
+                            <input type="number" class="min" />
+                            <input type="number" class="max" />
                         </div>
                     </div>
                 </div>
@@ -217,7 +217,7 @@ if ($price) {
         $('#slider-range2').slider({
             range: true,
             min: 0,
-            max: 150,
+            max: 250,
             values: [{{ $min }}, {{ $max }}],
             slide: function(event, ui) {
                 const min = ui.values[0];
@@ -233,7 +233,7 @@ if ($price) {
 
         $('#min2').change(function() {
             console.log('min change');
-            const maxValue = Number($('#max2').val()) || 150;
+            const maxValue = Number($('#max2').val()) || 250;
             const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
             $('#slider-range2').slider('values', 0, minValue);
 
@@ -262,7 +262,7 @@ if ($price) {
 
 <script>
     let min = 0;
-    let max = 150;
+    let max = 250;
 
     function updateInputs(data) {
         from = data.from;
