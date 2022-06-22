@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{-- <link rel="icon" href="{{ mix('images/favicon.ico') }}" /> --}}
+    <link rel="icon" href="{{ mix('images/favicon.ico') }}" />
 
-    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
-    <link rel="stylesheet" href="{{ mix('css/app.custom.css') }}" /> --}}
+    <link rel="stylesheet" href="{{ mix('css/admin.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.custom.css') }}" /> --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />

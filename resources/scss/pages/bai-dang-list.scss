@@ -249,10 +249,22 @@
         color: #999;
     }
 
-    .irs--round .irs-handle {
-        top: 28px;
-        width: 18px;
-        height: 18px;
+    .irs--round {
+        .irs-handle {
+            top: 28px;
+            width: 18px;
+            height: 18px;
+            border-color: #20c997;
+        }
+
+        .irs-bar {
+            background-color: #20c997;
+        }
+    }
+
+    [type="submit"] {
+        background-color: #20c997;
+        color: #fff;
     }
 }
 

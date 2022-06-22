@@ -37,6 +37,20 @@ a:hover {
     }
 }
 
+.manual-input {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+        display: flex;
+        width: calc(50% - 5px);
+        height: 30px;
+        padding: 6px 12px;
+        border: 1px solid #e0e1e6;
+        border-radius: 6px;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .multiselect-container button.dropdown-item {
         pointer-events: none;

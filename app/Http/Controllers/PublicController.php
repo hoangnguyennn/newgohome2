@@ -177,7 +177,12 @@ class PublicController extends Controller
         $posts->appends(['floor' => $floor]);
 
         if (count($posts)) {
-            $ogImage = $request->getSchemeAndHttpHost() . '/uploads/' . $posts[0]->images[0]->filename;
+            $images = $posts[0]->images;
+            if (count($images)) {
+                $ogImage = $request->getSchemeAndHttpHost() . '/uploads/' . $posts[0]->images[0]->filename;
+            } else {
+                $ogImage = $request->getSchemeAndHttpHost() . '/uploads/logo.jpg';
+            }
         } else {
             $ogImage = $request->getSchemeAndHttpHost() . '/uploads/logo.jpg';
         }
@@ -195,12 +200,19 @@ class PublicController extends Controller
 
     public function post(Request $request, Post $post)
     {
+        $images = $post->images;
+        if (count($images)) {
+            $ogImage = $request->getSchemeAndHttpHost() . '/uploads/' . $post->images[0]->filename;
+        } else {
+            $ogImage = $request->getSchemeAndHttpHost() . '/uploads/logo.jpg';
+        }
+
         $seo = (object) [
             'title' => $post->name,
             'description' => 'Cho thuê nhà đất thành phố Nha Trang giá rẻ',
             'ogUrl' => request()->url(),
             'ogTitle' => $post->name,
-            'ogImage' => $request->getSchemeAndHttpHost() . '/uploads/' . $post->images[0]->filename,
+            'ogImage' => $ogImage,
         ];
 
         $postRequestTypes = PostRequestType::all();

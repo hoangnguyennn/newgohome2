@@ -48,8 +48,7 @@ if ($price) {
             </div>
 
             <div class="form-group category">
-                <select id="category" name="category" class="form-control">
-                    <option value="">Loại nhà đất</option>
+                <select id="category" name="category[]" class="form-control" multiple>
                     @foreach ($categories as $category)
                         @php
                             $selected = request()->input('category') == $category->id ? 'selected' : '';
@@ -61,10 +60,20 @@ if ($price) {
             </div>
 
             <div class="form-group price-wrap">
-                <div class="range-slider">
-                    <label for="price2">Giá:</label>
-                    <input type="text" class="form-control price-range2" name="price" id="price2"
-                        value="{{ request()->input('price') }}" />
+                <div class="form-control d-flex align-items-center" id="price-zone2" type="button"
+                    data-toggle="dropdown" aria-expanded="false">
+                    <span>Giá (triệu đồng):&nbsp;</span>
+                    <div id="price-display2" class="text-primary">{{ request()->input('price') }}</div>
+                    <input type="hidden" name="price" id="price2" value="{{ request()->input('price') }}" />
+                    <div class="dropdown-menu price-dropdown" aria-labelledby="price">
+                        <div class="price-inputs">
+                            <input type="number" class="form-control" id="min2" min="0" max="100"
+                                value="{{ $min }}" />
+                            <input type="number" class="form-control" id="max2" min="0" max="100"
+                                value="{{ $max }}" />
+                        </div>
+                        <div id="slider-range2"></div>
+                    </div>
                 </div>
             </div>
 
@@ -112,8 +121,7 @@ if ($price) {
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <select name="category" class="form-control">
-                        <option value="">Loại nhà đất</option>
+                    <select name="category[]" class="form-control">
                         @foreach ($categories as $category)
                             @php
                                 $selected = request()->input('category') == $category->id ? 'selected' : '';
@@ -129,6 +137,10 @@ if ($price) {
                     <div class="range-slider">
                         <input type="text" class="form-control price-range" name="price" id="price"
                             value="{{ request()->input('price') }}" />
+                        <div class="manual-input">
+                            <input type="text" class="min" />
+                            <input type="text" class="max" />
+                        </div>
                     </div>
                 </div>
                 {{-- <div class="form-group">
@@ -155,20 +167,20 @@ if ($price) {
         <div class="row">
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage"
-                        value="{{ request()->input('acreage') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ"
+                        name="acreage" value="{{ request()->input('acreage') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom"
-                        value="{{ request()->input('bedroom') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ"
+                        name="bedroom" value="{{ request()->input('bedroom') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet"
-                        value="{{ request()->input('toilet') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm"
+                        name="toilet" value="{{ request()->input('toilet') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -180,7 +192,7 @@ if ($price) {
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            <button type="submit" class="btn">Tìm kiếm</button>
         </div>
     </form>
 </div>
@@ -200,57 +212,65 @@ if ($price) {
 </script>
 
 {{-- apply slider for price --}}
-{{-- <script>
+<script>
     $(function() {
-        $('#slider-range').slider({
+        $('#slider-range2').slider({
             range: true,
             min: 0,
-            max: 500,
+            max: 150,
             values: [{{ $min }}, {{ $max }}],
             slide: function(event, ui) {
                 const min = ui.values[0];
                 const max = ui.values[1];
-                $('#price-display').html(`${min} - ${max}`);
-                $('#price').val(`${min}-${max}`);
-                $('#min').val(min);
-                $('#max').val(max);
+                $('#price-display2').html(`${min} - ${max}`);
+                $('#price2').val(`${min}-${max}`);
+                $('#min2').val(min);
+                $('#max2').val(max);
             },
         });
 
-        $('#slider-range').draggable();
+        $('#slider-range2').draggable();
 
-        $('#min').change(function() {
+        $('#min2').change(function() {
             console.log('min change');
-            const maxValue = Number($('#max').val()) || 500;
-            const minValue = Number($('#min').val()) > maxValue ? maxValue : Number($('#min').val());
-            $('#slider-range').slider('values', 0, minValue);
+            const maxValue = Number($('#max2').val()) || 500;
+            const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
+            $('#slider-range2').slider('values', 0, minValue);
 
-            const min = $('#slider-range').slider('values', 0);
-            const max = $('#slider-range').slider('values', 1);
-            $('#price-display').html(`${min} - ${max}`);
-            $('#price').val(`${min}-${max}`);
-            $('#min').val(min);
-            $('#max').val(max);
+            const min = $('#slider-range2').slider('values', 0);
+            const max = $('#slider-range2').slider('values', 1);
+            $('#price-display2').html(`${min} - ${max}`);
+            $('#price2').val(`${min}-${max}`);
+            $('#min2').val(min);
+            $('#max2').val(max);
         });
 
-        $('#max').change(function() {
-            const minValue = Number($('#min').val()) || 0;
-            const maxValue = Number($('#max').val()) < minValue ? minValue : Number($('#max').val());
-            $('#slider-range').slider('values', 1, maxValue);
+        $('#max2').change(function() {
+            const minValue = Number($('#min2').val()) || 0;
+            const maxValue = Number($('#max2').val()) < minValue ? minValue : Number($('#max2').val());
+            $('#slider-range2').slider('values', 1, maxValue);
 
-            const min = $('#slider-range').slider('values', 0);
-            const max = $('#slider-range').slider('values', 1);
-            $('#price-display').html(`${min} - ${max}`);
-            $('#price').val(`${min}-${max}`);
-            $('#min').val(min);
-            $('#max').val(max);
+            const min = $('#slider-range2').slider('values', 0);
+            const max = $('#slider-range2').slider('values', 1);
+            $('#price-display2').html(`${min} - ${max}`);
+            $('#price2').val(`${min}-${max}`);
+            $('#min2').val(min);
+            $('#max2').val(max);
         });
     });
-</script> --}}
+</script>
 
 <script>
     let min = 0;
     let max = 150;
+
+    function updateInputs(data) {
+        from = data.from;
+        to = data.to;
+
+        $('.min').prop("value", from);
+        $('.max').prop("value", to);
+    }
 
     $(".price-range").ionRangeSlider({
         skin: "round",
@@ -260,11 +280,58 @@ if ($price) {
         from: {{ $min }},
         to: {{ $max }},
         input_values_separator: '-',
-        postfix: ' triệu'
+        postfix: ' triệu',
+        onStart: updateInputs,
+        onChange: updateInputs,
+        onFinish: updateInputs
+    });
+
+    const instance = $(".price-range").data("ionRangeSlider");
+    $('.min').on("change", function() {
+        let val = $(this).prop("value");
+
+        // validate
+        if (val < min) {
+            val = min;
+        } else if (val > to) {
+            val = to;
+        }
+
+        instance.update({
+            from: val
+        });
+
+        $(this).prop("value", val);
+
+    });
+
+    $('.max').on("change", function() {
+        let val = $(this).prop("value");
+
+        // validate
+        if (val < from) {
+            val = from;
+        } else if (val > max) {
+            val = max;
+        }
+
+        instance.update({
+            to: val
+        });
+
+        $(this).prop("value", val);
     });
 </script>
 
-<script>
+{{-- <script>
+    function updateInputs2(data) {
+        from = data.from;
+        to = data.to;
+
+        $('.min2').prop("value", from);
+        $('.max2').prop("value", to);
+    }
+
     $(".price-range2").ionRangeSlider({
         skin: "round",
         type: "double",
@@ -273,9 +340,48 @@ if ($price) {
         from: {{ $min }},
         to: {{ $max }},
         input_values_separator: '-',
-        postfix: ' triệu'
+        postfix: ' triệu',
+        onStart: updateInputs2,
+        onChange: updateInputs2,
+        onFinish: updateInputs2
     });
-</script>
+
+    const instance2 = $(".price-range2").data("ionRangeSlider");
+    $('.min2').on("change", function() {
+        let val = $(this).prop("value");
+
+        // validate
+        if (val < min) {
+            val = min;
+        } else if (val > to) {
+            val = to;
+        }
+
+        instance2.update({
+            from: val
+        });
+
+        $(this).prop("value", val);
+
+    });
+
+    $('.max2').on("change", function() {
+        let val = $(this).prop("value");
+
+        // validate
+        if (val < from) {
+            val = from;
+        } else if (val > max) {
+            val = max;
+        }
+
+        instance2.update({
+            to: val
+        });
+
+        $(this).prop("value", val);
+    });
+</script> --}}
 
 <script>
     $(function() {

@@ -97,7 +97,6 @@
 
     @yield('main-content')
 
-    @include('components.layouts.default.footer')
     @include('components.common.login-register-form')
     @include('components.common.advanced-search')
     @include('components.common.back-to-top')
@@ -146,7 +145,7 @@
                 });
             });
 
-            $('.category-wrap .btn-group').css('width', '100%');
+            $('.btn-group').css('width', '100%');
             $('.multiselect').addClass('form-control text-left');
             $('.multiselect').removeClass('text-center');
         });

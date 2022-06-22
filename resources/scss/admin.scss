@@ -1,0 +1,30 @@
+table {
+    .thumbnail {
+        width: 100px;
+        max-height: 100px;
+        object-fit: contain;
+    }
+}
+
+.notification-dropdown {
+    width: 300px;
+
+    .dropdown-item {
+        white-space: normal;
+    }
+}
+
+.form-group.hide {
+    display: none;
+}
+
+.link {
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+}
+
+[data-target="#changePassword"] {
+    cursor: pointer;
+}

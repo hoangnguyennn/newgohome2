@@ -18,7 +18,7 @@
 <script>
     let page = 1;
     $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 150) {
             page++;
             fetchPosts();
         }

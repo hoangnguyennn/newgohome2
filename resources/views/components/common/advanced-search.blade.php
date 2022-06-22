@@ -27,8 +27,7 @@
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="form-group">
-                            <select name="category" class="form-control">
-                                <option value="">Loại nhà đất</option>
+                            <select name="category[]" class="form-control" multiple>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -97,8 +96,8 @@
         $('#slider-range-2').slider({
             range: true,
             min: 0,
-            max: 500,
-            values: [0, 500],
+            max: 150,
+            values: [0, 150],
             slide: function(event, ui) {
                 const min = ui.values[0];
                 const max = ui.values[1];

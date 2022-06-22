@@ -31,4 +31,8 @@ $(function () {
     $(".currency").each(function () {
         $(this).text(toCurrency($(this).text()));
     });
+
+    $(document).on("click", function (event) {
+        console.log(event.target);
+    });
 });

@@ -9,7 +9,7 @@
             <div class="features">
                 <div class="feature">
                     <div class="icon">
-                        <i class="las la-headset"></i>
+                        <i class="las la-search"></i>
                     </div>
                     <div class="content">
                         <h4 class="title">Tìm kiếm đa khu vực</h4>
@@ -22,7 +22,7 @@
 
                 <div class="feature">
                     <div class="icon">
-                        <i class="las la-user-cog"></i>
+                        <i class="las la-sliders-h"></i>
                     </div>
                     <div class="content">
                         <h4 class="title">Đa dạng sản phẩm</h4>
@@ -35,7 +35,7 @@
 
                 <div class="feature">
                     <div class="icon">
-                        <i class="las la-laptop"></i>
+                        <i class="las la-headset"></i>
                     </div>
                     <div class="content">
                         <h4 class="title">Hỗ trợ 24/7</h4>

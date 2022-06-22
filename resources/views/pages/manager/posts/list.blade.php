@@ -94,6 +94,7 @@
                 <thead>
                     <tr>
                         <td style="min-width: 100px;">#</td>
+                        <td style="min-width: 100px;">Hình ảnh</td>
                         <td style="min-width: 200px;">Tiêu đề</td>
                         @if (Auth::user()->isAdmin())
                             <td style="min-width: 120px;">Người đăng</td>
@@ -115,6 +116,12 @@
 
                         <tr>
                             <td>{{ $postId }}</td>
+                            <td>
+                                @if ($post->images->count() !== 0)
+                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
+                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
+                                @endif
+                            </td>
                             <td>{{ $post->name }}</td>
                             @if (Auth::user()->isAdmin())
                                 <td>{{ $post->user->fullname }}</td>
