@@ -119,7 +119,7 @@
 
         $('#min-2').change(function() {
             console.log('min change');
-            const maxValue = Number($('#max-2').val()) || 500;
+            const maxValue = Number($('#max-2').val()) || 150;
             const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range-2').slider('values', 0, minValue);
 

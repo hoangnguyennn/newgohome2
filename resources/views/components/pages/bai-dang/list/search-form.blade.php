@@ -1,6 +1,6 @@
 @php
 $min = 0;
-$max = 500;
+$max = 150;
 $price = request()->input('price');
 if ($price) {
     $priceRange = explode('-', $price);
@@ -233,7 +233,7 @@ if ($price) {
 
         $('#min2').change(function() {
             console.log('min change');
-            const maxValue = Number($('#max2').val()) || 500;
+            const maxValue = Number($('#max2').val()) || 150;
             const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
             $('#slider-range2').slider('values', 0, minValue);
 

@@ -83,7 +83,7 @@
 
         $('#min').change(function() {
             console.log('min change');
-            const maxValue = Number($('#max').val()) || 500;
+            const maxValue = Number($('#max').val()) || 150;
             const minValue = Number($('#min').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range').slider('values', 0, minValue);
 
