@@ -9,8 +9,6 @@ use Carbon\Carbon;
 use Excel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use ZipArchive;
 
 class PostController extends Controller
 {
@@ -74,28 +72,21 @@ class PostController extends Controller
 
     public function downloadImages(Post $post)
     {
-        $zip = new ZipArchive();
+        $zip = new \ZipArchive();
         $fileName = Str::slug($post->name) . '-' . Carbon::now()->format('Y-m-d') . '.zip';
 
-        if ($zip->open(public_path($fileName), ZipArchive::CREATE) == true) {
+        if ($zip->open(public_path($fileName), \ZipArchive::CREATE) == true) {
             $postImages = $post->images;
             foreach ($postImages as $image) {
                 $file = public_path('uploads/' . $image->filename);
                 $relativeName = basename($file);
-
-                if (Storage::disk('local')->exists($file)) {
-                    $zip->addFile($file, $relativeName);
-                }
+                $zip->addFile($file, $relativeName);
             }
 
             $zip->close();
         }
 
-        if (Storage::disk('local')->exists($file)) {
-            return response()->download(public_path($fileName));
-        }
-
-        abort(404, "Hiện tại không thể tải được hình ảnh, vui lòng thử lại sau");
+        return response()->download(public_path($fileName));
     }
 
     public function exportExcel(Request $request)
