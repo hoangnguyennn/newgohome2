@@ -69,11 +69,13 @@ body {
                 opacity: 1;
                 visibility: visible;
                 left: 0;
+                display: block;
             }
         }
     }
 
     .header-search-form {
+        display: none;
         position: absolute;
         top: 100%;
         left: -10%;

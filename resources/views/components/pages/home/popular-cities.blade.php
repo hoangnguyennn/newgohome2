@@ -66,32 +66,30 @@
         </div>
     </div>
     <script>
-        $(function() {
-            const mobileOptions = {
-                prevArrow: false,
-                nextArrow: false,
-                dots: true,
-            }
+        const mobileOptions = {
+            prevArrow: false,
+            nextArrow: false,
+            dots: true,
+        }
 
-            const pcOptions = {
-                ...mobileOptions,
-                slidesToShow: 3,
-            }
+        const pcOptions = {
+            ...mobileOptions,
+            slidesToShow: 3,
+        }
 
-            function initSlick() {
-                if ($(document).width() < 992) {
-                    $('.popular-cities-slider').slick(mobileOptions);
-                } else {
-                    $('.popular-cities-slider').slick(pcOptions);
-                }
+        function initSlick() {
+            if ($(document).width() < 992) {
+                $('.popular-cities-slider').slick(mobileOptions);
+            } else {
+                $('.popular-cities-slider').slick(pcOptions);
             }
+        }
 
+        initSlick();
+
+        $(window).resize(function() {
+            $('.popular-cities-slider').slick('unslick');
             initSlick();
-
-            $(window).resize(function() {
-                $('.popular-cities-slider').slick('unslick');
-                initSlick();
-            });
         });
     </script>
 </div>

@@ -115,7 +115,6 @@
         }, {
             withCredentials: true
         }).then((res) => {
-            console.log('xong', res.data);
             notiCount.innerHTML = 0;
         });
     }

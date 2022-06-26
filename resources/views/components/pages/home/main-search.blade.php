@@ -4,18 +4,28 @@
             <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q" />
         </div>
         <div class="form-group multiselect-location">
-            <select id="location" name="location[]" class="form-control" multiple="multiple">
-                @foreach ($wards as $ward)
-                    <option value="{{ $ward->id }}">{{ $ward->district->name }} - {{ $ward->name }}</option>
-                @endforeach
-            </select>
+            @include('components.common.multiple-select', [
+                'classes' => 'form-control',
+                'name' => 'location[]',
+                'items' => $wards->map(function ($item) {
+                    $item->render_name = $item->district->name . ' - ' . $item->name;
+                    return $item;
+                }),
+                'nonSelectedText' => 'Khu vực',
+                'nSelectedText' => ' khu vực được chọn',
+            ])
         </div>
         <div class="form-group category-wrap">
-            <select id="category" name="category[]" class="form-control" multiple="multiple">
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
+            @include('components.common.multiple-select', [
+                'classes' => 'form-control',
+                'name' => 'category[]',
+                'items' => $categories->map(function ($item) {
+                    $item->render_name = $item->name;
+                    return $item;
+                }),
+                'nonSelectedText' => 'Loại nhà đất',
+                'nSelectedText' => ' loại được chọn',
+            ])
         </div>
 
         <div class="form-group">
@@ -48,12 +58,6 @@
     <button class="btn" data-toggle="modal" data-target="#advanced-search-form">Tìm kiếm nâng cao</button>
 </div>
 
-{{-- <script>
-    $(function() {
-        $('#category').niceSelect();
-    });
-</script> --}}
-
 {{-- apply slider for price --}}
 <script>
     $(function() {
@@ -82,7 +86,6 @@
         $('#slider-range').draggable();
 
         $('#min').change(function() {
-            console.log('min change');
             const maxValue = Number($('#max').val()) || 250;
             const minValue = Number($('#min').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range').slider('values', 0, minValue);

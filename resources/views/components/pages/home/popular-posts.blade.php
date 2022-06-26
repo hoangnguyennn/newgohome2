@@ -7,12 +7,12 @@
             </div>
 
             <div class="filters">
-                <a href="{{ route('home') }}" class="filter{{ ($category ?? 'all') == 'all' ? ' active' : '' }}">Tất
+                <a href="{{ route('home') }}" class="filter{{ ($type ?? 'all') == 'all' ? ' active' : '' }}">Tất
                     cả</a>
-                <a href="{{ route('home', ['category' => 'cheap']) }}"
-                    class="filter{{ ($category ?? 'all') == 'cheap' ? ' active' : '' }}">Giá rẻ</a>
-                <a href="{{ route('home', ['category' => 'featured']) }}"
-                    class="filter{{ ($category ?? 'all') == 'featured' ? ' active' : '' }}">Nổi bật</a>
+                <a href="{{ route('home', ['type' => 'cheap']) }}"
+                    class="filter{{ ($type ?? 'all') == 'cheap' ? ' active' : '' }}">Giá rẻ</a>
+                <a href="{{ route('home', ['type' => 'featured']) }}"
+                    class="filter{{ ($type ?? 'all') == 'featured' ? ' active' : '' }}">Nổi bật</a>
             </div>
         </div>
 

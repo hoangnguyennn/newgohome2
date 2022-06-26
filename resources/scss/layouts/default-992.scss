@@ -33,8 +33,7 @@
                 visibility: visible;
             }
 
-            & + .header-search-form {
-                left: 250px !important;
+            + .header-search-form {
                 width: 300px;
             }
 
@@ -51,6 +50,10 @@
                     opacity: 0;
                     visibility: hidden;
                     width: 0;
+                }
+
+                & + .header-search-form {
+                    left: 250px;
                 }
             }
         }

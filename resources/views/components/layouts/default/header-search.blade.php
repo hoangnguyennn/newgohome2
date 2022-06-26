@@ -27,14 +27,19 @@ if ($price) {
 
     <div class="form-group">
         <label for="category">Loại nhà đất</label>
-        <select name="category[]" class="form-control" multiple>
-            @foreach ($categories as $category)
-                @php
-                    $selected = in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
-                @endphp
-                <option value="{{ $category->id }}" {{ $selected }}>{{ $category->name }}</option>
-            @endforeach
-        </select>
+        @include('components.common.multiple-select', [
+            'classes' => 'form-control',
+            'name' => 'category[]',
+            'items' => $categories->map(function ($item) {
+                $item->render_name = $item->name;
+                return $item;
+            }),
+            'selected' => $categories->map(function ($category) {
+                return in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
+            }),
+            'nonSelectedText' => 'Loại nhà đất',
+            'nSelectedText' => ' loại được chọn',
+        ])
     </div>
 
     <div class="form-group">

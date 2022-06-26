@@ -154,7 +154,8 @@
                             <span class="text-danger">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả" required></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả"
+                                required></textarea>
                             <div class="invalid-feedback">
                                 Mô tả là trường bắt buộc
                             </div>
@@ -166,8 +167,8 @@
                             <span class="text-danger">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="price" name="price" placeholder="Nhập giá tiền"
-                                required />
+                            <input type="number" class="form-control" id="price" name="price"
+                                placeholder="Nhập giá tiền" required />
                             <div class="invalid-feedback">
                                 Giá tiền là trường bắt buộc
                             </div>
@@ -350,12 +351,9 @@
         const floor = document.querySelector('#floor');
 
         category.addEventListener('change', event => {
-            console.log(event.target.value);
             if (event.target.value == 7) {
-                console.log('hide');
                 hideFields();
             } else {
-                console.log('show');
                 showFields();
             }
         });

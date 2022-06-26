@@ -43,34 +43,32 @@
 </div>
 
 <script>
-    $(function() {
-        const mobileOptions = {
-            prevArrow: false,
-            nextArrow: false,
-            // dots: true,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            fade: true,
-        }
+    const mobileOptions = {
+        prevArrow: false,
+        nextArrow: false,
+        // dots: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        fade: true,
+    }
 
-        const pcOptions = {
-            ...mobileOptions,
-            // slidesToShow: 3,
-        }
+    const pcOptions = {
+        ...mobileOptions,
+        // slidesToShow: 3,
+    }
 
-        function initSlick() {
-            if ($(document).width() < 992) {
-                $('.bg-slider').slick(mobileOptions);
-            } else {
-                $('.bg-slider').slick(pcOptions);
-            }
+    function initSlick() {
+        if ($(document).width() < 992) {
+            $('.bg-slider').slick(mobileOptions);
+        } else {
+            $('.bg-slider').slick(pcOptions);
         }
+    }
 
+    initSlick();
+
+    $(window).resize(function() {
+        $('.bg-slider').slick('unslick');
         initSlick();
-
-        $(window).resize(function() {
-            $('.bg-slider').slick('unslick');
-            initSlick();
-        });
     });
 </script>

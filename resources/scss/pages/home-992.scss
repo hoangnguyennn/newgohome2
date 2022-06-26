@@ -42,7 +42,8 @@
                 display: flex;
 
                 .form-group {
-                    width: calc(100% / 3);
+                    width: calc(100% / 4);
+                    max-width: calc(100% / 4);
                 }
             }
 

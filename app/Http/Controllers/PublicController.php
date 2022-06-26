@@ -26,23 +26,23 @@ class PublicController extends Controller
         $posts = Post::where('is_hide', 0)->where('verify_status', 0);
         $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
         $wards = Ward::where('is_hide', 0)->get();
-        $category = 'all';
+        $type = 'all';
 
-        if ($request->query('category')) {
-            if ($request->query('category') === 'cheap') {
+        if ($request->query('type')) {
+            if ($request->query('type') == 'cheap') {
                 $posts = $posts->where('is_cheap', true);
-                $category = 'cheap';
-            } else if ($request->query('category') === 'featured') {
+                $type = 'cheap';
+            } else if ($request->query('type') == 'featured') {
                 $posts = $posts->where('is_featured', true);
-                $category = 'featured';
+                $type = 'featured';
             }
         }
 
         $posts = $posts->orderBy('created_at', 'desc');
         $posts = $posts->paginate(12);
-        $posts->appends(['category' => $category]);
+        $posts->appends(['type' => $type]);
 
-        return view('pages.home', compact('seo', 'posts', 'categories', 'wards', 'postRequestTypes', 'category'));
+        return view('pages.home', compact('seo', 'posts', 'categories', 'wards', 'postRequestTypes', 'type'));
     }
 
     public function posts(Request $request)

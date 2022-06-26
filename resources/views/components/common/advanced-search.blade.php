@@ -17,21 +17,30 @@
                 <div class="row">
                     <div class="col-12 col-lg-3">
                         <div class="form-group multiselect-location">
-                            <select name="location[]" class="form-control" multiple="multiple">
-                                @foreach ($wards as $ward)
-                                    <option value="{{ $ward->id }}">{{ $ward->district->name }} -
-                                        {{ $ward->name }}</option>
-                                @endforeach
-                            </select>
+                            @include('components.common.multiple-select', [
+                                'classes' => 'form-control',
+                                'name' => 'location[]',
+                                'items' => $wards->map(function ($item) {
+                                    $item->render_name = $item->district->name . ' - ' . $item->name;
+                                    return $item;
+                                }),
+                                'nonSelectedText' => 'Khu vực',
+                                'nSelectedText' => ' khu vực được chọn',
+                            ])
                         </div>
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="form-group">
-                            <select name="category[]" class="form-control" multiple>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
+                            @include('components.common.multiple-select', [
+                                'classes' => 'form-control',
+                                'name' => 'category[]',
+                                'items' => $categories->map(function ($item) {
+                                    $item->render_name = $item->name;
+                                    return $item;
+                                }),
+                                'nonSelectedText' => 'Loại nhà đất',
+                                'nSelectedText' => ' loại được chọn',
+                            ])
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
@@ -118,7 +127,6 @@
         $('#slider-range-2').draggable();
 
         $('#min-2').change(function() {
-            console.log('min change');
             const maxValue = Number($('#max-2').val()) || 250;
             const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range-2').slider('values', 0, minValue);

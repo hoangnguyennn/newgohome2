@@ -35,28 +35,35 @@ if ($price) {
             </div>
 
             <div class="form-group multiselect-location">
-                <select id="location" name="location[]" class="form-control" multiple="multiple">
-                    @foreach ($wards as $ward)
-                        @php
-                            $selected = in_array($ward->id, request()->input('location') ?? []) ? 'selected' : '';
-                        @endphp
-                        <option value="{{ $ward->id }}" {{ $selected }}>
-                            {{ $ward->district->name }} - {{ $ward->name }}
-                        </option>
-                    @endforeach
-                </select>
+                @include('components.common.multiple-select', [
+                    'classes' => 'form-control',
+                    'name' => 'location[]',
+                    'items' => $wards->map(function ($item) {
+                        $item->render_name = $item->district->name . ' - ' . $item->name;
+                        return $item;
+                    }),
+                    'selected' => $wards->map(function ($ward) {
+                        return in_array($ward->id, request()->input('location') ?? []) ? 'selected' : '';
+                    }),
+                    'nonSelectedText' => 'Khu vực',
+                    'nSelectedText' => ' khu vực được chọn',
+                ])
             </div>
 
             <div class="form-group category">
-                <select id="category" name="category[]" class="form-control" multiple>
-                    @foreach ($categories as $category)
-                        @php
-                            $selected = in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
-                        @endphp
-                        <option value="{{ $category->id }}" {{ $selected }}>
-                            {{ $category->name }}</option>
-                    @endforeach
-                </select>
+                @include('components.common.multiple-select', [
+                    'classes' => 'form-control',
+                    'name' => 'category[]',
+                    'items' => $categories->map(function ($item) {
+                        $item->render_name = $item->name;
+                        return $item;
+                    }),
+                    'selected' => $categories->map(function ($category) {
+                        return in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
+                    }),
+                    'nonSelectedText' => 'Loại nhà đất',
+                    'nSelectedText' => ' loại được chọn',
+                ])
             </div>
 
             <div class="form-group price-wrap">
@@ -108,28 +115,36 @@ if ($price) {
         <div class="row">
             <div class="col-12 col-lg-3">
                 <div class="form-group multiselect-location">
-                    <select name="location[]" class="form-control" multiple="multiple">
-                        @foreach ($wards as $ward)
-                            @php
-                                $selected = in_array($ward->id, request()->input('location') ?? []) ? 'selected' : '';
-                            @endphp
-                            <option value="{{ $ward->id }}" {{ $selected }}>{{ $ward->district->name }} -
-                                {{ $ward->name }}</option>
-                        @endforeach
-                    </select>
+                    @include('components.common.multiple-select', [
+                        'classes' => 'form-control',
+                        'name' => 'location[]',
+                        'items' => $wards->map(function ($item) {
+                            $item->render_name = $item->district->name . ' - ' . $item->name;
+                            return $item;
+                        }),
+                        'selected' => $wards->map(function ($ward) {
+                            return in_array($ward->id, request()->input('location') ?? []) ? 'selected' : '';
+                        }),
+                        'nonSelectedText' => 'Khu vực',
+                        'nSelectedText' => ' khu vực được chọn',
+                    ])
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <select name="category[]" class="form-control" multiple>
-                        @foreach ($categories as $category)
-                            @php
-                                $selected = in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
-                            @endphp
-                            <option value="{{ $category->id }}" {{ $selected }}>{{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
+                    @include('components.common.multiple-select', [
+                        'classes' => 'form-control',
+                        'name' => 'category[]',
+                        'items' => $categories->map(function ($item) {
+                            $item->render_name = $item->name;
+                            return $item;
+                        }),
+                        'selected' => $categories->map(function ($category) {
+                            return in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
+                        }),
+                        'nonSelectedText' => 'Loại nhà đất',
+                        'nSelectedText' => ' loại được chọn',
+                    ])
                 </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -167,14 +182,14 @@ if ($price) {
         <div class="row">
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ"
-                        name="acreage" value="{{ request()->input('acreage') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage"
+                        value="{{ request()->input('acreage') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ"
-                        name="bedroom" value="{{ request()->input('bedroom') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom"
+                        value="{{ request()->input('bedroom') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -232,7 +247,6 @@ if ($price) {
         $('#slider-range2').draggable();
 
         $('#min2').change(function() {
-            console.log('min change');
             const maxValue = Number($('#max2').val()) || 250;
             const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
             $('#slider-range2').slider('values', 0, minValue);
@@ -384,9 +398,7 @@ if ($price) {
 </script> --}}
 
 <script>
-    $(function() {
-        $('.advanced-search-wrap').on('click', function() {
-            $('.post-list-advanced-search').toggleClass('show');
-        });
+    $('.advanced-search-wrap').on('click', function() {
+        $('.post-list-advanced-search').toggleClass('show');
     });
 </script>

@@ -70,13 +70,14 @@
                 align-items: center;
 
                 .q,
-                .multiselect-location {
-                    width: 25%;
+                .multiselect-location,
+                .category,
+                .price-wrap {
+                    width: calc(25% - 140px / 4);
+                    max-width: calc(25% - 140px / 4);
                 }
 
                 .price-wrap {
-                    width: 25%;
-
                     .range-slider {
                         display: flex;
                         align-items: center;
@@ -125,14 +126,6 @@
                         }
                     }
                 }
-
-                .category {
-                    width: 25%;
-                }
-
-                // .submit-form {
-                //     width: 10%;
-                // }
             }
 
             .advanced-search-wrap {

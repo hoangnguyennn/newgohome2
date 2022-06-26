@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Support\Str;
 use Image;
+use Exception;
 
 class GenerateImageHelper
 {

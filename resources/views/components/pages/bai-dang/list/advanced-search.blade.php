@@ -52,9 +52,7 @@
 </div>
 
 <script>
-    $(function() {
-        $('.post-list-advanced-search .close').on('click', function() {
-            $('.post-list-advanced-search').toggleClass('show');
-        });
+    $('.post-list-advanced-search .close').on('click', function() {
+        $('.post-list-advanced-search').toggleClass('show');
     });
 </script>
