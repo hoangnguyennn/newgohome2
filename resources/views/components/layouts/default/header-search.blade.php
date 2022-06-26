@@ -1,14 +1,38 @@
+@php
+$min = 0;
+$max = 250;
+$price = request()->input('price');
+if ($price) {
+    $priceRange = explode('-', $price);
+
+    if ($priceRange && count($priceRange) == 2) {
+        $min = (float) $priceRange[0];
+        $max = (float) $priceRange[1];
+
+        if ($min > $max) {
+            $temp = $min;
+            $min = $max;
+            $max = $min;
+        }
+    }
+}
+@endphp
+
 <form class="header-search-form" action="{{ route('posts') }}">
     <div class="form-group">
         <label for="q">Từ khóa</label>
-        <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q" />
+        <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q"
+            value="{{ request()->input('q') }}" />
     </div>
 
     <div class="form-group">
         <label for="category">Loại nhà đất</label>
         <select name="category[]" class="form-control" multiple>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @php
+                    $selected = in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
+                @endphp
+                <option value="{{ $category->id }}" {{ $selected }}>{{ $category->name }}</option>
             @endforeach
         </select>
     </div>

@@ -120,7 +120,11 @@ class PublicController extends Controller
         }
 
         if ($category && $category != '-1') {
-            $posts = $posts->where('category_id', $category);
+            if (gettype($category) == 'string') {
+                $posts = $posts->where('category_id', $category);
+            } else {
+                $posts = $posts->whereIn('category_id', $category);
+            }
         }
 
         if ($price) {

@@ -20,7 +20,7 @@ if ($price) {
 
 <div class="search-form-posts">
     <div class="btn-actions">
-        <button class="show-search-form">Show Filters</button>
+        <button class="show-search-form">Tìm kiếm nâng cao</button>
     </div>
 
     <form class="pc-search-form" action="{{ route('posts') }}" novalidate>
@@ -51,7 +51,7 @@ if ($price) {
                 <select id="category" name="category[]" class="form-control" multiple>
                     @foreach ($categories as $category)
                         @php
-                            $selected = request()->input('category') == $category->id ? 'selected' : '';
+                            $selected = in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
                         @endphp
                         <option value="{{ $category->id }}" {{ $selected }}>
                             {{ $category->name }}</option>
@@ -121,10 +121,10 @@ if ($price) {
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <select name="category[]" class="form-control">
+                    <select name="category[]" class="form-control" multiple>
                         @foreach ($categories as $category)
                             @php
-                                $selected = request()->input('category') == $category->id ? 'selected' : '';
+                                $selected = in_array($category->id, request()->input('category') ?? []) ? 'selected' : '';
                             @endphp
                             <option value="{{ $category->id }}" {{ $selected }}>{{ $category->name }}
                             </option>

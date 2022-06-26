@@ -33,6 +33,21 @@ $(function () {
     });
 
     $(document).on("click", function (event) {
-        console.log(event.target);
+        const target = $(event.target);
+        const isElement = target.is(".header-search");
+        const isChildElement = target.parents(".header-search").length !== 0;
+        if (!isElement && !isChildElement) {
+            event.preventDefault();
+            $(".header-search").removeClass("show");
+        }
+    });
+
+    $(document).on("click", function (event) {
+        const target = $(event.target);
+        const isElement = target.is(".menu-toggle");
+        const isChildElement = target.parents(".menu-toggle").length !== 0;
+        if (!isElement && !isChildElement) {
+            $(".main-menu").removeClass("show");
+        }
     });
 });
