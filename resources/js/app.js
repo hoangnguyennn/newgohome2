@@ -37,7 +37,6 @@ $(function () {
         const isElement = target.is(".header-search");
         const isChildElement = target.parents(".header-search").length !== 0;
         if (!isElement && !isChildElement) {
-            event.preventDefault();
             $(".header-search").removeClass("show");
         }
     });
