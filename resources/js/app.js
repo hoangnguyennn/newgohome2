@@ -1,11 +1,11 @@
 require("./bootstrap");
 
 $(function () {
-    // $(".dropdown-menu").each(function () {
-    //     $(this).on("click", function (event) {
-    //         event.stopPropagation();
-    //     });
-    // });
+    $(".dropdown-menu").each(function () {
+        $(this).on("click", function (event) {
+            event.stopPropagation();
+        });
+    });
 
     // submit logout form
     $(".btn-logout").each(function () {
