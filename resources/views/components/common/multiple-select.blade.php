@@ -20,6 +20,7 @@ $nSelect = isset($nSelect) ? $nSelect : 3;
     </select>
     <button class="multiple-select-toggle {{ $classes ?? '' }}" type="button">
         <span>{{ $nonSelectedText }}</span>
+        <i class="las la-sort"></i>
     </button>
     <div class="multiple-select-dropdown">
         @foreach ($items as $key => $item)
