@@ -26,6 +26,23 @@ if ($price) {
     </div>
 
     <div class="form-group">
+        <label for="category">Khu vực</label>
+        @include('components.common.multiple-select', [
+            'classes' => 'form-control',
+            'name' => 'location[]',
+            'items' => $wards->map(function ($item) {
+                $item->render_name = $item->district->name . ' - ' . $item->name;
+                return $item;
+            }),
+            'selected' => $wards->map(function ($location) {
+                return in_array($location->id, request()->input('location') ?? []) ? 'selected' : '';
+            }),
+            'nonSelectedText' => 'Khu vực',
+            'nSelectedText' => ' khu vực được chọn',
+        ])
+    </div>
+
+    <div class="form-group">
         <label for="category">Loại nhà đất</label>
         @include('components.common.multiple-select', [
             'classes' => 'form-control',
