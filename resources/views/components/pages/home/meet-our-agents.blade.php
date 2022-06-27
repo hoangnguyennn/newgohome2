@@ -94,34 +94,37 @@
                 <i class="las la-angle-down"></i>
             </div>
         </div>
-        <script>
-            const mobileOptions = {
-                prevArrow: false,
-                nextArrow: false,
-                dots: true,
-            }
-
-            const pcOptions = {
-                prevArrow: $('.slider-control.prev'),
-                nextArrow: $('.slider-control.next'),
-                dots: true,
-                slidesToShow: 3
-            }
-
-            function initSlick() {
-                if ($(document).width() < 992) {
-                    $('.meet-our-agents-slider').slick(mobileOptions);
-                } else {
-                    $('.meet-our-agents-slider').slick(pcOptions);
-                }
-            }
-
-            initSlick();
-
-            $(window).resize(function() {
-                $('.meet-our-agents-slider').slick('unslick');
-                initSlick();
-            });
-        </script>
     </div>
 </div>
+
+<script>
+    $(function() {
+        const mobileOptions = {
+            prevArrow: false,
+            nextArrow: false,
+            dots: true,
+        }
+
+        const pcOptions = {
+            prevArrow: $('.slider-control.prev'),
+            nextArrow: $('.slider-control.next'),
+            dots: true,
+            slidesToShow: 3
+        }
+
+        function initSlick() {
+            if ($(document).width() < 992) {
+                $('.meet-our-agents-slider').slick(mobileOptions);
+            } else {
+                $('.meet-our-agents-slider').slick(pcOptions);
+            }
+        }
+
+        initSlick();
+
+        $(window).resize(function() {
+            $('.meet-our-agents-slider').slick('unslick');
+            initSlick();
+        });
+    });
+</script>

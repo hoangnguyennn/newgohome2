@@ -210,7 +210,7 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(function() {
             const mobileOptions = {
                 prevArrow: false,
                 nextArrow: false,

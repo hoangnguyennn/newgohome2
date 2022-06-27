@@ -16,31 +16,33 @@
 </div>
 
 <script>
-    const mobileOptions = {
-        prevArrow: false,
-        nextArrow: false,
-        dots: true,
-    }
-
-    const pcOptions = {
-        ...mobileOptions,
-        prevArrow: $('.slider-control.prev'),
-        nextArrow: $('.slider-control.next'),
-        slidesToShow: 3,
-    }
-
-    function initSlick() {
-        if ($(document).width() < 992) {
-            $('.content-slider').slick(mobileOptions);
-        } else {
-            $('.content-slider').slick(pcOptions);
+    $(function() {
+        const mobileOptions = {
+            prevArrow: false,
+            nextArrow: false,
+            dots: true,
         }
-    }
 
-    initSlick();
+        const pcOptions = {
+            ...mobileOptions,
+            prevArrow: $('.slider-control.prev'),
+            nextArrow: $('.slider-control.next'),
+            slidesToShow: 3,
+        }
 
-    $(window).resize(function() {
-        $('.content-slider').slick('unslick');
+        function initSlick() {
+            if ($(document).width() < 992) {
+                $('.content-slider').slick(mobileOptions);
+            } else {
+                $('.content-slider').slick(pcOptions);
+            }
+        }
+
         initSlick();
+
+        $(window).resize(function() {
+            $('.content-slider').slick('unslick');
+            initSlick();
+        });
     });
 </script>
