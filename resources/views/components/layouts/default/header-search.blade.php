@@ -47,8 +47,8 @@ if ($price) {
             <label for="price3">Giá:</label>
             <input type="text" class="form-control price-range3" name="price" id="price3" />
             <div class="manual-input">
-                <input type="number" class="min3" />
-                <input type="number" class="max3" />
+                <input type="number" class="form-control min3" />
+                <input type="number" class="form-control max3" />
             </div>
         </div>
     </div>

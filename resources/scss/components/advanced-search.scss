@@ -23,7 +23,7 @@
                 &:not([type="submit"]),
                 &::placeholder {
                     color: #7d93b2;
-                    font-size: 12px;
+                    // font-size: 12px;
                 }
 
                 &:not([type="submit"]) {
@@ -32,7 +32,7 @@
                 }
 
                 &[type="submit"] {
-                    font-size: 13px;
+                    // font-size: 13px;
                 }
             }
 

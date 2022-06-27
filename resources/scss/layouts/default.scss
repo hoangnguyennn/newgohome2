@@ -100,7 +100,7 @@ body {
             &:not([type="submit"]),
             &::placeholder {
                 color: #7d93b2;
-                font-size: 12px;
+                // font-size: 12px;
             }
 
             &:not([type="submit"]) {
@@ -109,7 +109,7 @@ body {
             }
 
             &[type="submit"] {
-                font-size: 13px;
+                // font-size: 13px;
             }
 
             &:focus {
@@ -122,7 +122,7 @@ body {
             width: 100%;
             background: #20c997;
             color: #fff;
-            font-size: 12px;
+            // font-size: 12px;
             font-weight: 500;
             border: none;
             border-radius: 4px;

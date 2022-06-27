@@ -119,7 +119,7 @@
 
             .multiselect-option {
                 .form-check-label {
-                    font-size: 13px;
+                    // font-size: 13px;
                 }
             }
         }
@@ -134,7 +134,7 @@
             &:not([type="submit"]),
             &::placeholder {
                 color: #7d93b2;
-                font-size: 12px;
+                // font-size: 12px;
             }
 
             &:not([type="submit"]) {
@@ -143,7 +143,7 @@
             }
 
             &[type="submit"] {
-                font-size: 13px;
+                // font-size: 13px;
             }
         }
 
@@ -222,7 +222,7 @@
 
             [type="submit"] {
                 padding: 12px 30px;
-                font-size: 12px;
+                // font-size: 12px;
                 font-weight: 500;
             }
         }

@@ -153,8 +153,8 @@ if ($price) {
                         <input type="text" class="form-control price-range" name="price" id="price"
                             value="{{ request()->input('price') }}" />
                         <div class="manual-input">
-                            <input type="number" class="min" />
-                            <input type="number" class="max" />
+                            <input type="number" class="form-control min" />
+                            <input type="number" class="form-control max" />
                         </div>
                     </div>
                 </div>
