@@ -40,7 +40,7 @@ $nSelect = isset($nSelect) ? $nSelect : 3;
         $(this).closest('.multiple-select').toggleClass('show');
     });
 
-    $('.multiple-select-option label input').on('change', function() {
+    $('#{{ $id }} ~ .multiple-select-dropdown input').on('change', function() {
         const value = $(this).val();
 
         const container = $(this).closest('.multiple-select');
