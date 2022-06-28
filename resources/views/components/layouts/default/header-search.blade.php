@@ -102,7 +102,7 @@ if ($price) {
     });
 
     const instance3 = $(".price-range3").data("ionRangeSlider");
-    $('.min3').on("keypress", function() {
+    $('.min3').on("keyup", function() {
         let val = $(this).prop("value");
 
         // validate
@@ -120,7 +120,7 @@ if ($price) {
 
     });
 
-    $('.max3').on("keypress", function() {
+    $('.max3').on("keyup", function() {
         let val = $(this).prop("value");
 
         // validate
