@@ -126,7 +126,7 @@
 
         $('#slider-range-2').draggable();
 
-        $('#min-2').change(function() {
+        $('#min-2').keyup(function() {
             const maxValue = Number($('#max-2').val()) || 250;
             const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range-2').slider('values', 0, minValue);
@@ -139,7 +139,7 @@
             $('#max-2').val(max);
         });
 
-        $('#max-2').change(function() {
+        $('#max-2').keyup(function() {
             const minValue = Number($('#min-2').val()) || 0;
             const maxValue = Number($('#max-2').val()) < minValue ? minValue : Number($('#max').val());
             $('#slider-range-2').slider('values', 1, maxValue);

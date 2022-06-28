@@ -246,7 +246,7 @@ if ($price) {
 
         $('#slider-range2').draggable();
 
-        $('#min2').change(function() {
+        $('#min2').keyup(function() {
             const maxValue = Number($('#max2').val()) || 250;
             const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
             $('#slider-range2').slider('values', 0, minValue);
@@ -259,7 +259,7 @@ if ($price) {
             $('#max2').val(max);
         });
 
-        $('#max2').change(function() {
+        $('#max2').keyup(function() {
             const minValue = Number($('#min2').val()) || 0;
             const maxValue = Number($('#max2').val()) < minValue ? minValue : Number($('#max2').val());
             $('#slider-range2').slider('values', 1, maxValue);
