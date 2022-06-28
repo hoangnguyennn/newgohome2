@@ -52,10 +52,8 @@
                                 <input type="hidden" name="price" id="price-2" />
                                 <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                                     <div class="price-inputs">
-                                        <input type="number" class="form-control" id="min-2" min="0"
-                                            max="100" />
-                                        <input type="number" class="form-control" id="max-2" min="0"
-                                            max="100" />
+                                        <input type="number" class="form-control" id="min-2" />
+                                        <input type="number" class="form-control" id="max-2" />
                                     </div>
                                     <div id="slider-range-2"></div>
                                 </div>
@@ -128,9 +126,10 @@
 
         $('#min-2').keyup(function() {
             const maxValue = Number($('#max-2').val()) || 250;
-            const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min').val());
+            const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min-2')
+                .val());
             $('#slider-range-2').slider('values', 0, minValue);
-
+            console.log(minValue, maxValue);
             const min = $('#slider-range-2').slider('values', 0);
             const max = $('#slider-range-2').slider('values', 1);
             $('#price-display-2').html(`${min} - ${max}`);
@@ -141,9 +140,10 @@
 
         $('#max-2').keyup(function() {
             const minValue = Number($('#min-2').val()) || 0;
-            const maxValue = Number($('#max-2').val()) < minValue ? minValue : Number($('#max').val());
+            const maxValue = Number($('#max-2').val()) < minValue ? minValue : Number($('#max-2')
+        .val());
             $('#slider-range-2').slider('values', 1, maxValue);
-
+            console.log(minValue, maxValue);
             const min = $('#slider-range-2').slider('values', 0);
             const max = $('#slider-range-2').slider('values', 1);
             $('#price-display-2').html(`${min} - ${max}`);
