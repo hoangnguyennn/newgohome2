@@ -1,16 +1,16 @@
 <div class="quick-menu section">
     <div class="container">
+        <div class="logo">
+            <a href="{{ route('home') }}" title="Go to GoHome's homepage">
+                <span class="d-none">Go to GoHome's homepage</span>
+                <img src="{{ mix('images/webp/logo.webp') }}" alt="" />
+            </a>
+        </div>
         <div class="row">
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-5">
                 <div class="quick-menu-item">
-                    <div class="logo">
-                        <a href="{{ route('home') }}" title="Go to GoHome's homepage">
-                            <span class="d-none">Go to GoHome's homepage</span>
-                            <img src="{{ mix('images/webp/logo.webp') }}" alt="" />
-                        </a>
-                    </div>
                     <div class="slogan">
-                        GoHome nền tảng cho thuê bất động sản số 1 Nha Trang
+                        Go Home nền tảng cho thuê bất động sản số 1 Nha Trang
                     </div>
                     <div class="working-time">
                         <span>Sáng: <strong>07:00 - 11:30</strong></span>
@@ -30,7 +30,7 @@
                     <a href="#" class="link">Help Center</a>
                 </div>
             </div> --}}
-            <div class="col-12 col-lg-5 offset-lg-3">
+            <div class="col-12 col-lg-5 offset-lg-2">
                 <div class="quick-menu-item contacts-info">
                     <h3>Thông tin liên hệ</h3>
                     <div class="contact-item">

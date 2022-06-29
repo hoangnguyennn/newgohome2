@@ -983,22 +983,22 @@
         padding-bottom: 60px;
     }
 
-    .quick-menu-item {
-        padding: 15px;
+    .logo {
+        margin-bottom: 20px;
 
-        .logo {
-            margin-bottom: 20px;
+        a {
+            text-decoration: none;
+            width: 192px;
+            display: flex;
 
-            a {
-                text-decoration: none;
-                width: 192px;
-                display: flex;
-
-                img {
-                    width: 100%;
-                }
+            img {
+                width: 100%;
             }
         }
+    }
+
+    .quick-menu-item {
+        padding: 15px;
 
         .slogan {
             color: #566985;

@@ -40,8 +40,8 @@
                     <div class="content">
                         <h4 class="title">Hỗ trợ 24/7</h4>
                         <p class="description">
-                            Luôn sẵn sàng hỗ trợ, giải đáp mọi thắc mắc của khách hàng. Đảm bảo khách hàng có trải
-                            nghiệm tốt nhất khi đến với Go Home.
+                            Dịch vụ hoàn toàn miễn phí. Luôn sẵn sàng hỗ trợ, giải đáp mọi thắc mắc của khách hàng. Đảm
+                            bảo khách hàng có trải nghiệm tốt nhất khi đến với Go Home.
                         </p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
         <div class="bottom">
             <div class="img-wrap">
-                <img src="{{ mix('images/webp/feature-image.webp') }}" alt="" />
+                <img src="{{ mix('images/webp/DSC04737.webp') }}" alt="" />
             </div>
             {{-- <div class="default-quote">
                 <p>Đa dạng sản phẩm - đáp ứng nhu cầu khách hàng</p>
