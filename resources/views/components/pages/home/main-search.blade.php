@@ -32,7 +32,7 @@
             <div class="form-control d-flex align-items-center" id="price-zone" type="button" data-toggle="dropdown"
                 aria-expanded="false">
                 <span>Giá (triệu đồng):&nbsp;</span>
-                <div id="price-display" class="text-primary"></div>
+                <div id="price-display"></div>
                 <input type="hidden" name="price" id="price" />
                 <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                     <div class="price-inputs">

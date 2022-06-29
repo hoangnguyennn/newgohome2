@@ -70,7 +70,7 @@ if ($price) {
                 <div class="form-control d-flex align-items-center" id="price-zone2" type="button"
                     data-toggle="dropdown" aria-expanded="false">
                     <span>Giá (triệu đồng):&nbsp;</span>
-                    <div id="price-display2" class="text-primary">{{ request()->input('price') }}</div>
+                    <div id="price-display2">{{ request()->input('price') }}</div>
                     <input type="hidden" name="price" id="price2" value="{{ request()->input('price') }}" />
                     <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                         <div class="price-inputs">
@@ -162,7 +162,7 @@ if ($price) {
                     <div class="form-control d-flex align-items-center" id="price-zone" type="button"
                         data-toggle="dropdown" aria-expanded="false">
                         <span>Giá (triệu đồng):&nbsp;</span>
-                        <div id="price-display" class="text-primary">{{ request()->input('price') }}</div>
+                        <div id="price-display">{{ request()->input('price') }}</div>
                         <input type="hidden" name="price" id="price"
                             value="{{ request()->input('price') }}" />
                         <div class="dropdown-menu price-dropdown" aria-labelledby="price">

@@ -48,7 +48,7 @@
                             <div class="form-control d-flex align-items-center" id="price-zone-2" type="button"
                                 data-toggle="dropdown" aria-expanded="false">
                                 <span>Giá (triệu đồng):&nbsp;</span>
-                                <div id="price-display-2" class="text-primary"></div>
+                                <div id="price-display-2"></div>
                                 <input type="hidden" name="price" id="price-2" />
                                 <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                                     <div class="price-inputs">
@@ -141,7 +141,7 @@
         $('#max-2').keyup(function() {
             const minValue = Number($('#min-2').val()) || 0;
             const maxValue = Number($('#max-2').val()) < minValue ? minValue : Number($('#max-2')
-        .val());
+                .val());
             $('#slider-range-2').slider('values', 1, maxValue);
             console.log(minValue, maxValue);
             const min = $('#slider-range-2').slider('values', 0);
