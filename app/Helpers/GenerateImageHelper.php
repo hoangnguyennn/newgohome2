@@ -23,7 +23,7 @@ class GenerateImageHelper
                 $file = Image::make(public_path('/uploads/' . $filename));
                 $file->orientate();
                 // $file->insert(public_path('/images/watermark/go_home_hotline_3.png'), 'bottom-left', 10, 10);
-                $file->insert(public_path('/images/watermark/go_home_logo_3d.png'), 'center', 0, 0);
+                $file->insert(public_path('/images/watermark/watermark-web.png'), 'center', 0, 0);
 
                 $prefix = self::generateCode($post->category_id);
 
