@@ -76,64 +76,85 @@ if ($price) {
 </form>
 
 <script>
-    let min3 = 0;
-    let max3 = 250;
+    $(function() {
+        let min3 = 0;
+        let max3 = 250;
 
-    function updateInputs3(data) {
-        from = data.from;
-        to = data.to;
+        function updateInputs3(data) {
+            from = data.from;
+            to = data.to;
 
-        $('.min3').prop("value", from);
-        $('.max3').prop("value", to);
-    }
-
-    $(".price-range3").ionRangeSlider({
-        skin: "round",
-        type: "double",
-        min: min3,
-        max: max3,
-        from: min3,
-        to: max3,
-        input_values_separator: '-',
-        postfix: ' triệu',
-        onStart: updateInputs3,
-        onChange: updateInputs3,
-        onFinish: updateInputs3
-    });
-
-    const instance3 = $(".price-range3").data("ionRangeSlider");
-    $('.min3').on("keyup", function() {
-        let val = $(this).prop("value");
-
-        // validate
-        if (val < min) {
-            val = min;
-        } else if (val > to) {
-            val = to;
+            $('.min3').prop("value", from);
+            $('.max3').prop("value", to);
         }
 
-        instance3.update({
-            from: val
+        $(".price-range3").ionRangeSlider({
+            skin: "round",
+            type: "double",
+            min: min3,
+            max: max3,
+            from: min3,
+            to: max3,
+            input_values_separator: '-',
+            postfix: ' triệu',
+            onStart: updateInputs3,
+            onChange: updateInputs3,
+            onFinish: updateInputs3
         });
 
-        $(this).prop("value", val);
+        const instance3 = $(".price-range3").data("ionRangeSlider");
+        $('.min3').on('change', function() {
+            let val = $(this).prop("value");
 
-    });
+            // validate
+            if (val < min) {
+                val = min;
+            } else if (val > to) {
+                val = to;
+            }
 
-    $('.max3').on("keyup", function() {
-        let val = $(this).prop("value");
+            instance3.update({
+                from: val
+            });
 
-        // validate
-        if (val < from) {
-            val = from;
-        } else if (val > max) {
-            val = max;
-        }
+            $(this).prop("value", val);
 
-        instance3.update({
-            to: val
         });
 
-        $(this).prop("value", val);
+        $('.max3').on('change', function() {
+            let val = $(this).prop("value");
+
+            // validate
+            if (val < from) {
+                val = from;
+            } else if (val > max) {
+                val = max;
+            }
+
+            instance3.update({
+                to: val
+            });
+
+            $(this).prop("value", val);
+        });
+
+        let focusEl = null;
+        $('.min3, .max3').on('focus', function() {
+            focusEl = $(this);
+        });
+
+        $('.header-search-form').on('submit', function() {
+            if (focusEl) {
+                const isSafari = navigator.userAgent.indexOf('Safari') > -1;
+                const isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+
+                if (isSafari) {
+                    if (!isChrome) {
+                        const e = new Event('change');
+                        focusEl.dispatchEvent(e);
+                    }
+                }
+            }
+        });
     });
 </script>

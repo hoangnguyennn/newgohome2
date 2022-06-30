@@ -124,12 +124,11 @@
 
         $('#slider-range-2').draggable();
 
-        $('#min-2').keyup(function() {
+        $('#min-2').on('change', function() {
             const maxValue = Number($('#max-2').val()) || 250;
             const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min-2')
                 .val());
             $('#slider-range-2').slider('values', 0, minValue);
-            console.log(minValue, maxValue);
             const min = $('#slider-range-2').slider('values', 0);
             const max = $('#slider-range-2').slider('values', 1);
             $('#price-display-2').html(`${min} - ${max}`);
@@ -138,18 +137,36 @@
             $('#max-2').val(max);
         });
 
-        $('#max-2').keyup(function() {
+        $('#max-2').on('change', function() {
             const minValue = Number($('#min-2').val()) || 0;
             const maxValue = Number($('#max-2').val()) < minValue ? minValue : Number($('#max-2')
                 .val());
             $('#slider-range-2').slider('values', 1, maxValue);
-            console.log(minValue, maxValue);
             const min = $('#slider-range-2').slider('values', 0);
             const max = $('#slider-range-2').slider('values', 1);
             $('#price-display-2').html(`${min} - ${max}`);
             $('#price-2').val(`${min}-${max}`);
             $('#min-2').val(min);
             $('#max-2').val(max);
+        });
+
+        let focusEl = null;
+        $('#min-2, #max-2').on('focus', function() {
+            focusEl = $(this);
+        });
+
+        $('.advanced-search-modal').on('submit', function() {
+            if (focusEl) {
+                const isSafari = navigator.userAgent.indexOf('Safari') > -1;
+                const isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+
+                if (isSafari) {
+                    if (!isChrome) {
+                        const e = new Event('change');
+                        focusEl.dispatchEvent(e);
+                    }
+                }
+            }
         });
     });
 </script>

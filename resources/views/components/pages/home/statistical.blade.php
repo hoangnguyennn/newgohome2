@@ -61,29 +61,31 @@
 </div>
 
 <script>
-    const options = {
-        useEasing: true,
-        useGrouping: true,
-        separator: '',
-    };
+    $(function() {
+        const options = {
+            useEasing: true,
+            useGrouping: true,
+            separator: '',
+        };
 
-    function countStart() {
-        const items = document.querySelectorAll('.statistical .item');
-        for (let i = 0; i < items.length; i++) {
-            const item = items[i].querySelector('div');
-            const countValue = item.getAttribute('data-value');
+        function countStart() {
+            const items = document.querySelectorAll('.statistical .item');
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i].querySelector('div');
+                const countValue = item.getAttribute('data-value');
 
-            const countUP = new CountUp(item, 0, countValue, 0, 2, options);
-            if (!countUP.error) {
-                countUP.start();
+                const countUP = new CountUp(item, 0, countValue, 0, 2, options);
+                if (!countUP.error) {
+                    countUP.start();
+                }
             }
         }
-    }
 
-    ScrollReveal().reveal('.statistical', {
-        beforeReveal: countStart,
-        opacity: 1,
-        scale: 1,
-        distance: '0px'
+        ScrollReveal().reveal('.statistical', {
+            beforeReveal: countStart,
+            opacity: 1,
+            scale: 1,
+            distance: '0px'
+        });
     });
 </script>

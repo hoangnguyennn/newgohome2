@@ -213,16 +213,18 @@ if ($price) {
 </div>
 
 <script>
-    $('.show-search-form').on('click', function() {
-        $('.sidebar-search-form').addClass('show');
-    });
+    $(function() {
+        $('.show-search-form').on('click', function() {
+            $('.sidebar-search-form').addClass('show');
+        });
 
-    $('.overlay').on('click', function() {
-        $('.sidebar-search-form').removeClass('show');
-    });
+        $('.overlay').on('click', function() {
+            $('.sidebar-search-form').removeClass('show');
+        });
 
-    $('.sidebar-search-form .close').on('click', function() {
-        $('.sidebar-search-form').removeClass('show');
+        $('.sidebar-search-form .close').on('click', function() {
+            $('.sidebar-search-form').removeClass('show');
+        });
     });
 </script>
 
@@ -246,11 +248,10 @@ if ($price) {
 
         $('#slider-range2').draggable();
 
-        $('#min2').keyup(function() {
+        $('#min2').on('change', function() {
             const maxValue = Number($('#max2').val()) || 250;
             const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
             $('#slider-range2').slider('values', 0, minValue);
-
             const min = $('#slider-range2').slider('values', 0);
             const max = $('#slider-range2').slider('values', 1);
             $('#price-display2').html(`${min} - ${max}`);
@@ -259,11 +260,10 @@ if ($price) {
             $('#max2').val(max);
         });
 
-        $('#max2').keyup(function() {
+        $('#max2').on('change', function() {
             const minValue = Number($('#min2').val()) || 0;
             const maxValue = Number($('#max2').val()) < minValue ? minValue : Number($('#max2').val());
             $('#slider-range2').slider('values', 1, maxValue);
-
             const min = $('#slider-range2').slider('values', 0);
             const max = $('#slider-range2').slider('values', 1);
             $('#price-display2').html(`${min} - ${max}`);
@@ -271,134 +271,116 @@ if ($price) {
             $('#min2').val(min);
             $('#max2').val(max);
         });
+
+        let focusEl = null;
+        $('#min2, #max2').on('focus', function() {
+            focusEl = $(this);
+        });
+
+        $('.pc-search-form').on('submit', function() {
+            if (focusEl) {
+                const isSafari = navigator.userAgent.indexOf('Safari') > -1;
+                const isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+
+                if (isSafari) {
+                    if (!isChrome) {
+                        const e = new Event('change');
+                        focusEl.dispatchEvent(e);
+                    }
+                }
+            }
+        });
     });
 </script>
 
 <script>
-    let min = 0;
-    let max = 250;
+    $(function() {
+        let min = 0;
+        let max = 250;
 
-    function updateInputs(data) {
-        from = data.from;
-        to = data.to;
+        function updateInputs(data) {
+            from = data.from;
+            to = data.to;
 
-        $('.min').prop("value", from);
-        $('.max').prop("value", to);
-    }
-
-    $(".price-range").ionRangeSlider({
-        skin: "round",
-        type: "double",
-        min: min,
-        max: max,
-        from: {{ $min }},
-        to: {{ $max }},
-        input_values_separator: '-',
-        postfix: ' triệu',
-        onStart: updateInputs,
-        onChange: updateInputs,
-        onFinish: updateInputs
-    });
-
-    const instance = $(".price-range").data("ionRangeSlider");
-    $('.min').keyup(function() {
-        let val = $(this).prop("value");
-
-        // validate
-        if (val < min) {
-            val = min;
-        } else if (val > to) {
-            val = to;
+            $('.min').prop("value", from);
+            $('.max').prop("value", to);
         }
 
-        instance.update({
-            from: val
+        $(".price-range").ionRangeSlider({
+            skin: "round",
+            type: "double",
+            min: min,
+            max: max,
+            from: {{ $min }},
+            to: {{ $max }},
+            input_values_separator: '-',
+            postfix: ' triệu',
+            onStart: updateInputs,
+            onChange: updateInputs,
+            onFinish: updateInputs
         });
 
-        $(this).prop("value", val);
+        const instance = $(".price-range").data("ionRangeSlider");
+        $('.min').on('change', function() {
+            let val = $(this).prop("value");
 
-    });
+            // validate
+            if (val < min) {
+                val = min;
+            } else if (val > to) {
+                val = to;
+            }
 
-    $('.max').keyup(function() {
-        let val = $(this).prop("value");
+            instance.update({
+                from: val
+            });
 
-        // validate
-        if (val < from) {
-            val = from;
-        } else if (val > max) {
-            val = max;
-        }
+            $(this).prop("value", val);
 
-        instance.update({
-            to: val
         });
 
-        $(this).prop("value", val);
+        $('.max').on('change', function() {
+            let val = $(this).prop("value");
+
+            // validate
+            if (val < from) {
+                val = from;
+            } else if (val > max) {
+                val = max;
+            }
+
+            instance.update({
+                to: val
+            });
+
+            $(this).prop("value", val);
+        });
+
+        let focusEl = null;
+        $('.min, .max').on('focus', function() {
+            focusEl = $(this);
+        });
+
+        $('.sidebar-search-form .content').on('submit', function() {
+            if (focusEl) {
+                const isSafari = navigator.userAgent.indexOf('Safari') > -1;
+                const isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+
+                if (isSafari) {
+                    if (!isChrome) {
+                        const e = new Event('change');
+                        focusEl.dispatchEvent(e);
+                    }
+                }
+            }
+        });
     });
 </script>
 
-{{-- <script>
-    function updateInputs2(data) {
-        from = data.from;
-        to = data.to;
-
-        $('.min2').prop("value", from);
-        $('.max2').prop("value", to);
-    }
-
-    $(".price-range2").ionRangeSlider({
-        skin: "round",
-        type: "double",
-        min: min,
-        max: max,
-        from: {{ $min }},
-        to: {{ $max }},
-        input_values_separator: '-',
-        postfix: ' triệu',
-        onStart: updateInputs2,
-        onChange: updateInputs2,
-        onFinish: updateInputs2
-    });
-
-    const instance2 = $(".price-range2").data("ionRangeSlider");
-    $('.min2').on("change", function() {
-        let val = $(this).prop("value");
-
-        // validate
-        if (val < min) {
-            val = min;
-        } else if (val > to) {
-            val = to;
-        }
-
-        instance2.update({
-            from: val
-        });
-
-        $(this).prop("value", val);
-
-    });
-
-    $('.max2').on("change", function() {
-        let val = $(this).prop("value");
-
-        // validate
-        if (val < from) {
-            val = from;
-        } else if (val > max) {
-            val = max;
-        }
-
-        instance2.update({
-            to: val
-        });
-
-        $(this).prop("value", val);
-    });
-</script> --}}
-
 <script>
-    $('.advanced-search-wrap').on('click', function() {
-        $('.post-list-advanced-search').toggleClass('show');
+    $(function() {
+        $('.advanced-search-wrap').on('click', function() {
+            $('.post-list-advanced-search').toggleClass('show');
+        });
     });
 </script>

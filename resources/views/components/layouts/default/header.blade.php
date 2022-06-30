@@ -107,17 +107,19 @@
 </header>
 
 <script>
-    $('.menu-toggle').on('click', function() {
-        $('.main-menu').toggleClass('show');
-    });
+    $(function() {
+        $('.menu-toggle').on('click', function() {
+            $('.main-menu').toggleClass('show');
+        });
 
-    $('.header-search').on('click', function(event) {
-        event.preventDefault();
-        $('.header-search').toggleClass('show');
-    });
+        $('.header-search').on('click', function(event) {
+            event.preventDefault();
+            $('.header-search').toggleClass('show');
+        });
 
-    $('.language').on('click', function(event) {
-        event.preventDefault();
-        $('.language-dropdown').toggleClass('show');
-    })
+        $('.language').on('click', function(event) {
+            event.preventDefault();
+            $('.language-dropdown').toggleClass('show');
+        })
+    });
 </script>

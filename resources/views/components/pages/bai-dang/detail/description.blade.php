@@ -5,43 +5,45 @@
     </button>
 
     <script>
-        const btnDownloadImages = document.querySelector('.download-images');
-        let isFetching = false;
-        btnDownloadImages.addEventListener('click', downloadImages);
+        $(function() {
+            const btnDownloadImages = document.querySelector('.download-images');
+            let isFetching = false;
+            btnDownloadImages.addEventListener('click', downloadImages);
 
-        function downloadImages() {
-            if (isFetching) {
-                return;
-            }
-            isFetching = true;
-            btnDownloadImages.classList.add('show');
-            btnDownloadImages.classList.add('disabled');
-            const url = "{{ route('api.posts.download', $post->id) }}";
-            axios
-                .get(url, {
-                    responseType: 'blob'
-                })
-                .then((res) => {
-                    let filename = '';
-                    const disposition = res.headers['content-disposition'];
-                    if (disposition) {
-                        const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                        const matches = filenameRegex.exec(disposition);
-                        if (matches != null && matches[1]) {
-                            filename = matches[1].replace(/['"]/g, '');
+            function downloadImages() {
+                if (isFetching) {
+                    return;
+                }
+                isFetching = true;
+                btnDownloadImages.classList.add('show');
+                btnDownloadImages.classList.add('disabled');
+                const url = "{{ route('api.posts.download', $post->id) }}";
+                axios
+                    .get(url, {
+                        responseType: 'blob'
+                    })
+                    .then((res) => {
+                        let filename = '';
+                        const disposition = res.headers['content-disposition'];
+                        if (disposition) {
+                            const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                            const matches = filenameRegex.exec(disposition);
+                            if (matches != null && matches[1]) {
+                                filename = matches[1].replace(/['"]/g, '');
+                            }
                         }
-                    }
-                    const data = res.data;
-                    const anchor = document.createElement('a');
-                    anchor.href = URL.createObjectURL(data);
-                    anchor.download = filename || 'download.zip';
-                    anchor.click();
-                    anchor.remove();
-                    btnDownloadImages.classList.remove('show');
-                    btnDownloadImages.classList.remove('disabled');
-                })
-                .finally(() => (isFetching = false));
-        }
+                        const data = res.data;
+                        const anchor = document.createElement('a');
+                        anchor.href = URL.createObjectURL(data);
+                        anchor.download = filename || 'download.zip';
+                        anchor.click();
+                        anchor.remove();
+                        btnDownloadImages.classList.remove('show');
+                        btnDownloadImages.classList.remove('disabled');
+                    })
+                    .finally(() => (isFetching = false));
+            }
+        });
     </script>
 @endif
 <div class="post-description">

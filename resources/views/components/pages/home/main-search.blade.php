@@ -85,11 +85,10 @@
 
         $('#slider-range').draggable();
 
-        $('#min').keyup(function() {
+        $('#min').on('change', function() {
             const maxValue = Number($('#max').val()) || 250;
             const minValue = Number($('#min').val()) > maxValue ? maxValue : Number($('#min').val());
             $('#slider-range').slider('values', 0, minValue);
-            console.log(minValue, maxValue);
             const min = $('#slider-range').slider('values', 0);
             const max = $('#slider-range').slider('values', 1);
             $('#price-display').html(`${min} - ${max}`);
@@ -98,17 +97,35 @@
             $('#max').val(max);
         });
 
-        $('#max').keyup(function() {
+        $('#max').on('change', function() {
             const minValue = Number($('#min').val()) || 0;
             const maxValue = Number($('#max').val()) < minValue ? minValue : Number($('#max').val());
             $('#slider-range').slider('values', 1, maxValue);
-            console.log(minValue, maxValue);
             const min = $('#slider-range').slider('values', 0);
             const max = $('#slider-range').slider('values', 1);
             $('#price-display').html(`${min} - ${max}`);
             $('#price').val(`${min}-${max}`);
             $('#min').val(min);
             $('#max').val(max);
+        });
+
+        let focusEl = null;
+        $('#min, #max').on('focus', function() {
+            focusEl = $(this);
+        });
+
+        $('.main-search').on('submit', function() {
+            if (focusEl) {
+                const isSafari = navigator.userAgent.indexOf('Safari') > -1;
+                const isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+
+                if (isSafari) {
+                    if (!isChrome) {
+                        const e = new Event('change');
+                        focusEl.dispatchEvent(e);
+                    }
+                }
+            }
         });
     });
 </script>

@@ -16,41 +16,43 @@
 </div>
 
 <script>
-    let page = 1;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 150) {
-            page++;
-            fetchPosts();
-        }
-    });
-
-    function fetchPosts() {
-        const url = new URL(window.location.href);
-        url.searchParams.set('page', page);
-
-        $.ajax({
-            url: url.href,
-            type: 'get',
-        }).done(function(data) {
-            if (data.html !== '') {
-                $('.posts .row').append(data.html);
-                $(".currency").each(function() {
-                    $(this).text(toCurrency($(this).text()));
-                });
+    $(function() {
+        let page = 1;
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 150) {
+                page++;
+                fetchPosts();
             }
         });
-    }
 
-    // convert currency to VND value
-    function toCurrency(num) {
-        const numNum = Number(num);
-        if (!isNaN(numNum)) {
-            return Number(num).toLocaleString("vi-VN", {
-                style: "currency",
-                currency: "VND",
+        function fetchPosts() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', page);
+
+            $.ajax({
+                url: url.href,
+                type: 'get',
+            }).done(function(data) {
+                if (data.html !== '') {
+                    $('.posts .row').append(data.html);
+                    $(".currency").each(function() {
+                        $(this).text(toCurrency($(this).text()));
+                    });
+                }
             });
         }
 
-        return num;
-    }
+        // convert currency to VND value
+        function toCurrency(num) {
+            const numNum = Number(num);
+            if (!isNaN(numNum)) {
+                return Number(num).toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                });
+            }
+
+            return num;
+        }
+    });
 </script>

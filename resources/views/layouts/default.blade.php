@@ -22,11 +22,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
 
-    {{-- <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.1/css/bootstrap-multiselect.min.css"
-        integrity="sha512-jpey1PaBfFBeEAsKxmkM1Yh7fkH09t/XDVjAgYGrq1s2L9qPD/kKdXC/2I6t2Va8xdd9SanwPYHIAnyBRdPmig=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.min.css" />
 
     <link rel="stylesheet"
@@ -62,10 +57,6 @@
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.1/js/bootstrap-multiselect.min.js"
-        integrity="sha512-fp+kGodOXYBIPyIXInWgdH2vTMiOfbLC9YqwEHslkUxc8JLI7eBL2UQ8/HbB5YehvynU3gA3klc84rAQcTQvXA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 
@@ -80,10 +71,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"
-        integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 
     <script src="{{ mix('/js/app.js') }}"></script>
     @php
@@ -100,65 +87,6 @@
     @include('components.common.login-register-form')
     @include('components.common.advanced-search')
     @include('components.common.back-to-top')
-
-    {{-- apply bootstrap multiselect for location --}}
-    <script>
-        // $(function() {
-        //     $('[name="location[]"]').each(function() {
-        //         $(this).multiselect({
-        //             widthSynchronizationMode: 'ifPopupIsSmaller',
-        //             maxHeight: 400,
-        //             nonSelectedText: 'Khu vực',
-        //             nSelectedText: ' khu vực được chọn',
-        //             buttonTitle: function(options, select) {
-        //                 let labels = [];
-        //                 options.each(function() {
-        //                     labels.push($(this).text().trim());
-        //                 });
-        //                 return labels.join(', ');
-        //             }
-        //         });
-        //     });
-
-        //     $('.multiselect-location .btn-group').css('width', '100%');
-        //     $('.multiselect').addClass('form-control text-left');
-        //     $('.multiselect').removeClass('text-center');
-        // });
-    </script>
-
-    {{-- apply bootstrap multiselect for location --}}
-    <script>
-        // $('[name="category[]"]').each(function() {
-        //     $(this).multiselect({
-        //         widthSynchronizationMode: 'ifPopupIsSmaller',
-        //         maxHeight: 400,
-        //         nonSelectedText: 'Loại nhà đất',
-        //         nSelectedText: ' loại được chọn',
-        //         buttonTitle: function(options, select) {
-        //             let labels = [];
-        //             options.each(function() {
-        //                 labels.push($(this).text().trim());
-        //             });
-        //             return labels.join(', ');
-        //         }
-        //     });
-        // });
-
-        // $('.btn-group').css('width', '100%');
-        // $('.multiselect').addClass('form-control text-left');
-        // $('.multiselect').removeClass('text-center');
-    </script>
-
-    {{-- remove non-value fields before submit --}}
-    {{-- <script>
-        $('.search-form').each(function() {
-            $(this).submit(function() {
-                $(':input', this).each(function() {
-                    this.disabled = !($(this).val());
-                });
-            });
-        });
-    </script> --}}
 </body>
 
 </html>

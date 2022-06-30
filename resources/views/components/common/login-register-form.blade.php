@@ -97,17 +97,19 @@
 </div>
 
 <script>
-    $('.tab-login').on('click', function() {
-        $(this).addClass('active');
-        $('.tab-register').removeClass('active');
-        $('.login-form').addClass('show');
-        $('.register-form').removeClass('show');
-    });
+    $(function() {
+        $('.tab-login').on('click', function() {
+            $(this).addClass('active');
+            $('.tab-register').removeClass('active');
+            $('.login-form').addClass('show');
+            $('.register-form').removeClass('show');
+        });
 
-    $('.tab-register').on('click', function() {
-        $('.tab-login').removeClass('active');
-        $(this).addClass('active');
-        $('.login-form').removeClass('show');
-        $('.register-form').addClass('show');
+        $('.tab-register').on('click', function() {
+            $('.tab-login').removeClass('active');
+            $(this).addClass('active');
+            $('.login-form').removeClass('show');
+            $('.register-form').addClass('show');
+        });
     });
 </script>

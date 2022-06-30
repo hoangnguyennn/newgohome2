@@ -36,40 +36,40 @@ $nSelect = isset($nSelect) ? $nSelect : 3;
 </div>
 
 <script>
-    $('.multiple-select-toggle').unbind().click(function() {
-        $(this).closest('.multiple-select').toggleClass('show');
-    });
-
-    $('#{{ $id }} ~ .multiple-select-dropdown input').on('change', function() {
-        const value = $(this).val();
-
-        const container = $(this).closest('.multiple-select');
-        const option = container.find('select option[value="' + value + '"]');
-        if ($(this).is(':checked')) {
-            option.prop('selected', true);
-        } else {
-            option.prop('selected', false);
-        }
-
-        const select = container.find('select');
-        const placeholder = container.find('.multiple-select-toggle span');
-        if (select.val().length === 0) {
-            placeholder.html("{{ $nonSelectedText }}");
-        } else if (select.val().length <= {{ $nSelect }}) {
-            const values = [];
-            const options = select.find('option:selected');
-            options.each(function() {
-                values.push($(this).html());
-            });
-            placeholder.html(values.join(', '));
-        } else if (select.val().length === {{ $length }}) {
-            placeholder.html("Đã chọn tất cả ({{ $length }})");
-        } else {
-            placeholder.html(select.val().length + "{{ $nSelectedText }}");
-        }
-    });
-
     $(function() {
+        $('.multiple-select-toggle').unbind().click(function() {
+            $(this).closest('.multiple-select').toggleClass('show');
+        });
+
+        $('#{{ $id }} ~ .multiple-select-dropdown input').on('change', function() {
+            const value = $(this).val();
+
+            const container = $(this).closest('.multiple-select');
+            const option = container.find('select option[value="' + value + '"]');
+            if ($(this).is(':checked')) {
+                option.prop('selected', true);
+            } else {
+                option.prop('selected', false);
+            }
+
+            const select = container.find('select');
+            const placeholder = container.find('.multiple-select-toggle span');
+            if (select.val().length === 0) {
+                placeholder.html("{{ $nonSelectedText }}");
+            } else if (select.val().length <= {{ $nSelect }}) {
+                const values = [];
+                const options = select.find('option:selected');
+                options.each(function() {
+                    values.push($(this).html());
+                });
+                placeholder.html(values.join(', '));
+            } else if (select.val().length === {{ $length }}) {
+                placeholder.html("Đã chọn tất cả ({{ $length }})");
+            } else {
+                placeholder.html(select.val().length + "{{ $nSelectedText }}");
+            }
+        });
+
         const container = $('#{{ $id }}').closest('.multiple-select');
         const select = container.find('select');
         const placeholder = container.find('.multiple-select-toggle span');
@@ -87,21 +87,21 @@ $nSelect = isset($nSelect) ? $nSelect : 3;
         } else {
             placeholder.html(select.val().length + "{{ $nSelectedText }}");
         }
-    });
 
-    $(document).on("click", function(event) {
-        const containers = $('.multiple-select');
+        $(document).on("click", function(event) {
+            const containers = $('.multiple-select');
 
-        containers.each(function() {
-            const container = $(this);
-            const target = $(event.target);
+            containers.each(function() {
+                const container = $(this);
+                const target = $(event.target);
 
-            const isElement = container.is(target);
-            const isChildElement = container.has(target).length !== 0;
+                const isElement = container.is(target);
+                const isChildElement = container.has(target).length !== 0;
 
-            if (!isElement && !isChildElement) {
-                container.removeClass("show");
-            }
+                if (!isElement && !isChildElement) {
+                    container.removeClass("show");
+                }
+            });
         });
     });
 </script>

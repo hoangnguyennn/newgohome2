@@ -209,37 +209,38 @@
             </div>
         </div>
     </div>
-    <script>
-        $(function() {
-            const mobileOptions = {
-                prevArrow: false,
-                nextArrow: false,
-                dots: true,
-                variableWidth: true,
-                centerMode: true
-            }
-
-            const pcOptions = {
-                ...mobileOptions,
-                slidesToShow: 3,
-                variableWidth: false,
-                centerMode: false
-            }
-
-            function initSlick() {
-                if ($(document).width() < 992) {
-                    $('.quotes-wrap').slick(mobileOptions);
-                } else {
-                    $('.quotes-wrap').slick(pcOptions);
-                }
-            }
-
-            initSlick();
-
-            $(window).resize(function() {
-                $('.quotes-wrap').slick('unslick');
-                initSlick();
-            });
-        });
-    </script>
 </div>
+
+<script>
+    $(function() {
+        const mobileOptions = {
+            prevArrow: false,
+            nextArrow: false,
+            dots: true,
+            variableWidth: true,
+            centerMode: true
+        }
+
+        const pcOptions = {
+            ...mobileOptions,
+            slidesToShow: 3,
+            variableWidth: false,
+            centerMode: false
+        }
+
+        function initSlick() {
+            if ($(document).width() < 992) {
+                $('.quotes-wrap').slick(mobileOptions);
+            } else {
+                $('.quotes-wrap').slick(pcOptions);
+            }
+        }
+
+        initSlick();
+
+        $(window).resize(function() {
+            $('.quotes-wrap').slick('unslick');
+            initSlick();
+        });
+    });
+</script>
