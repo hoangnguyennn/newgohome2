@@ -25,7 +25,7 @@ class GenerateImageHelper
                 // $file->insert(public_path('/images/watermark/go_home_hotline_3.png'), 'bottom-left', 10, 10);
                 $file->insert(public_path('/images/watermark/watermark-web.png'), 'center', 0, 0);
 
-                $prefix = self::generateCode($post->category_id);
+                // $prefix = self::generateCode($post->category_id);
 
                 // $file->text($prefix . '-' . $post->id_by_category, 10, 10, function ($font) {
                 //     $font->file(public_path('/fonts/Roboto-Regular.ttf'));

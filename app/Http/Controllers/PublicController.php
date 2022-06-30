@@ -251,7 +251,7 @@ class PublicController extends Controller
         return view('pages.bai-dang.detail', compact('seo', 'post', 'posts', 'categories', 'wards', 'latestPosts', 'relatedPosts', 'postRequestTypes', 'totalPost'));
     }
 
-    public function update()
+    public function update(Request $request)
     {
         // reset categories count
         // update post id via category
@@ -273,66 +273,19 @@ class PublicController extends Controller
 
         // generate image by category and post id
         // remove old image
-        // $postImages = PostImage::offset(0)->limit(50)->get();
-        // $postImages = PostImage::offset(50)->limit(50)->get();
-        // $postImages = PostImage::offset(100)->limit(50)->get();
-        // $postImages = PostImage::offset(150)->limit(50)->get();
-        // $postImages = PostImage::offset(200)->limit(50)->get();
-        // $postImages = PostImage::offset(250)->limit(50)->get();
-        // $postImages = PostImage::offset(300)->limit(50)->get();
-        // $postImages = PostImage::offset(350)->limit(50)->get();
-        // $postImages = PostImage::offset(400)->limit(50)->get();
-        // $postImages = PostImage::offset(450)->limit(50)->get();
-        // $postImages = PostImage::offset(500)->limit(50)->get();
-        // $postImages = PostImage::offset(550)->limit(50)->get();
-        // $postImages = PostImage::offset(600)->limit(50)->get();
-        // $postImages = PostImage::offset(650)->limit(50)->get();
-        // $postImages = PostImage::offset(700)->limit(50)->get();
-        // $postImages = PostImage::offset(750)->limit(50)->get();
-        // $postImages = PostImage::offset(800)->limit(50)->get();
-        // $postImages = PostImage::offset(850)->limit(50)->get();
-        // $postImages = PostImage::offset(900)->limit(50)->get();
-        // $postImages = PostImage::offset(950)->limit(50)->get();
-        // $postImages = PostImage::offset(1000)->limit(50)->get();
-        // $postImages = PostImage::offset(1050)->limit(50)->get();
-        // $postImages = PostImage::offset(1100)->limit(50)->get();
-        // $postImages = PostImage::offset(1150)->limit(50)->get();
-        // $postImages = PostImage::offset(1200)->limit(50)->get();
-        // $postImages = PostImage::offset(1250)->limit(50)->get();
-        // $postImages = PostImage::offset(1300)->limit(50)->get();
-        // $postImages = PostImage::offset(1350)->limit(50)->get();
-        // $postImages = PostImage::offset(1400)->limit(50)->get();
-        // $postImages = PostImage::offset(1450)->limit(50)->get();
-        // $postImages = PostImage::offset(1500)->limit(50)->get();
-        // $postImages = PostImage::offset(1550)->limit(50)->get();
-        // $postImages = PostImage::offset(1600)->limit(50)->get();
-        // $postImages = PostImage::offset(1650)->limit(50)->get();
-        // $postImages = PostImage::offset(1700)->limit(50)->get();
-        // $postImages = PostImage::offset(1750)->limit(50)->get();
-        // $postImages = PostImage::offset(1800)->limit(50)->get();
-        // $postImages = PostImage::offset(1850)->limit(50)->get();
-        // $postImages = PostImage::offset(1900)->limit(50)->get();
-        // $postImages = PostImage::offset(1950)->limit(50)->get();
-        // $postImages = PostImage::offset(2000)->limit(50)->get();
-        // $postImages = PostImage::offset(2050)->limit(50)->get();
-        // $postImages = PostImage::offset(2100)->limit(50)->get();
-        // $postImages = PostImage::offset(2150)->limit(50)->get();
-        // $postImages = PostImage::offset(2200)->limit(50)->get();
-        // $postImages = PostImage::offset(2250)->limit(50)->get();
-        // $postImages = PostImage::offset(2300)->limit(50)->get();
-        // $postImages = PostImage::offset(2350)->limit(50)->get();
-        // $postImages = PostImage::offset(2400)->limit(50)->get();
-        // $postImages = PostImage::offset(2450)->limit(50)->get();
-        // $postImages = PostImage::offset(2500)->limit(50)->get();
-        // $postImages = PostImage::offset(2550)->limit(50)->get();
+        $id = (int) $request->id;
+        if ($id == null) {
+            return "id is null";
+        }
 
-        // $postImages = PostImage::offset(2600)->limit(50)->get();
-        // foreach ($postImages as $postImage) {
-        //     if ($postImage->post) {
-        //         GenerateImageHelper::generate($postImage->id, $postImage->post);
-        //     }
-        // }
+        $postImages = PostImage::where('id', '>', $id)->limit(200)->get();
 
-        return 'Done';
+        foreach ($postImages as $postImage) {
+            if ($postImage->post) {
+                GenerateImageHelper::generate($postImage->id, $postImage->post);
+            }
+        }
+
+        return 'Done ' . $postImages->count();
     }
 }
