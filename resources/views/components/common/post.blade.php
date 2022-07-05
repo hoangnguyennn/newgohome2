@@ -30,8 +30,10 @@
         </div>
 
         <div class="image-count">
-            <i class="las la-camera"></i>
-            <span>{{ count($post->images) }}</span>
+            @php
+                $postId = $post->category->shorthand . '-' . $post->id_by_category;
+            @endphp
+            <span>{{ $postId }}</span>
         </div>
     </a>
     <div class="post-content">
