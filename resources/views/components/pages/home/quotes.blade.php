@@ -9,9 +9,9 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-1.webp') }}" alt="" />
+                            <img src="{{ mix('images/webp/7cdb478f628da1d3f89c.jpg') }}" alt="" />
                         </div>
-                        <div class="name">Khánh Ly</div>
+                        <div class="name">Thảo Vy</div>
                     </div>
                     <div class="quote-body">
                         <p class="content">
@@ -29,9 +29,9 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-2.webp') }}" alt="" />
+                            <img src="{{ mix('images/webp/83ff166237e7f4b9adf6.jpg') }}" alt="" />
                         </div>
-                        <div class="name">Trần Tú</div>
+                        <div class="name">Trang Trương</div>
                     </div>
                     <div class="quote-body">
                         <p class="content">
@@ -50,13 +50,15 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-3.webp') }}" alt="" />
+                            <img src="{{ mix('images/webp/4abd8ffcd8791b274268.jpg') }}" alt="" />
                         </div>
-                        <div class="name">Steve</div>
+                        <div class="name">Triệu Thuận</div>
                     </div>
                     <div class="quote-body">
                         <p class="content">
-                            “My friend told me about this service. By the way, great service…”
+                            “Mình thuê căn HUD Nguyễn Thiện Thuật, dịch vụ công ty tốt, các bạn nhân viên tư vấn nhiệt
+                            tình, hỗ trợ mình rất nhiều, nếu có bạn bè cần hỏi thuê mình sẽ giới thiệu, cảm ơn Huy và Ly
+                            đã hỗ trợ chị tìm nhà nhé!”
                         </p>
                         <div>
                             {{-- <a href="#" class="ref">Via Facebook</a> --}}
@@ -69,9 +71,9 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
+                            <img src="{{ mix('images/webp/f2716ba206afc5f19cbe.jpg') }}" alt="" />
                         </div>
-                        <div class="name">Tố Nhi</div>
+                        <div class="name">Nhật Hào</div>
                     </div>
                     <div class="quote-body">
                         <p class="content">
@@ -90,9 +92,9 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
+                            <img src="{{ mix('images/webp/0d7c9f7bb6fe75a02cef.jpg') }}" alt="" />
                         </div>
-                        <div class="name">Bạch Lan</div>
+                        <div class="name">Nguyễn Nhật Tân</div>
                     </div>
                     <div class="quote-body">
                         <p class="content">
@@ -111,95 +113,14 @@
                 <div class="quote">
                     <div class="quote-header">
                         <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
+                            <img src="{{ mix('images/webp/48db0c5925dce682bfcd.jpg') }}" alt="" />
                         </div>
-                        <div class="name">Matty</div>
+                        <div class="name">Vương Anh Tú</div>
                     </div>
                     <div class="quote-body">
                         <p class="content">
-                            “Great service for such an offer. I will pass Go Home contact to my friends. Thank you.”
-                        </p>
-                        <div>
-                            {{-- <a href="#" class="ref">Via Facebook</a> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quote-wrap">
-                <div class="quote">
-                    <div class="quote-header">
-                        <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
-                        </div>
-                        <div class="name">Anna</div>
-                    </div>
-                    <div class="quote-body">
-                        <p class="content">
-                            “Great service. Fast and convenient to find a serviced apartment. Highly recommended!”
-                        </p>
-                        <div>
-                            {{-- <a href="#" class="ref">Via Facebook</a> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quote-wrap">
-                <div class="quote">
-                    <div class="quote-header">
-                        <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
-                        </div>
-                        <div class="name">Thư Hoàng</div>
-                    </div>
-                    <div class="quote-body">
-                        <p class="content">
-                            “Cảm ơn các bạn Go Home rất nhiều, các bạn đã hỗ trợ mình rất nhiệt tình mặt dù yêu cầu mình
-                            hơi khó, nhưng các bạn vẫn tìm được căn hộ ưng ý cho mình. Dịch vụ rất tốt, mình sẽ giới
-                            thiệu cho bạn bè mình.”
-                        </p>
-                        <div>
-                            {{-- <a href="#" class="ref">Via Facebook</a> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quote-wrap">
-                <div class="quote">
-                    <div class="quote-header">
-                        <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
-                        </div>
-                        <div class="name">Bích Hằng</div>
-                    </div>
-                    <div class="quote-body">
-                        <p class="content">
-                            “Dịch vụ tốt, mình là nhân viên văn phòng, ở một mình thuê được căn hộ studio bên Go Home
-                            rất xịn, full nội thất và giá rất hợp lý đối với mình. Cảm ơn các bạn tư vấn và dẫn mình đi
-                            xem nhà nhiều nè! Tặng cho các bạn 5 sao luôn nhé!”
-                        </p>
-                        <div>
-                            {{-- <a href="#" class="ref">Via Facebook</a> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quote-wrap">
-                <div class="quote">
-                    <div class="quote-header">
-                        <div class="avatar">
-                            <img src="{{ mix('images/webp/avatar-4.webp') }}" alt="" />
-                        </div>
-                        <div class="name">Mỹ An</div>
-                    </div>
-                    <div class="quote-body">
-                        <p class="content">
-                            “Mình book villa cho cả nhà đi Nha Trang du lịch, được bạn giới thiệu Go Home. Giá book bên
-                            này rất oke và villa siêu xịn, có cả hồ bơi và view cực chill. Các bạn tư vấn rất nhiệt
-                            tình, dịch vụ tuyệt vời!”
+                            “Mình có lên website tìm kiếm và tìm được sản phẩm ưng ý sau đó mình có liên hệ tới bộ phẩn
+                            telesale các bạn hỗ trợ và tư vấn rất nhiệt tình. Cảm ơn đội ngủ công ty!”
                         </p>
                         <div>
                             {{-- <a href="#" class="ref">Via Facebook</a> --}}
