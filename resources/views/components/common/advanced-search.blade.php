@@ -45,17 +45,17 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
-                            <div class="form-control d-flex align-items-center" id="price-zone-2" type="button"
+                            <div class="form-control d-flex align-items-center price-zone" type="button"
                                 data-toggle="dropdown" aria-expanded="false">
                                 <span>Giá (triệu đồng):&nbsp;</span>
-                                <div id="price-display-2"></div>
-                                <input type="hidden" name="price" id="price-2" />
+                                <div class="price-display"></div>
+                                <input type="hidden" name="price" class="price" />
                                 <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                                     <div class="price-inputs">
-                                        <input type="number" class="form-control" id="min-2" />
-                                        <input type="number" class="form-control" id="max-2" />
+                                        <input type="number" class="form-control min" />
+                                        <input type="number" class="form-control max" />
                                     </div>
-                                    <div id="slider-range-2"></div>
+                                    <div class="slider-range"></div>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,15 @@
 {{-- apply slider for price --}}
 <script>
     $(function() {
-        $('#slider-range-2').slider({
+        const advancedSearch = '.advanced-search-modal';
+        const priceZone = '.price-zone';
+        const sliderRange = '.slider-range';
+        const priceDisplay = '.price-display';
+        const price = '.price';
+        const maxEl = '.max';
+        const minEl = '.min';
+
+        $(`${advancedSearch} ${sliderRange}`).slider({
             range: true,
             min: 0,
             max: 250,
@@ -108,54 +116,56 @@
             slide: function(event, ui) {
                 const min = ui.values[0];
                 const max = ui.values[1];
-                $('#price-display-2').html(`${min} - ${max}`);
-                $('#price-2').val(`${min}-${max}`);
-                $('#min-2').val(min);
-                $('#max-2').val(max);
+                $(`${advancedSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+                $(`${advancedSearch} ${price}`).val(`${min}-${max}`);
+                $(`${advancedSearch} ${minEl}`).val(min);
+                $(`${advancedSearch} ${maxEl}`).val(max);
             },
         });
 
-        const min = $('#slider-range-2').slider('values', 0);
-        const max = $('#slider-range-2').slider('values', 1);
-        $('#price-display-2').html(`${min} - ${max}`);
-        $('#price-2').val(`${min}-${max}`);
-        $('#min-2').val(min);
-        $('#max-2').val(max);
+        const min = $(`${advancedSearch} ${sliderRange}`).slider('values', 0);
+        const max = $(`${advancedSearch} ${sliderRange}`).slider('values', 1);
+        $(`${advancedSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+        $(`${advancedSearch} ${price}`).val(`${min}-${max}`);
+        $(`${advancedSearch} ${minEl}`).val(min);
+        $(`${advancedSearch} ${maxEl}`).val(max);
 
-        $('#slider-range-2').draggable();
+        $(`${advancedSearch} ${sliderRange}`).draggable();
 
-        $('#min-2').on('change', function() {
-            const maxValue = Number($('#max-2').val()) || 250;
-            const minValue = Number($('#min-2').val()) > maxValue ? maxValue : Number($('#min-2')
-                .val());
-            $('#slider-range-2').slider('values', 0, minValue);
-            const min = $('#slider-range-2').slider('values', 0);
-            const max = $('#slider-range-2').slider('values', 1);
-            $('#price-display-2').html(`${min} - ${max}`);
-            $('#price-2').val(`${min}-${max}`);
-            $('#min-2').val(min);
-            $('#max-2').val(max);
+        $(`${advancedSearch} ${minEl}`).on('change', function() {
+            const maxValue = Number($(`${advancedSearch} ${maxEl}`).val()) || 250;
+            const minValue = Number($(`${advancedSearch} ${minEl}`).val()) > maxValue ? maxValue :
+                Number($(
+                    `${advancedSearch} ${minEl}`).val());
+            $(`${advancedSearch} ${sliderRange}`).slider('values', 0, minValue);
+            const min = $(`${advancedSearch} ${sliderRange}`).slider('values', 0);
+            const max = $(`${advancedSearch} ${sliderRange}`).slider('values', 1);
+            $(`${advancedSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+            $(`${advancedSearch} ${price}`).val(`${min}-${max}`);
+            $(`${advancedSearch} ${minEl}`).val(min);
+            $(`${advancedSearch} ${maxEl}`).val(max);
         });
 
-        $('#max-2').on('change', function() {
-            const minValue = Number($('#min-2').val()) || 0;
-            const maxValue = Number($('#max-2').val()) < minValue ? minValue : Number($('#max-2')
-                .val());
-            $('#slider-range-2').slider('values', 1, maxValue);
-            const min = $('#slider-range-2').slider('values', 0);
-            const max = $('#slider-range-2').slider('values', 1);
-            $('#price-display-2').html(`${min} - ${max}`);
-            $('#price-2').val(`${min}-${max}`);
-            $('#min-2').val(min);
-            $('#max-2').val(max);
+        $(`${advancedSearch} ${maxEl}`).on('change', function() {
+            const minValue = Number($(`${advancedSearch} ${minEl}`).val()) || 0;
+            const maxValue = Number($(`${advancedSearch} ${maxEl}`).val()) < minValue ? minValue :
+                Number($(
+                    `${advancedSearch} ${maxEl}`).val());
+            $(`${advancedSearch} ${sliderRange}`).slider('values', 1, maxValue);
+            const min = $(`${advancedSearch} ${sliderRange}`).slider('values', 0);
+            const max = $(`${advancedSearch} ${sliderRange}`).slider('values', 1);
+            $(`${advancedSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+            $(`${advancedSearch} ${price}`).val(`${min}-${max}`);
+            $(`${advancedSearch} ${minEl}`).val(min);
+            $(`${advancedSearch} ${maxEl}`).val(max);
         });
 
         let focusEl = null;
-        $('#min-2, #max-2').on('focus', function() {
+        $(`${minEl}, ${maxEl}`).on('focus', function() {
             focusEl = $(this);
         });
 
-        $('.advanced-search-modal').on('submit', function() {
+        $(`${advancedSearch}`).on('submit', function() {
             if (focusEl) {
                 const isSafari = navigator.userAgent.indexOf('Safari') > -1;
                 const isChrome = navigator.userAgent.indexOf('Chrome') > -1;

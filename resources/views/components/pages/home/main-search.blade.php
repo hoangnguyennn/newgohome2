@@ -29,17 +29,17 @@
         </div>
 
         <div class="form-group">
-            <div class="form-control d-flex align-items-center" id="price-zone" type="button" data-toggle="dropdown"
+            <div class="form-control d-flex align-items-center price-zone" type="button" data-toggle="dropdown"
                 aria-expanded="false">
                 <span>Giá (triệu đồng):&nbsp;</span>
-                <div id="price-display"></div>
-                <input type="hidden" name="price" id="price" />
+                <div class="price-display"></div>
+                <input type="hidden" name="price" class="price" />
                 <div class="dropdown-menu price-dropdown" aria-labelledby="price">
                     <div class="price-inputs">
-                        <input type="number" class="form-control" id="min" />
-                        <input type="number" class="form-control" id="max" />
+                        <input type="number" class="form-control min" />
+                        <input type="number" class="form-control max" />
                     </div>
-                    <div id="slider-range"></div>
+                    <div class="slider-range"></div>
                 </div>
             </div>
         </div>
@@ -61,7 +61,15 @@
 {{-- apply slider for price --}}
 <script>
     $(function() {
-        $('#slider-range').slider({
+        const mainSearch = '.main-search';
+        const priceZone = '.price-zone';
+        const sliderRange = '.slider-range';
+        const priceDisplay = '.price-display';
+        const price = '.price';
+        const maxEl = '.max';
+        const minEl = '.min';
+
+        $(`${mainSearch} ${sliderRange}`).slider({
             range: true,
             min: 0,
             max: 250,
@@ -69,52 +77,54 @@
             slide: function(event, ui) {
                 const min = ui.values[0];
                 const max = ui.values[1];
-                $('#price-display').html(`${min} - ${max}`);
-                $('#price').val(`${min}-${max}`);
-                $('#min').val(min);
-                $('#max').val(max);
+                $(`${mainSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+                $(`${mainSearch} ${price}`).val(`${min}-${max}`);
+                $(`${mainSearch} ${minEl}`).val(min);
+                $(`${mainSearch} ${maxEl}`).val(max);
             },
         });
 
-        const min = $('#slider-range').slider('values', 0);
-        const max = $('#slider-range').slider('values', 1);
-        $('#price-display').html(`${min} - ${max}`);
-        $('#price').val(`${min}-${max}`);
-        $('#min').val(min);
-        $('#max').val(max);
+        const min = $(`${mainSearch} ${sliderRange}`).slider('values', 0);
+        const max = $(`${mainSearch} ${sliderRange}`).slider('values', 1);
+        $(`${mainSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+        $(`${mainSearch} ${price}`).val(`${min}-${max}`);
+        $(`${mainSearch} ${minEl}`).val(min);
+        $(`${mainSearch} ${maxEl}`).val(max);
 
-        $('#slider-range').draggable();
+        $(`${mainSearch} ${sliderRange}`).draggable();
 
-        $('#min').on('change', function() {
-            const maxValue = Number($('#max').val()) || 250;
-            const minValue = Number($('#min').val()) > maxValue ? maxValue : Number($('#min').val());
-            $('#slider-range').slider('values', 0, minValue);
-            const min = $('#slider-range').slider('values', 0);
-            const max = $('#slider-range').slider('values', 1);
-            $('#price-display').html(`${min} - ${max}`);
-            $('#price').val(`${min}-${max}`);
-            $('#min').val(min);
-            $('#max').val(max);
+        $(`${mainSearch} ${minEl}`).on('change', function() {
+            const maxValue = Number($(`${mainSearch} ${maxEl}`).val()) || 250;
+            const minValue = Number($(`${mainSearch} ${minEl}`).val()) > maxValue ? maxValue : Number($(
+                `${mainSearch} ${minEl}`).val());
+            $(`${mainSearch} ${sliderRange}`).slider('values', 0, minValue);
+            const min = $(`${mainSearch} ${sliderRange}`).slider('values', 0);
+            const max = $(`${mainSearch} ${sliderRange}`).slider('values', 1);
+            $(`${mainSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+            $(`${mainSearch} ${price}`).val(`${min}-${max}`);
+            $(`${mainSearch} ${minEl}`).val(min);
+            $(`${mainSearch} ${maxEl}`).val(max);
         });
 
-        $('#max').on('change', function() {
-            const minValue = Number($('#min').val()) || 0;
-            const maxValue = Number($('#max').val()) < minValue ? minValue : Number($('#max').val());
-            $('#slider-range').slider('values', 1, maxValue);
-            const min = $('#slider-range').slider('values', 0);
-            const max = $('#slider-range').slider('values', 1);
-            $('#price-display').html(`${min} - ${max}`);
-            $('#price').val(`${min}-${max}`);
-            $('#min').val(min);
-            $('#max').val(max);
+        $(`${mainSearch} ${maxEl}`).on('change', function() {
+            const minValue = Number($(`${mainSearch} ${minEl}`).val()) || 0;
+            const maxValue = Number($(`${mainSearch} ${maxEl}`).val()) < minValue ? minValue : Number($(
+                `${mainSearch} ${maxEl}`).val());
+            $(`${mainSearch} ${sliderRange}`).slider('values', 1, maxValue);
+            const min = $(`${mainSearch} ${sliderRange}`).slider('values', 0);
+            const max = $(`${mainSearch} ${sliderRange}`).slider('values', 1);
+            $(`${mainSearch} ${priceDisplay}`).html(`${min} - ${max}`);
+            $(`${mainSearch} ${price}`).val(`${min}-${max}`);
+            $(`${mainSearch} ${minEl}`).val(min);
+            $(`${mainSearch} ${maxEl}`).val(max);
         });
 
         let focusEl = null;
-        $('#min, #max').on('focus', function() {
+        $(`${minEl}, ${maxEl}`).on('focus', function() {
             focusEl = $(this);
         });
 
-        $('.main-search').on('submit', function() {
+        $(`${mainSearch}`).on('submit', function() {
             if (focusEl) {
                 const isSafari = navigator.userAgent.indexOf('Safari') > -1;
                 const isChrome = navigator.userAgent.indexOf('Chrome') > -1;

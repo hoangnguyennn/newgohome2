@@ -31,17 +31,17 @@
                     border: 1px solid #e5e7f2;
                 }
 
-                &[type="submit"] {
-                    // font-size: 13px;
-                }
+                // &[type="submit"] {
+                //     font-size: 13px;
+                // }
             }
 
-            #price-zone-2 {
+            .price-zone {
                 appearance: none;
                 position: relative;
                 cursor: pointer;
 
-                #price-display-2 {
+                .price-display {
                     border: none;
                     background-color: transparent;
                     outline: none;

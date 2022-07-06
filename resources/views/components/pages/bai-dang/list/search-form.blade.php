@@ -67,19 +67,19 @@ if ($price) {
             </div>
 
             <div class="form-group price-wrap">
-                <div class="form-control d-flex align-items-center" id="price-zone2" type="button"
-                    data-toggle="dropdown" aria-expanded="false">
-                    <span>Giá (triệu đồng):&nbsp;</span>
-                    <div id="price-display2">{{ request()->input('price') }}</div>
-                    <input type="hidden" name="price" id="price2" value="{{ request()->input('price') }}" />
-                    <div class="dropdown-menu price-dropdown" aria-labelledby="price">
-                        <div class="price-inputs">
-                            <input type="number" class="form-control" id="min2" min="0" max="100"
-                                value="{{ $min }}" />
-                            <input type="number" class="form-control" id="max2" min="0" max="100"
-                                value="{{ $max }}" />
+                <div class="form-group">
+                    <div class="form-control d-flex align-items-center price-zone" type="button" data-toggle="dropdown"
+                        aria-expanded="false">
+                        <span>Giá (triệu đồng):&nbsp;</span>
+                        <div class="price-display">{{ request()->input('price') }}</div>
+                        <input type="hidden" name="price" class="price" value="{{ request()->input('price') }}" />
+                        <div class="dropdown-menu price-dropdown" aria-labelledby="price">
+                            <div class="price-inputs">
+                                <input type="number" class="form-control min" value="{{ $min }}" />
+                                <input type="number" class="form-control max" value="{{ $max }}" />
+                            </div>
+                            <div class="slider-range"></div>
                         </div>
-                        <div id="slider-range2"></div>
                     </div>
                 </div>
             </div>
@@ -194,8 +194,8 @@ if ($price) {
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm"
-                        name="toilet" value="{{ request()->input('toilet') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet"
+                        value="{{ request()->input('toilet') }}" />
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -231,53 +231,72 @@ if ($price) {
 {{-- apply slider for price --}}
 <script>
     $(function() {
-        $('#slider-range2').slider({
+        const pcSearchForm = '.pc-search-form';
+        const priceZone = '.price-zone';
+        const sliderRange = '.slider-range';
+        const priceDisplay = '.price-display';
+        const price = '.price';
+        const maxEl = '.max';
+        const minEl = '.min';
+
+        $(`${pcSearchForm} ${sliderRange}`).slider({
             range: true,
             min: 0,
             max: 250,
-            values: [{{ $min }}, {{ $max }}],
+            values: [0, 250],
             slide: function(event, ui) {
                 const min = ui.values[0];
                 const max = ui.values[1];
-                $('#price-display2').html(`${min} - ${max}`);
-                $('#price2').val(`${min}-${max}`);
-                $('#min2').val(min);
-                $('#max2').val(max);
+                $(`${pcSearchForm} ${priceDisplay}`).html(`${min} - ${max}`);
+                $(`${pcSearchForm} ${price}`).val(`${min}-${max}`);
+                $(`${pcSearchForm} ${minEl}`).val(min);
+                $(`${pcSearchForm} ${maxEl}`).val(max);
             },
         });
 
-        $('#slider-range2').draggable();
+        const min = $(`${pcSearchForm} ${sliderRange}`).slider('values', 0);
+        const max = $(`${pcSearchForm} ${sliderRange}`).slider('values', 1);
+        $(`${pcSearchForm} ${priceDisplay}`).html(`${min} - ${max}`);
+        $(`${pcSearchForm} ${price}`).val(`${min}-${max}`);
+        $(`${pcSearchForm} ${minEl}`).val(min);
+        $(`${pcSearchForm} ${maxEl}`).val(max);
 
-        $('#min2').on('change', function() {
-            const maxValue = Number($('#max2').val()) || 250;
-            const minValue = Number($('#min2').val()) > maxValue ? maxValue : Number($('#min2').val());
-            $('#slider-range2').slider('values', 0, minValue);
-            const min = $('#slider-range2').slider('values', 0);
-            const max = $('#slider-range2').slider('values', 1);
-            $('#price-display2').html(`${min} - ${max}`);
-            $('#price2').val(`${min}-${max}`);
-            $('#min2').val(min);
-            $('#max2').val(max);
+        $(`${pcSearchForm} ${sliderRange}`).draggable();
+
+        $(`${pcSearchForm} ${minEl}`).on('change', function() {
+            const maxValue = Number($(`${pcSearchForm} ${maxEl}`).val()) || 250;
+            const minValue = Number($(`${pcSearchForm} ${minEl}`).val()) > maxValue ? maxValue :
+                Number($(
+                    `${pcSearchForm} ${minEl}`).val());
+            $(`${pcSearchForm} ${sliderRange}`).slider('values', 0, minValue);
+            const min = $(`${pcSearchForm} ${sliderRange}`).slider('values', 0);
+            const max = $(`${pcSearchForm} ${sliderRange}`).slider('values', 1);
+            $(`${pcSearchForm} ${priceDisplay}`).html(`${min} - ${max}`);
+            $(`${pcSearchForm} ${price}`).val(`${min}-${max}`);
+            $(`${pcSearchForm} ${minEl}`).val(min);
+            $(`${pcSearchForm} ${maxEl}`).val(max);
         });
 
-        $('#max2').on('change', function() {
-            const minValue = Number($('#min2').val()) || 0;
-            const maxValue = Number($('#max2').val()) < minValue ? minValue : Number($('#max2').val());
-            $('#slider-range2').slider('values', 1, maxValue);
-            const min = $('#slider-range2').slider('values', 0);
-            const max = $('#slider-range2').slider('values', 1);
-            $('#price-display2').html(`${min} - ${max}`);
-            $('#price2').val(`${min}-${max}`);
-            $('#min2').val(min);
-            $('#max2').val(max);
+        $(`${pcSearchForm} ${maxEl}`).on('change', function() {
+            const minValue = Number($(`${pcSearchForm} ${minEl}`).val()) || 0;
+            const maxValue = Number($(`${pcSearchForm} ${maxEl}`).val()) < minValue ? minValue :
+                Number($(
+                    `${pcSearchForm} ${maxEl}`).val());
+            $(`${pcSearchForm} ${sliderRange}`).slider('values', 1, maxValue);
+            const min = $(`${pcSearchForm} ${sliderRange}`).slider('values', 0);
+            const max = $(`${pcSearchForm} ${sliderRange}`).slider('values', 1);
+            $(`${pcSearchForm} ${priceDisplay}`).html(`${min} - ${max}`);
+            $(`${pcSearchForm} ${price}`).val(`${min}-${max}`);
+            $(`${pcSearchForm} ${minEl}`).val(min);
+            $(`${pcSearchForm} ${maxEl}`).val(max);
         });
 
         let focusEl = null;
-        $('#min2, #max2').on('focus', function() {
+        $(`${minEl}, ${maxEl}`).on('focus', function() {
             focusEl = $(this);
         });
 
-        $('.pc-search-form').on('submit', function() {
+        $(`${pcSearchForm}`).on('submit', function() {
             if (focusEl) {
                 const isSafari = navigator.userAgent.indexOf('Safari') > -1;
                 const isChrome = navigator.userAgent.indexOf('Chrome') > -1;

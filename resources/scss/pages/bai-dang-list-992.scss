@@ -150,12 +150,12 @@
                 }
             }
 
-            #price-zone2 {
+            .price-zone {
                 appearance: none;
                 position: relative;
                 cursor: pointer;
 
-                #price-display {
+                .price-display {
                     border: none;
                     background-color: transparent;
                     outline: none;
