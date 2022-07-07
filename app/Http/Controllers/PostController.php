@@ -54,7 +54,12 @@ class PostController extends Controller
                 $id = explode("-", $q)[1];
 
                 $cat = Category::where('shorthand', $typeCode)->first();
-                $posts = $posts->where('id_by_category', $id)->where('category_id', $cat->id);
+
+                if ($cat == null) {
+                    $posts = $posts->where('id', -1);
+                } else {
+                    $posts = $posts->where('id_by_category', $id)->where('category_id', $cat->id);
+                }
             }
         }
 
