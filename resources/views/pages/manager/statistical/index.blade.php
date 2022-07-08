@@ -40,20 +40,22 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->fullname }}</td>
-                            <td>
-                                @php
-                                    $arr = [];
-                                    foreach ($user->posts as $post) {
-                                        array_push($arr, $post->category->shorthand . '-' . $post->id_by_category);
-                                    }
-                                @endphp
-                                {{ implode(', ', $arr) }}
-                            </td>
-                            <td>{{ $user->posts->count() }}</td>
-                        </tr>
+                        @if ($user->posts->count() > 0)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->fullname }}</td>
+                                <td>
+                                    @php
+                                        $arr = [];
+                                        foreach ($user->posts as $post) {
+                                            array_push($arr, $post->category->shorthand . '-' . $post->id_by_category);
+                                        }
+                                    @endphp
+                                    {{ implode(', ', $arr) }}
+                                </td>
+                                <td>{{ $user->posts->count() }}</td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

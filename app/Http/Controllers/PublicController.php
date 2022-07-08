@@ -38,7 +38,7 @@ class PublicController extends Controller
             }
         }
 
-        $posts = $posts->orderBy('created_at', 'desc');
+        $posts = $posts->orderBy('updated_at', 'desc');
         $posts = $posts->paginate(12);
         $posts->appends(['type' => $type]);
 
@@ -162,7 +162,7 @@ class PublicController extends Controller
             $posts = $posts->where('floor', $floor);
         }
 
-        $posts = $posts->orderBy('created_at', 'desc');
+        $posts = $posts->orderBy('updated_at', 'desc');
         // dd($posts->toSql(), $posts->getBindings());
         $posts = $posts->paginate(12);
 
@@ -180,7 +180,7 @@ class PublicController extends Controller
         $posts->appends(['toilet' => $toilet]);
         $posts->appends(['floor' => $floor]);
 
-        if (count($posts)) {
+        if (!$posts->isEmpty()) {
             $images = $posts[0]->images;
             if (count($images)) {
                 $ogImage = $request->getSchemeAndHttpHost() . '/uploads/' . $posts[0]->images[0]->filename;

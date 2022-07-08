@@ -36,19 +36,18 @@ class StatisticalController extends Controller
             $endDate = date("Y-m-d H:i:s");
         }
 
-        $users = User::paginate(20);
-
+        $users = User::all();
         foreach ($users as $user) {
             $user->posts = Post::whereBetween('created_at', [$startDate, $endDate])->where('user_id', $user->id)->get();
         }
 
-        if ($start) {
-            $users->appends(['start' => $start]);
-        }
+        // if ($start) {
+        //     $users->appends(['start' => $start]);
+        // }
 
-        if ($end) {
-            $users->appends(['end' => $end]);
-        }
+        // if ($end) {
+        //     $users->appends(['end' => $end]);
+        // }
         return view('pages.manager.statistical.index', compact('users'));
     }
 }
