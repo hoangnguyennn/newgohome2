@@ -115,6 +115,30 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="duration" class="col-sm-3 col-form-label">Thời hạn</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="duration" name="duration" required>
+                                @foreach ($durations as $duration)
+                                    @php
+                                        $selected = false;
+                                        
+                                        if ($post->duration_id == null) {
+                                            if ($loop->index == 0) {
+                                                $selected = true;
+                                            }
+                                        } elseif ($post->duration_id == $duration->id) {
+                                            $selected = true;
+                                        }
+                                    @endphp
+                                    <option value="{{ $duration->id }}" {{ $selected ? ' selected="selected"' : '' }}>
+                                        {{ $duration->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="acreage" class="col-sm-3 col-form-label">Diện tích (m2)
                             <span class="text-danger">(*)</span>
                         </label>
@@ -146,8 +170,8 @@
                     <div class="form-group row">
                         <label for="floor" class="col-sm-3 col-form-label">Số tầng</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="floor" name="floor" placeholder="Nhập số tầng"
-                                value="{{ $post->floor }}" />
+                            <input type="number" class="form-control" id="floor" name="floor"
+                                placeholder="Nhập số tầng" value="{{ $post->floor }}" />
                         </div>
                     </div>
 
@@ -169,7 +193,8 @@
                             <span class="text-danger">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả" required>{{ $post->description }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả"
+                                required>{{ $post->description }}</textarea>
                             <div class="invalid-feedback">
                                 Mô tả là trường bắt buộc
                             </div>
@@ -181,8 +206,8 @@
                             <span class="text-danger">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="price" name="price" placeholder="Nhập giá tiền"
-                                required value="{{ $post->price }}" />
+                            <input type="number" class="form-control" id="price" name="price"
+                                placeholder="Nhập giá tiền" required value="{{ $post->price }}" />
                             <div class="invalid-feedback">
                                 Giá tiền là trường bắt buộc
                             </div>

@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Helpers\GenerateImageHelper;
 use App\Models\Category;
 use App\Models\District;
+use App\Models\Duration;
 use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\User;
 use App\Models\Ward;
+use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use Exception;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -112,7 +113,8 @@ class PostController extends Controller
     {
         $categories = Category::where('is_hide', false)->get();
         $districts = District::where('is_hide', false)->get();
-        return view('pages.manager.posts.create', compact('categories', 'districts'));
+        $durations = Duration::all();
+        return view('pages.manager.posts.create', compact('categories', 'districts', 'durations'));
     }
 
     /**
@@ -148,6 +150,7 @@ class PostController extends Controller
         $post->is_hide = $request->input('status');
         $post->verify_status = $user->isAdmin() ? 0 : 1;
         $post->user_id = $user->id;
+        $post->duration_id = (int) $request->input('duration');
         $post->save();
 
         $category->count = $category->count + 1;
@@ -208,7 +211,8 @@ class PostController extends Controller
         $categories = Category::where('is_hide', false)->get();
         $districts = District::where('is_hide', false)->get();
         $wards = Ward::where('is_hide', 'false')->where('district_id', $post->ward->district_id)->get();
-        return view('pages.manager.posts.edit', compact('categories', 'districts', 'wards', 'post'));
+        $durations = Duration::all();
+        return view('pages.manager.posts.edit', compact('categories', 'districts', 'wards', 'post', 'durations'));
     }
 
     /**
@@ -260,6 +264,7 @@ class PostController extends Controller
         $post->is_featured = (bool) $request->input('is-featured');
         $post->is_hide = $request->input('status');
         $post->user_update_id = $user->id;
+        $post->duration_id = (int) $request->input('duration');
         $post->save();
 
         if ($request->has('image')) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\GenerateImageHelper;
 use App\Models\Category;
+use App\Models\Duration;
 use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\PostRequestType;
@@ -26,6 +27,7 @@ class PublicController extends Controller
         $posts = Post::where('is_hide', 0)->where('verify_status', 0);
         $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
         $wards = Ward::where('is_hide', 0)->get();
+        $durations = Duration::all();
         $type = 'all';
 
         if ($request->query('type')) {
@@ -42,7 +44,7 @@ class PublicController extends Controller
         $posts = $posts->paginate(12);
         $posts->appends(['type' => $type]);
 
-        return view('pages.home', compact('seo', 'posts', 'categories', 'wards', 'postRequestTypes', 'type'));
+        return view('pages.home', compact('seo', 'posts', 'categories', 'wards', 'postRequestTypes', 'type', 'durations'));
     }
 
     public function posts(Request $request)

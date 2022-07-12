@@ -10,5 +10,6 @@
     @include('components.pages.home.quotes')
     @include('components.pages.home.newsletters')
     @include('components.pages.home.quick-menu')
+    @include('components.common.advanced-search')
     {{-- @include('components.layouts.default.footer') --}}
 @endsection

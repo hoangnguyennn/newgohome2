@@ -100,6 +100,19 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="duration" class="col-sm-3 col-form-label">Thời hạn</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="duration" name="duration" required>
+                                @foreach ($durations as $duration)
+                                    <option value="{{ $duration->id }}"
+                                        {{ $loop->index == 0 ? ' selected="selected"' : '' }}>{{ $duration->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="acreage" class="col-sm-3 col-form-label">Diện tích (m2)
                             <span class="text-danger">(*)</span>
                         </label>

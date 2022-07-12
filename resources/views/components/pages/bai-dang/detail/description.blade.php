@@ -50,10 +50,17 @@
     <div class="wrapper">
         <div class="title">Mô tả</div>
         @php
-            $strpos = strpos($post->description, "\n");
-            $substr1 = substr($post->description, 0, $strpos);
-            $substr2 = substr($post->description, $strpos);
-            $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category;
+            $strpos = strpos($post->description, PHP_EOL);
+            if ($strpos == false) {
+                // does not contain PHP_EOL (php end of line)
+                $substr1 = '';
+                $substr2 = PHP_EOL . $post->description;
+                $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category;
+            } else {
+                $substr1 = substr($post->description, 0, $strpos);
+                $substr2 = substr($post->description, $strpos + strlen(PHP_EOL));
+                $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category;
+            }
         @endphp
         <p class="content des">{{ $substr1 }}{{ $postId }}{{ $substr2 }}</p>
     </div>

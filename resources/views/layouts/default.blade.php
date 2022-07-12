@@ -85,7 +85,6 @@
     @yield('main-content')
 
     @include('components.common.login-register-form')
-    @include('components.common.advanced-search')
     @include('components.common.back-to-top')
 
     <!-- Messenger Chat Plugin Code -->
