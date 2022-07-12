@@ -31,5 +31,13 @@
         allowMediaOverlap: true,
         toggleThumb: true,
         controls: true,
+        showCloseIcon: true,
+        download: false,
+        mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
+        },
+        plugins: [lgRotate]
     });
 </script>

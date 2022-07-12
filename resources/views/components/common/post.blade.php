@@ -157,6 +157,15 @@
                 // thumbWidth: 60,
                 // thumbHeight: "40px",
                 // thumbMargin: 4
+                controls: true,
+                showCloseIcon: true,
+                download: false,
+                mobileSettings: {
+                    controls: true,
+                    showCloseIcon: true,
+                    download: false
+                },
+                plugins: [lgRotate]
             });
 
             setTimeout(() => {
