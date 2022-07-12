@@ -54,12 +54,12 @@
             if ($strpos == false) {
                 // does not contain PHP_EOL (php end of line)
                 $substr1 = '';
-                $substr2 = PHP_EOL . $post->description;
-                $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category;
+                $substr2 = $post->description;
+                $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category . PHP_EOL;
             } else {
                 $substr1 = substr($post->description, 0, $strpos);
                 $substr2 = substr($post->description, $strpos + strlen(PHP_EOL));
-                $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category;
+                $postId = 'Mã nhà: ' . $post->category->shorthand . '-' . $post->id_by_category . PHP_EOL;
             }
         @endphp
         <p class="content des">{{ $substr1 }}{{ $postId }}{{ $substr2 }}</p>
