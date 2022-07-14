@@ -77,8 +77,8 @@ if ($price) {
 
 <script>
     $(function() {
-        let min3 = 0;
-        let max3 = 250;
+        let min = 0;
+        let max = 250;
 
         function updateInputs3(data) {
             from = data.from;
@@ -91,10 +91,10 @@ if ($price) {
         $(".price-range3").ionRangeSlider({
             skin: "round",
             type: "double",
-            min: min3,
-            max: max3,
-            from: min3,
-            to: max3,
+            min: min,
+            max: max,
+            from: min,
+            to: max,
             input_values_separator: '-',
             postfix: ' triệu',
             onStart: updateInputs3,
