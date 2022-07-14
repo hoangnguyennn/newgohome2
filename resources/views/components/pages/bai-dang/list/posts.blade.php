@@ -18,14 +18,17 @@
 <script>
     $(function() {
         let page = 1;
+        let isFetching = false;
         $(window).scroll(function() {
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 150) {
+                if (isFetching) return;
                 page++;
                 fetchPosts();
             }
         });
 
         function fetchPosts() {
+            isFetching = true;
             const url = new URL(window.location.href);
             url.searchParams.set('page', page);
 
@@ -39,6 +42,8 @@
                         $(this).text(toCurrency($(this).text()));
                     });
                 }
+
+                isFetching = false;
             });
         }
 
