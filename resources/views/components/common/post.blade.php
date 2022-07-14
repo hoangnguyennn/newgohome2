@@ -140,7 +140,7 @@
                 // as we don't want to change the url on slide change
                 hash: false,
                 // Do not allow users to close the gallery
-                closable: false,
+                // closable: false,
                 // Add maximize icon to enlarge the gallery
                 showMaximizeIcon: true,
                 // Append caption inside the slide item
@@ -168,9 +168,14 @@
                 plugins: [lgRotate]
             });
 
-            setTimeout(() => {
+            const modal = $("#post-modal-{{ $post->id }}")
+            container.addEventListener('lgBeforeClose', () => {
+                modal.modal('hide')
+            });
+
+            modal.on('show.bs.modal', function(e) {
                 inlineGallery.openGallery();
-            }, 200);
+            })
         });
     </script>
 </article>
