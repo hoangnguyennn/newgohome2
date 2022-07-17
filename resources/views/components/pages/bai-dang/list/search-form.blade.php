@@ -66,20 +66,31 @@ if ($price) {
                 ])
             </div>
 
+            <div class="form-group duration-wrap">
+                @include('components.common.multiple-select', [
+                    'classes' => 'form-control',
+                    'name' => 'duration[]',
+                    'items' => $durations->map(function ($item) {
+                        $item->render_name = $item->name;
+                        return $item;
+                    }),
+                    'nonSelectedText' => 'Thời hạn',
+                    'nSelectedText' => ' loại được chọn',
+                ])
+            </div>
+
             <div class="form-group price-wrap">
-                <div class="form-group">
-                    <div class="form-control d-flex align-items-center price-zone" type="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        <span>Giá (triệu đồng):&nbsp;</span>
-                        <div class="price-display">{{ request()->input('price') }}</div>
-                        <input type="hidden" name="price" class="price" value="{{ request()->input('price') }}" />
-                        <div class="dropdown-menu price-dropdown" aria-labelledby="price">
-                            <div class="price-inputs">
-                                <input type="number" class="form-control min" value="{{ $min }}" />
-                                <input type="number" class="form-control max" value="{{ $max }}" />
-                            </div>
-                            <div class="slider-range"></div>
+                <div class="form-control d-flex align-items-center price-zone" type="button" data-toggle="dropdown"
+                    aria-expanded="false">
+                    <span>Giá:&nbsp;</span>
+                    <div class="price-display">{{ request()->input('price') }}</div>
+                    <input type="hidden" name="price" class="price" value="{{ request()->input('price') }}" />
+                    <div class="dropdown-menu price-dropdown" aria-labelledby="price">
+                        <div class="price-inputs">
+                            <input type="number" class="form-control min" value="{{ $min }}" />
+                            <input type="number" class="form-control max" value="{{ $max }}" />
                         </div>
+                        <div class="slider-range"></div>
                     </div>
                 </div>
             </div>
@@ -113,7 +124,7 @@ if ($price) {
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <div class="form-group multiselect-location">
                     @include('components.common.multiple-select', [
                         'classes' => 'form-control',
@@ -130,7 +141,7 @@ if ($price) {
                     ])
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <div class="form-group">
                     @include('components.common.multiple-select', [
                         'classes' => 'form-control',
@@ -147,7 +158,21 @@ if ($price) {
                     ])
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12">
+                <div class="form-group duration-wrap">
+                    @include('components.common.multiple-select', [
+                        'classes' => 'form-control',
+                        'name' => 'duration[]',
+                        'items' => $durations->map(function ($item) {
+                            $item->render_name = $item->name;
+                            return $item;
+                        }),
+                        'nonSelectedText' => 'Thời hạn',
+                        'nSelectedText' => ' loại được chọn',
+                    ])
+                </div>
+            </div>
+            <div class="col-12">
                 <div class="form-group price-wrap">
                     <div class="range-slider">
                         <input type="text" class="form-control price-range" name="price" id="price"
@@ -158,53 +183,33 @@ if ($price) {
                         </div>
                     </div>
                 </div>
-                {{-- <div class="form-group">
-                    <div class="form-control d-flex align-items-center" id="price-zone" type="button"
-                        data-toggle="dropdown" aria-expanded="false">
-                        <span>Giá (triệu đồng):&nbsp;</span>
-                        <div id="price-display">{{ request()->input('price') }}</div>
-                        <input type="hidden" name="price" id="price"
-                            value="{{ request()->input('price') }}" />
-                        <div class="dropdown-menu price-dropdown" aria-labelledby="price">
-                            <div class="price-inputs">
-                                <input type="number" class="form-control" id="min" min="0" max="100"
-                                    value="{{ $min }}" />
-                                <input type="number" class="form-control" id="max" min="0" max="100"
-                                    value="{{ $max }}" />
-                            </div>
-                            <div id="slider-range"></div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <div class="form-group">
                     <input type="number" min="0" class="form-control" placeholder="Diện tích từ" name="acreage"
                         value="{{ request()->input('acreage') }}" />
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <div class="form-group">
                     <input type="number" min="0" class="form-control" placeholder="Số phòng ngủ" name="bedroom"
                         value="{{ request()->input('bedroom') }}" />
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <div class="form-group">
                     <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet"
                         value="{{ request()->input('toilet') }}" />
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <div class="form-group">
                     <input type="number" min="0" class="form-control" placeholder="Số tầng" name="floor"
                         value="{{ request()->input('floor') }}" />
                 </div>
             </div>
         </div>
+
 
         <div class="form-actions">
             <button type="submit" class="btn">Tìm kiếm</button>

@@ -72,9 +72,9 @@
                 .q,
                 .multiselect-location,
                 .category,
+                .duration-wrap,
                 .price-wrap {
-                    width: calc(25% - 140px / 4);
-                    max-width: calc(25% - 140px / 4);
+                    flex: 1;
                 }
 
                 .price-wrap {

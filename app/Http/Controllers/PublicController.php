@@ -52,6 +52,7 @@ class PublicController extends Controller
         $postRequestTypes = PostRequestType::all();
         $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
         $wards = Ward::where('is_hide', 0)->get();
+        $durations = Duration::all();
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->where('is_hide', 0)
             ->where('verify_status', 0)
@@ -60,6 +61,7 @@ class PublicController extends Controller
         $q = strtoupper($request->q);
         $location = $request->location;
         $category = $request->category;
+        $duration = $request->duration;
         $price = $request->price;
         $acreage = (float) $request->acreage;
         $bedroom = (int) $request->bedroom;
@@ -126,6 +128,14 @@ class PublicController extends Controller
                 $posts = $posts->where('category_id', $category);
             } else {
                 $posts = $posts->whereIn('category_id', $category);
+            }
+        }
+
+        if ($duration && $duration != '-1') {
+            if (gettype($duration) == 'string') {
+                $posts = $posts->where('duration_id', $duration);
+            } else {
+                $posts = $posts->whereIn('duration_id', $duration);
             }
         }
 
@@ -201,7 +211,7 @@ class PublicController extends Controller
             'ogImage' => $ogImage,
         ];
 
-        return view('pages.bai-dang.list', compact('seo', 'posts', 'categories', 'wards', 'latestPosts', 'postRequestTypes'));
+        return view('pages.bai-dang.list', compact('seo', 'posts', 'categories', 'wards', 'latestPosts', 'postRequestTypes', 'durations'));
     }
 
     public function post(Request $request, Post $post)

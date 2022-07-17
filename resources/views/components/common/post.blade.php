@@ -131,7 +131,7 @@
 
     <script>
         $(function() {
-            const container = document.querySelector("#post-modal-{{ $post->id }} .modal-body");
+            const container = document.querySelector('#post-modal-{{ $post->id }} .modal-body');
 
             const inlineGallery = lightGallery(container, {
                 container: container,
@@ -145,7 +145,7 @@
                 showMaximizeIcon: true,
                 // Append caption inside the slide item
                 // to apply some animation for the captions (Optional)
-                appendSubHtmlTo: ".lg-item",
+                appendSubHtmlTo: '.lg-item',
                 // Delay slide transition to complete captions animations
                 // before navigating to different slides (Optional)
                 // You can find caption animation demo on the captions demo page
@@ -163,19 +163,21 @@
                 mobileSettings: {
                     controls: true,
                     showCloseIcon: true,
-                    download: false
+                    download: false,
                 },
-                plugins: [lgRotate]
+                plugins: [lgRotate],
             });
 
-            const modal = $("#post-modal-{{ $post->id }}")
+            const modal = $('#post-modal-{{ $post->id }}');
             container.addEventListener('lgBeforeClose', () => {
-                modal.modal('hide')
+                modal.modal('hide');
+                document.body.style.overflow = 'auto';
             });
 
             modal.on('show.bs.modal', function(e) {
                 inlineGallery.openGallery();
-            })
+                document.body.style.overflow = 'hidden';
+            });
         });
     </script>
 </article>

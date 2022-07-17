@@ -43,11 +43,11 @@
                             ])
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-lg-3">
                         <div class="form-group">
                             <div class="form-control d-flex align-items-center price-zone" type="button"
                                 data-toggle="dropdown" aria-expanded="false">
-                                <span>Giá (triệu đồng):&nbsp;</span>
+                                <span>Giá:&nbsp;</span>
                                 <div class="price-display"></div>
                                 <input type="hidden" name="price" class="price" />
                                 <div class="dropdown-menu price-dropdown" aria-labelledby="price">
@@ -58,6 +58,20 @@
                                     <div class="slider-range"></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="form-group duration-wrap">
+                            @include('components.common.multiple-select', [
+                                'classes' => 'form-control',
+                                'name' => 'duration[]',
+                                'items' => $durations->map(function ($item) {
+                                    $item->render_name = $item->name;
+                                    return $item;
+                                }),
+                                'nonSelectedText' => 'Thời hạn',
+                                'nSelectedText' => ' loại được chọn',
+                            ])
                         </div>
                     </div>
                 </div>
