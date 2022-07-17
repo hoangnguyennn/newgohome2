@@ -149,7 +149,8 @@
                 // Delay slide transition to complete captions animations
                 // before navigating to different slides (Optional)
                 // You can find caption animation demo on the captions demo page
-                slideDelay: 400,
+                // slideDelay: 200,
+                speed: 100,
                 dynamicEl: JSON.parse('<?php echo json_encode($images); ?>'),
 
                 // Completely optional
