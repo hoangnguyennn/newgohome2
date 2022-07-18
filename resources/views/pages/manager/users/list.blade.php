@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <td style="min-width: 100px;">#</td>
+                        <td style="min-width: 100px;">Avatar</td>
                         <td style="min-width: 100px;">Họ và tên</td>
                         <td style="min-width: 100px;">Email</td>
                         <td style="min-width: 100px;">Vai trò</td>
@@ -26,6 +27,14 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
+                            <td>
+                                @php
+                                    $url = $user->avatar ? url('/avatars/' . $user->avatar) : '';
+                                @endphp
+                                @if ($url)
+                                    <img src="{{ $url }}" alt="{{ $user->name }}" width="100" />
+                                @endif
+                            </td>
                             <td>{{ $user->fullname }}</td>
                             <td>{{ $user->email }}</td>
                             <td>

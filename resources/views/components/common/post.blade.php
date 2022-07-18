@@ -100,7 +100,14 @@
         <div class="foot">
             <div class="author">
                 <div class="avatar">
-                    <img src="{{ mix('images/default-avatar.jpg') }}" alt="" />
+                    @php
+                        $url = $post->user->avatar ? url('/avatars/' . $post->user->avatar) : '';
+                    @endphp
+                    @if ($url)
+                        <img src="{{ $url }}" alt="{{ $post->user->name }}" />
+                    @else
+                        <img src="{{ mix('images/default-avatar.jpg') }}" alt="" />
+                    @endif
                 </div>
                 <p>{{ $post->user->fullname }}</p>
             </div>

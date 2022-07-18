@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -44,6 +45,17 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->role = $request->input('role');
+
+        if ($request->hasFile('avatar')) {
+            $image = $request->file;
+
+            $extension = $image->getClientOriginalExtension();
+            $imageName = Str::uuid() . '.' . $extension;
+
+            $image->move(public_path('avatars'), $imageName);
+            $user->avatar = $imageName;
+        }
+
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'Tạo người dùng thành công');
@@ -83,6 +95,16 @@ class UserController extends Controller
     {
         $user->fullname = $request->input('fullname');
         $user->role = $request->input('role');
+
+        if ($request->hasFile('avatar')) {
+            $image = $request->avatar;
+
+            $extension = $image->getClientOriginalExtension();
+            $imageName = Str::uuid() . '.' . $extension;
+
+            $image->move(public_path('avatars'), $imageName);
+            $user->avatar = $imageName;
+        }
 
         if ($request->input('password')) {
             if ($request->input('confirm-password') && $request->input('password') === $request->input('confirm-password')) {

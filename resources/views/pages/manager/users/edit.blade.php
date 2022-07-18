@@ -12,7 +12,7 @@
                 </div>
 
                 <form action="{{ route('users.update', $user->id) }}" method="POST"
-                    class="bg-white border p-4 needs-validation" novalidate>
+                    class="bg-white border p-4 needs-validation" enctype="multipart/form-data" novalidate>
                     @csrf
                     @method('PUT')
 
@@ -57,6 +57,25 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="avatar" class="col-sm-3 col-form-label">Avatar
+                            <span class="text-danger">(*)</span>
+                        </label>
+                        <div class="col-sm-9">
+                            @php
+                                $url = $user->avatar ? url('/avatars/' . $user->avatar) : '';
+                            @endphp
+                            <input type="file" id="avatar" name="avatar" class="form-control-file"
+                                value="{{ $url }}" onchange="readURL(this);" />
+                            <div class="preview-image">
+                                <img src="{{ $url }}" alt="" height="100px" />
+                            </div>
+                            <div class="invalid-feedback">
+                                Avatar là trường bắt buộc
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="collapse" id="changePassword">
                         <div class="form-group row">
                             <label for="password" class="col-sm-3 col-form-label">Mật khẩu mới</label>
@@ -83,8 +102,8 @@
                         <div class="col-sm-9">
                             <button type="submit" class="btn btn-primary" id="btn-submit">Chỉnh sửa</button>
                             <button type="reset" class="btn btn-secondary">Xóa tất cả</button>
-                            <button type="button" data-toggle="collapse" data-target="#changePassword" aria-expanded="false"
-                                aria-controls="changePassword" class="btn btn-success">
+                            <button type="button" data-toggle="collapse" data-target="#changePassword"
+                                aria-expanded="false" aria-controls="changePassword" class="btn btn-success">
                                 Đổi mật khẩu
                             </button>
                         </div>
@@ -93,9 +112,7 @@
             </div>
         </div>
     </div>
-@endsection
 
-@section('scripts')
     <script>
         // BOOTSTRAP VALIDATE FORM
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -117,3 +134,18 @@
             }, false);
         })();
     </script>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('.preview-image img').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endsection
