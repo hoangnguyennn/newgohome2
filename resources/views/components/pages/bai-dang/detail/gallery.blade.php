@@ -38,6 +38,7 @@
             showCloseIcon: true,
             download: false
         },
+        speed: 100,
         plugins: [lgRotate]
     });
 </script>

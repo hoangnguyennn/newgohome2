@@ -8,6 +8,10 @@
         position: relative;
         cursor: zoom-in;
 
+        .img-wrap {
+            width: 100%;
+        }
+
         img {
             width: 100%;
             min-height: 200px;

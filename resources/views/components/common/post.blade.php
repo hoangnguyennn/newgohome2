@@ -1,5 +1,5 @@
 <article class="post post-{{ $post->id }}">
-    <div class="post-thumb" data-toggle="modal" data-target="#post-modal-{{ $post->id }}" tabindex="-1">
+    <div class="post-thumb">
         @php
             if (count($post->images) !== 0) {
                 $image = $post->images[0]->filename;
@@ -7,8 +7,18 @@
                 $image = '';
             }
         @endphp
-        <img src="{{ url('/uploads/' . $image) }}" alt="{{ $post->name }}" height="280" loading="lazy" />
-        <div class="overlay"></div>
+        <div class="img-wrap">
+            @foreach ($post->images as $image)
+                @php
+                    $isHide = $loop->index != 0;
+                    $url = url('/uploads/' . $image->filename);
+                @endphp
+                <div class="{{ $isHide ? 'd-none' : '' }}" data-src="{{ $url }}">
+                    <img src="{{ $url }}" alt="{{ $loop->index + 1 }}" height="280" loading="lazy" />
+                    <div class="overlay"></div>
+                </div>
+            @endforeach
+        </div>
 
         <div class="post-location">
             <i class="las la-map-marker"></i>
@@ -108,76 +118,25 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="post-modal-{{ $post->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body" style="min-height: 80vh;"></div>
-            </div>
-        </div>
-    </div>
-
-    @php
-        $images = $post->images
-            ->map(function ($image) {
-                $img = $image->filename;
-                return [
-                    'src' => url('/uploads/' . $img),
-                    'responsive' => url('/uploads/' . $img),
-                    'thumb' => url('/uploads/' . $img),
-                ];
-            })
-            ->toArray();
-    @endphp
 
     <script>
         $(function() {
-            const container = document.querySelector('#post-modal-{{ $post->id }} .modal-body');
-
-            const inlineGallery = lightGallery(container, {
-                container: container,
-                dynamic: true,
-                // Turn off hash plugin in case if you are using it
-                // as we don't want to change the url on slide change
-                hash: false,
-                // Do not allow users to close the gallery
-                // closable: false,
-                // Add maximize icon to enlarge the gallery
-                showMaximizeIcon: true,
-                // Append caption inside the slide item
-                // to apply some animation for the captions (Optional)
-                appendSubHtmlTo: '.lg-item',
-                // Delay slide transition to complete captions animations
-                // before navigating to different slides (Optional)
-                // You can find caption animation demo on the captions demo page
-                // slideDelay: 200,
-                speed: 100,
-                dynamicEl: JSON.parse('<?php echo json_encode($images); ?>'),
-
-                // Completely optional
-                // Adding as the codepen preview is usually smaller
-                // thumbWidth: 60,
-                // thumbHeight: "40px",
-                // thumbMargin: 4
+            const container = document.querySelector('.post-{{ $post->id }} .img-wrap');
+            lightGallery(container, {
+                animateThumb: false,
+                zoomFromOrigin: false,
+                allowMediaOverlap: true,
+                toggleThumb: true,
                 controls: true,
                 showCloseIcon: true,
                 download: false,
                 mobileSettings: {
                     controls: true,
                     showCloseIcon: true,
-                    download: false,
+                    download: false
                 },
-                plugins: [lgRotate],
-            });
-
-            const modal = $('#post-modal-{{ $post->id }}');
-            container.addEventListener('lgBeforeClose', () => {
-                modal.modal('hide');
-                document.body.style.overflow = 'auto';
-            });
-
-            modal.on('show.bs.modal', function(e) {
-                inlineGallery.openGallery();
-                document.body.style.overflow = 'hidden';
+                speed: 100,
+                plugins: [lgRotate]
             });
         });
     </script>
