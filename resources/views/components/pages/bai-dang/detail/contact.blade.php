@@ -3,8 +3,15 @@
         <div class="bg"></div>
         <div class="avatar-wrap">
             <div class="avatar">
-                <img src="https://homeradar.cththemes.co/wp-content/plugins/homeradar-add-ons/assets/images/avatar.jpg"
-                    alt="" />
+                @php
+                    $url = $post->user->avatar ? url('/avatars/' . $post->user->avatar) : '';
+                @endphp
+                @if ($url)
+                    <img src="{{ $url }}" alt="{{ $post->user->name }}" />
+                @else
+                    <img src="https://homeradar.cththemes.co/wp-content/plugins/homeradar-add-ons/assets/images/avatar.jpg"
+                        alt="" />
+                @endif
             </div>
             <div class="right">
                 <h4 class="name">{{ $post->user->fullname }}</h4>
