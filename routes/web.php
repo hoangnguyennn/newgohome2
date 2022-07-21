@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostRequestController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\StatisticalController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPostController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -31,6 +33,12 @@ Route::prefix('manager')->group(function () {
         Route::resource('users', UserController::class)->middleware('role:admin')->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy',
         ]);
+
+        Route::resource('users.posts', UserPostController::class)->middleware('role:admin')->only([
+            'index',
+        ]);
+
+        Route::post('/users/{user}/posts/move', [UserPostController::class, 'movePosts'])->name('users.posts.move');
 
         Route::resource('post-requests', PostRequestController::class)->only([
             'index', 'store', 'destroy',
@@ -62,5 +70,5 @@ Route::middleware([])->group(function () {
 
     Route::post('/posts/{post}/verify', [PostController::class, 'verify'])->name('posts.verify');
     Route::post('/posts/{post}/deny', [PostController::class, 'deny'])->name('posts.deny');
-    Route::post('/post-requests', [PostRequestController::class, 'store'])->name('post-requests.store');
+    // Route::post('/post-requests', [PostRequestController::class, 'store'])->name('post-requests.store');
 });

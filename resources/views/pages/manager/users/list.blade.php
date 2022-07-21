@@ -70,55 +70,8 @@
                                             href={{ route('users.edit', $user->id) }}>Chỉnh sửa</a>
                                     @endif
 
-                                    <button class="btn btn-secondary mr-md-2 mb-2" data-toggle="modal"
-                                        data-target="#move-posts-{{ $user->id }}">
-                                        Chuyển bài sang người khác
-                                    </button>
-
-                                    <div class="modal fade" id="move-posts-{{ $user->id }}">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Di chuyển bài đăng
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form method="POST" action="{{ route('users.move-posts') }}"
-                                                        id="move-posts-form-{{ $user->id }}">
-                                                        @csrf
-
-                                                        <input type="hidden" name="from" value="{{ $user->id }}" />
-
-                                                        <div class="form-group row">
-                                                            <label for="user-{{ $user->id }}"
-                                                                class="col-sm-3 col-form-label">Người dùng</label>
-                                                            <div class="col-sm-9">
-                                                                <select name="to" id="user-{{ $user->id }}"
-                                                                    class="form-control" required>
-                                                                    @foreach ($users2 as $usr)
-                                                                        @if ($usr->id !== $user->id)
-                                                                            <option value="{{ $usr->id }}">
-                                                                                {{ $usr->fullname }}</option>
-                                                                        @endif
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Đóng</button>
-                                                    <button type="submit" form="move-posts-form-{{ $user->id }}"
-                                                        class="btn btn-primary">Chuyển</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a href="{{ route('users.posts.index', $user->id) }}"
+                                        class="btn btn-secondary mr-md-2 mb-2">Bài đăng</a>
 
                                     @if (Auth::user()->id != $user->id && !$user->isAdmin())
                                         {{ Form::open([

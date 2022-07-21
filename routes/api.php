@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Apis\PostController;
 use App\Http\Controllers\Apis\PostRequestController;
-use App\Http\Controllers\Apis\WardController;
 use App\Http\Controllers\Apis\UploadImageController;
+use App\Http\Controllers\Apis\WardController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
