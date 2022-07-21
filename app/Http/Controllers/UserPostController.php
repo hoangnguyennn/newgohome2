@@ -29,6 +29,10 @@ class UserPostController extends Controller
         $to = $request->to;
         $postIds = $request->posts;
 
+        if (!is_array($postIds)) {
+            $postIds = [];
+        }
+
         $posts = Post::whereIn('id', $postIds)->where('user_id', $from)->update([
             'user_id' => $to,
         ]);
