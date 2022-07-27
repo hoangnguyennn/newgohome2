@@ -1,8 +1,8 @@
 <form class="main-search search-form" action="{{ route('posts') }}" novalidate>
     <div class="search-body">
-        <div class="form-group">
+        {{-- <div class="form-group">
             <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q" />
-        </div>
+        </div> --}}
         <div class="form-group multiselect-location">
             @include('components.common.multiple-select', [
                 'classes' => 'form-control',
