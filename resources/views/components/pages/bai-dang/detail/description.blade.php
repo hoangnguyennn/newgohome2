@@ -137,7 +137,7 @@
 
             <div class="col-12 col-lg-6">
                 <b>Người đăng: </b>
-                <span>{{ $post->user->fullname }}</span>
+                <span>{{ $post->user ? $post->user->fullname : '' }}</span>
             </div class="col-12 col-lg-6">
         </div>
     </div>

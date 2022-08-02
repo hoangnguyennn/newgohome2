@@ -109,7 +109,7 @@
                         <img src="{{ mix('images/default-avatar.jpg') }}" alt="" />
                     @endif
                 </div>
-                <p>{{ $post->user->fullname }}</p>
+                <p>{{ $post->user ? $post->user->fullname : '' }}</p>
             </div>
             <div class="rating">
                 @php

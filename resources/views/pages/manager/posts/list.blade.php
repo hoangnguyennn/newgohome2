@@ -118,13 +118,13 @@
                             <td>{{ $postId }}</td>
                             <td>
                                 @if ($post->images->count() !== 0)
-                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
-                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
+                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}" alt="{{ $post->name }}"
+                                        class="thumbnail" loading="lazy" />
                                 @endif
                             </td>
                             <td>{{ $post->name }}</td>
                             @if (Auth::user()->isAdmin())
-                                <td>{{ $post->user->fullname }}</td>
+                                <td>{{ $post->user ? $post->user->fullname : '' }}</td>
                             @endif
                             <td class="currency">{{ $post->commission }}</td>
                             <td>
@@ -178,8 +178,7 @@
                                         target="_blank">Xem</a>
 
                                     @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin())
-                                        <a class="btn btn-primary mr-md-2 mb-2"
-                                            href={{ route('posts.edit', $post->id) }}>
+                                        <a class="btn btn-primary mr-md-2 mb-2" href={{ route('posts.edit', $post->id) }}>
                                             Chỉnh sửa
                                         </a>
                                         {{ Form::open([

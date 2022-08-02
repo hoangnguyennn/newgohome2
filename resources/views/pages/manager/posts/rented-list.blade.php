@@ -88,13 +88,13 @@
                             <td>{{ $postId }}</td>
                             <td>
                                 @if ($post->images->count() !== 0)
-                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
-                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
+                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}" alt="{{ $post->name }}"
+                                        class="thumbnail" loading="lazy" />
                                 @endif
                             </td>
                             <td>{{ $post->name }}</td>
                             @if (Auth::user()->isAdmin())
-                                <td>{{ $post->user->fullname }}</td>
+                                <td>{{ $post->user ? $post->user->fullname : '' }}</td>
                             @endif
                             <td class="currency">{{ $post->commission }}</td>
                             <td>
@@ -146,8 +146,8 @@
                                 <div class="d-flex flex-column flex-lg-row">
                                     <a class="btn btn-success mr-md-2 mb-2" href={{ route('post', $post->slug) }}
                                         target="_blank">Xem</a>
-                                    <a class="btn btn-primary mr-md-2 mb-2"
-                                        href={{ route('posts.edit', $post->id) }}>Chỉnh sửa</a>
+                                    <a class="btn btn-primary mr-md-2 mb-2" href={{ route('posts.edit', $post->id) }}>Chỉnh
+                                        sửa</a>
                                     {{ Form::open([
                                         'route' => ['posts.destroy', $post->id],
                                         'method' => 'delete',
