@@ -9,10 +9,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm"
                         name="q" />
-                </div>
+                </div> --}}
 
                 <div class="row">
                     <div class="col-12 col-lg-3">
