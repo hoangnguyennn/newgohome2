@@ -55,8 +55,11 @@
     </div>
 
     <div class="container-fluid my-5">
-        <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng đã thuê</h3>
+            <a href="{{ route('api.posts.export-rented', ['id' => Auth::user()->id]) }}" class="btn btn-success mr-2">
+                Xuất Excel
+            </a>
         </div>
 
         <div class="table-responsive">

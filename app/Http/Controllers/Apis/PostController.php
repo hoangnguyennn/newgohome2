@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Apis;
 
 use App\Exports\PostsExport;
+use App\Exports\PostsExportRented;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Carbon\Carbon;
@@ -92,5 +93,10 @@ class PostController extends Controller
     public function exportExcel(Request $request)
     {
         return Excel::download(new PostsExport($request->id), 'ds-bai-dang.xlsx');
+    }
+
+    public function exportExcelRented(Request $request)
+    {
+        return Excel::download(new PostsExportRented($request->id), 'ds-bai-dang.xlsx');
     }
 }

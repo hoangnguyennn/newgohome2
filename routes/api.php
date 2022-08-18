@@ -29,6 +29,7 @@ Route::resource('wards', WardController::class)->only(['index']);
 Route::post('upload-single', [UploadImageController::class, 'uploadSingle'])->name('api.post-images.upload-single');
 Route::get('posts/{post}/download-images', [PostController::class, 'downloadImages'])->name('api.posts.download');
 Route::get('posts/export-excel', [PostController::class, 'exportExcel'])->name('api.posts.export');
+Route::get('posts/export-excel-rented', [PostController::class, 'exportExcelRented'])->name('api.posts.export-rented');
 Route::get('posts/featured', [PostController::class, 'featured'])->name('api.posts.featured');
 Route::get('posts', [PostController::class, 'index'])->name('api.posts.index');
 Route::get('post-requests/export-excel', [PostRequestController::class, 'exportExcel'])->name('api.post-requests.export');
