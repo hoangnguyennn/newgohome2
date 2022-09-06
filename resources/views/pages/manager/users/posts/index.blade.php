@@ -1,6 +1,59 @@
 @extends('layouts.admin')
 
 @section('main-content')
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <form action="{{ route('users.posts.index', $user->id) }}" method="GET">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="id" class="col-sm-3 col-form-label">Mã bài đăng</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="id" name="id"
+                                        placeholder="GH-xxx" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="title" class="col-sm-3 col-form-label">Tiêu đề</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="vd: Căn hộ Mường Thanh" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="phone" class="col-sm-3 col-form-label">Số điện thoại</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                        placeholder="0xxxxxxxxx" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <button type="submit" class="btn btn-primary">Lọc</button>
+                                            <a href="{{ route('users.posts.index', $user->id) }}"
+                                                class="btn btn-secondary">Xóa bộ lọc</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid my-5">
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng của {{ $user->fullname }}</h3>
@@ -122,8 +175,7 @@
                                         target="_blank">Xem</a>
 
                                     @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin())
-                                        <a class="btn btn-primary mr-md-2 mb-2"
-                                            href={{ route('posts.edit', $post->id) }}>
+                                        <a class="btn btn-primary mr-md-2 mb-2" href={{ route('posts.edit', $post->id) }}>
                                             Chỉnh sửa
                                         </a>
                                         {{ Form::open([
