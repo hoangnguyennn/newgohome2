@@ -103,6 +103,8 @@
                         <td style="min-width: 150px;">Tình trạng duyệt</td>
                         <td style="min-width: 130px;">Lý do từ chối</td>
                         <td style="min-width: 100px;">Ẩn/hiện</td>
+                        <td style="min-width: 100px;">Ngày ẩn (gần nhất)</td>
+                        <td style="min-width: 100px;">Ngày hiện (gần nhất)</td>
                         <td style="min-width: 100px;">Ngày tạo</td>
                         <td style="min-width: 140px;">Ngày cập nhật</td>
                         <td style="min-width: 355px;">Hành động</td>
@@ -163,7 +165,29 @@
                                 $created_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
                                 $updated_at = $post->updated_at;
                                 $updated_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                
+                                if ($post->hidden_at) {
+                                    $hidden_at = new DateTime($post->hidden_at);
+                                    $hidden_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                } else {
+                                    $hidden_at = null;
+                                }
+                                
+                                if ($post->hidden_at) {
+                                    $shown_at = new DateTime($post->shown_at);
+                                    $shown_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                } else {
+                                    $shown_at = null;
+                                }
                             @endphp
+                            <td>
+                                <span>{{ $hidden_at ? $hidden_at->format('H:i:s') : '' }}</span>
+                                <span>{{ $hidden_at ? $hidden_at->format('d/m/Y') : '' }}</span>
+                            </td>
+                            <td>
+                                <span>{{ $shown_at ? $shown_at->format('H:i:s') : '' }}</span>
+                                <span>{{ $shown_at ? $shown_at->format('d/m/Y') : '' }}</span>
+                            </td>
                             <td>
                                 <span>{{ $created_at->format('H:i:s') }}</span>
                                 <span>{{ $created_at->format('d/m/Y') }}</span>
@@ -206,9 +230,9 @@
 
                     @php
                         if (Auth::user()->isAdmin()) {
-                            $colSpan = 11;
+                            $colSpan = 13;
                         } else {
-                            $colSpan = 10;
+                            $colSpan = 12;
                         }
                     @endphp
                     @if ($posts->count() == 0)

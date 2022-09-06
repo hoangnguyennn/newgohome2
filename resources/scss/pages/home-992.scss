@@ -33,7 +33,7 @@
 
         .main-search {
             padding: 0;
-            max-width: 1200px;
+            max-width: 900px;
             display: flex;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 
@@ -42,8 +42,8 @@
                 display: flex;
 
                 .form-group {
-                    width: calc(100% / 4);
-                    max-width: calc(100% / 4);
+                    width: calc(100% / 3);
+                    max-width: calc(100% / 3);
                 }
             }
 

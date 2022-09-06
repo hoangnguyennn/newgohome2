@@ -28,7 +28,7 @@
             ])
         </div>
 
-        <div class="form-group duration-wrap">
+        {{-- <div class="form-group duration-wrap">
             @include('components.common.multiple-select', [
                 'classes' => 'form-control',
                 'name' => 'duration[]',
@@ -39,7 +39,7 @@
                 'nonSelectedText' => 'Thời hạn',
                 'nSelectedText' => ' loại được chọn',
             ])
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <div class="form-control d-flex align-items-center price-zone" type="button" data-toggle="dropdown"

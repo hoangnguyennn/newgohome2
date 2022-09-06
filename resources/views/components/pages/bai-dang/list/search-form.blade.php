@@ -66,7 +66,7 @@ if ($price) {
                 ])
             </div>
 
-            <div class="form-group duration-wrap">
+            {{-- <div class="form-group duration-wrap">
                 @include('components.common.multiple-select', [
                     'classes' => 'form-control',
                     'name' => 'duration[]',
@@ -77,7 +77,7 @@ if ($price) {
                     'nonSelectedText' => 'Thời hạn',
                     'nSelectedText' => ' loại được chọn',
                 ])
-            </div>
+            </div> --}}
 
             <div class="form-group price-wrap">
                 <div class="form-control d-flex align-items-center price-zone" type="button" data-toggle="dropdown"
@@ -158,7 +158,7 @@ if ($price) {
                     ])
                 </div>
             </div>
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <div class="form-group duration-wrap">
                     @include('components.common.multiple-select', [
                         'classes' => 'form-control',
@@ -171,7 +171,7 @@ if ($price) {
                         'nSelectedText' => ' loại được chọn',
                     ])
                 </div>
-            </div>
+            </div> --}}
             <div class="col-12">
                 <div class="form-group price-wrap">
                     <div class="range-slider">

@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\User;
 use App\Models\Ward;
+use DateTime;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -151,6 +152,13 @@ class PostController extends Controller
         $post->verify_status = $user->isAdmin() ? 0 : 1;
         $post->user_id = $user->id;
         $post->duration_id = (int) $request->input('duration');
+
+        if ($request->input('status')) {
+            $post->hidden_at = new DateTime();
+        } else {
+            $post->shown_at = new DateTime();
+        }
+
         $post->save();
 
         $category->count = $category->count + 1;
@@ -265,6 +273,13 @@ class PostController extends Controller
         $post->is_hide = $request->input('status');
         $post->user_update_id = $user->id;
         $post->duration_id = (int) $request->input('duration');
+
+        if ($request->input('status')) {
+            $post->hidden_at = new DateTime();
+        } else {
+            $post->shown_at = new DateTime();
+        }
+
         $post->save();
 
         if ($request->has('image')) {
@@ -474,6 +489,7 @@ class PostController extends Controller
     public function hide(Post $post)
     {
         $post->is_hide = true;
+        $post->hidden_at = new DateTime();
         $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Đã ẩn bài đăng');
