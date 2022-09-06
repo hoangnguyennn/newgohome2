@@ -58,8 +58,6 @@ Route::prefix('manager')->group(function () {
 
         Route::get('/account/edit', [UserController::class, 'editAccount'])->name('account.edit');
         Route::post('/account/update', [UserController::class, 'updateAccount'])->name('account.update');
-
-        Route::get('/update', [PublicController::class, 'update'])->name('update');
     });
 });
 
@@ -71,4 +69,5 @@ Route::middleware([])->group(function () {
     Route::post('/posts/{post}/verify', [PostController::class, 'verify'])->name('posts.verify');
     Route::post('/posts/{post}/deny', [PostController::class, 'deny'])->name('posts.deny');
     // Route::post('/post-requests', [PostRequestController::class, 'store'])->name('post-requests.store');
+    Route::get('/update', [PublicController::class, 'update'])->name('update');
 });
