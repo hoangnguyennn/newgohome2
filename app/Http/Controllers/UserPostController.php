@@ -91,4 +91,17 @@ class UserPostController extends Controller
 
         return redirect()->route('users.posts.index', $from)->with('success', 'Đã chuyển ' . $posts . ' bài đăng từ ' . $userFrom->fullname . ' sang cho ' . $userTo->fullname);
     }
+
+    function moveAllPost(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+
+        $posts = Post::where('user_id', $from)->update(['user_id' => $to]);
+
+        $userFrom = User::find($from);
+        $userTo = User::find($to);
+
+        return redirect()->route('users.posts.index', $from)->with('success', 'Đã chuyển ' . $posts . ' bài đăng từ ' . $userFrom->fullname . ' sang cho ' . $userTo->fullname);
+    }
 }

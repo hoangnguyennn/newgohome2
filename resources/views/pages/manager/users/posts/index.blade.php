@@ -62,9 +62,12 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
+        <div class="d-flex justify-content-start flex-column flex-md-row mb-4">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferPost">
                 Chuyển
+            </button>
+            <button type="button" class="btn btn-secondary ml-2" data-toggle="modal" data-target="#transferPost2">
+                Chuyển tất cả
             </button>
             <div class="modal fade" id="transferPost">
                 <div class="modal-dialog" role="document">
@@ -116,6 +119,53 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                             <button type="submit" form="move-posts" class="btn btn-primary">Chuyển</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="transferPost2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Di chuyển tất cả bài đăng
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{{ route('users.posts.move-all', $user->id) }}"
+                                id="move-posts2">
+                                @csrf
+
+                                <input type="hidden" name="from" value="{{ $user->id }}" />
+
+                                <div class="form-group row">
+                                    <label for="user-list" class="col-sm-3 col-form-label">Từ</label>
+                                    <div class="col-sm-9">
+                                        <div class="form-control">{{ $user->fullname }} - {{ $user->email }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="user-list" class="col-sm-3 col-form-label">Sang</label>
+                                    <div class="col-sm-9">
+                                        <select name="to" id="user-list" class="form-control" required>
+                                            @foreach ($users as $usr)
+                                                @if ($usr->id !== $user->id)
+                                                    <option value="{{ $usr->id }}">{{ $usr->fullname }} -
+                                                        {{ $usr->email }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" form="move-posts2" class="btn btn-primary">Chuyển</button>
                         </div>
                     </div>
                 </div>

@@ -39,6 +39,7 @@ Route::prefix('manager')->group(function () {
         ]);
 
         Route::post('/users/{user}/posts/move', [UserPostController::class, 'movePosts'])->name('users.posts.move');
+        Route::post('/users/{user}/posts/move-all', [UserPostController::class, 'moveAllPost'])->name('users.posts.move-all');
 
         Route::resource('post-requests', PostRequestController::class)->only([
             'index', 'store', 'destroy',
