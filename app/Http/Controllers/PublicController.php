@@ -10,6 +10,7 @@ use App\Models\PostImage;
 use App\Models\PostRequestType;
 use App\Models\Ward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
@@ -91,23 +92,31 @@ class PublicController extends Controller
             $qSeparate = explode(' ', $tmpQ);
             $qSeparate = implode(' +', $qSeparate);
 
+            $user = Auth::user();
+
             if ($typeId) {
                 $posts = $posts
-                    ->where(function ($query) use ($q, $qSeparate, $id, $typeId) {
+                    ->where(function ($query) use ($q, $qSeparate, $id, $typeId, $user) {
                         $query->where(function ($qr) use ($q, $qSeparate) {
                             $qr->where('name', 'LIKE', '%' . $q . '%')->orWhereRaw("MATCH (name) AGAINST (? IN BOOLEAN MODE)", $qSeparate);
                         })
-                            ->orWhere('owner_phone', strval($q))
                             ->orWhere('id', strval($q))
                             ->orWhere(function ($qr) use ($id, $typeId) {
                                 $qr->where('id_by_category', $id)->where('category_id', $typeId);
                             });
+
+                        if ($user != null) {
+                            $query->orWhere('owner_phone', strval($q));
+                        }
                     });
             } else {
-                $posts = $posts->where(function ($query) use ($q, $qSeparate) {
+                $posts = $posts->where(function ($query) use ($q, $qSeparate, $user) {
                     $query->where('name', 'LIKE', '%' . $q . '%')
-                        ->orWhereRaw("MATCH (name) AGAINST (? IN BOOLEAN MODE)", $qSeparate)
-                        ->orWhere('owner_phone', strval($q));
+                        ->orWhereRaw("MATCH (name) AGAINST (? IN BOOLEAN MODE)", $qSeparate);
+
+                    if ($user != null) {
+                        $query->orWhere('owner_phone', strval($q));
+                    }
                 });
             }
         }
