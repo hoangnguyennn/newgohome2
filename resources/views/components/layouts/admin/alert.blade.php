@@ -1,6 +1,6 @@
 @if (session('success'))
-    <div class="container my-5">
-        <div class="alert alert-success" role="alert">
+    <div class="container">
+        <div class="alert alert-success my-5" role="alert">
             {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -10,8 +10,8 @@
 @endif
 
 @if (session('danger'))
-    <div class="container my-5">
-        <div class="alert alert-danger" role="alert">
+    <div class="container">
+        <div class="alert alert-danger my-5" role="alert">
             {{ session('danger') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -21,8 +21,8 @@
 @endif
 
 @if (session('warning'))
-    <div class="container my-5">
-        <div class="alert alert-warning" role="alert">
+    <div class="container">
+        <div class="alert alert-warning my-5" role="alert">
             {{ session('warning') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

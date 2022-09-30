@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'user'])->default('user');
+            $table->boolean('is_verify')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

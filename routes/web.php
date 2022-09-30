@@ -22,9 +22,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::prefix('manager')->group(function () {
+Route::prefix('manager')->middleware('verified')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::resource('posts', PostController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy',
@@ -63,6 +63,9 @@ Route::prefix('manager')->group(function () {
 });
 
 Route::middleware([])->group(function () {
+    Route::get('/email/verify', function () {
+        return redirect()->route('home')->with('warning', 'Tài khoản chưa được xác thực. Vui lòng liên hệ quản trị viên để biết thêm thông tin.');
+    })->middleware('auth')->name('verification.notice');
     Route::get('/', [PublicController::class, 'home'])->name('home');
     Route::get('/bai-dang', [PublicController::class, 'posts'])->name('posts');
     Route::get('/bai-dang/{post:slug}', [PublicController::class, 'post'])->name('post');

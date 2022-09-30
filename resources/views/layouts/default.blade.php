@@ -89,6 +89,7 @@
 <body id="{{ $page_id ?? '' }}">
     @include('components.layouts.default.header')
     @include('components.common.logout-form')
+    @include('components.layouts.admin.alert')
 
     @yield('main-content')
 
