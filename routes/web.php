@@ -38,6 +38,7 @@ Route::prefix('manager')->middleware('verified')->group(function () {
             'index',
         ]);
 
+        Route::post('/users/{user}/verify', [UserController::class, 'verify'])->name('users.verify');
         Route::post('/users/{user}/posts/move', [UserPostController::class, 'movePosts'])->name('users.posts.move');
         Route::post('/users/{user}/posts/move-all', [UserPostController::class, 'moveAllPost'])->name('users.posts.move-all');
 

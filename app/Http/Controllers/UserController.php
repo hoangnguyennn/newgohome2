@@ -161,4 +161,11 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('account.edit')->with('success', 'Cập nhật thành công');
     }
+
+    public function verify(User $user)
+    {
+        $user->is_verify = true;
+        $user->save();
+        return redirect()->route('users.index')->with('success', 'Xác thực user thành công');
+    }
 }

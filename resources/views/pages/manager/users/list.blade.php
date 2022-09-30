@@ -18,6 +18,7 @@
                         <td style="min-width: 100px;">Họ và tên</td>
                         <td style="min-width: 100px;">Email</td>
                         <td style="min-width: 100px;">Vai trò</td>
+                        <td style="min-width: 100px;">Xác thực</td>
                         <td style="min-width: 100px;">Ngày tạo</td>
                         <td style="min-width: 140px;">Ngày cập nhật</td>
                         <td style="min-width: 240px;">Hành động</td>
@@ -49,6 +50,18 @@
                                 @endphp
                                 <span class="badge {{ $badge }}">{{ $role }}</span>
                             </td>
+                            <td>
+                                @php
+                                    if ($user->is_verify) {
+                                        $text = 'Đã xác thực';
+                                        $badge = 'badge-success';
+                                    } else {
+                                        $text = 'Chưa xác thực';
+                                        $badge = 'badge-warning';
+                                    }
+                                @endphp
+                                <span class="badge {{ $badge }}">{{ $text }}</span>
+                            </td>
                             @php
                                 $created_at = $user->created_at;
                                 $created_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
@@ -66,8 +79,21 @@
                             <td>
                                 <div class="d-flex flex-column flex-lg-row">
                                     @if (Auth::user()->isRoot() || !$user->isAdmin())
-                                        <a class="btn btn-primary mr-md-2 mb-2"
-                                            href={{ route('users.edit', $user->id) }}>Chỉnh sửa</a>
+                                        <a class="btn btn-primary mr-md-2 mb-2" href={{ route('users.edit', $user->id) }}>
+                                            Chỉnh sửa
+                                        </a>
+                                        @if ($user->is_verify == false)
+                                            {{ Form::open([
+                                                'route' => ['users.verify', $user->id],
+                                                'method' => 'post',
+                                                'onsubmit' => 'return confirm("Xác thực người dùng ' . $user->id . '?");',
+                                                'class' => 'm-0 mr-md-2',
+                                            ]) }}
+                                            <button type="submit" class="btn btn-success mr-md-2 mb-2 w-100">
+                                                Xác thực
+                                            </button>
+                                            {{ Form::close() }}
+                                        @endif
                                     @endif
 
                                     <a href="{{ route('users.posts.index', $user->id) }}"
