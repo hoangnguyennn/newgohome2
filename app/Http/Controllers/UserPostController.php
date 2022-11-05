@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,9 @@ class UserPostController extends Controller
         $id = $request->query('id');
         $title = $request->query('title');
         $phone = $request->query('phone');
+        $location = $request->query('location');
+        $category = $request->query('category');
+        $price = $request->query('price');
 
         if ($id) {
             $q = strtoupper($id);
@@ -53,6 +57,22 @@ class UserPostController extends Controller
                 });
         }
 
+        if ($location) {
+            $posts = $posts->where('ward_id', $location);
+        }
+
+        if ($category) {
+            $posts = $posts->where('category_id', $category);
+        }
+
+        if ($price) {
+            $texts = explode('-', $price);
+            if (count($texts) === 2) {
+                $posts = $posts->where('price', '>=', $texts[0]);
+                $posts = $posts->where('price', '<=', $texts[1]);
+            }
+        }
+
         $posts = $posts->paginate(20);
 
         if ($id) {
@@ -67,9 +87,23 @@ class UserPostController extends Controller
             $posts->appends(['phone' => $phone]);
         }
 
-        $users = User::orderBy('fullname', 'asc')->get();
+        if ($location) {
+            $posts->appends(['location' => $location]);
+        }
 
-        return view('pages.manager.users.posts.index', compact('posts', 'user', 'users'));
+        if ($category) {
+            $posts->appends(['category' => $category]);
+        }
+
+        if ($price) {
+            $posts->appends(['price' => $price]);
+        }
+
+        $users = User::orderBy('fullname', 'asc')->get();
+        $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
+        $wards = Ward::where('is_hide', 0)->get();
+
+        return view('pages.manager.users.posts.index', compact('posts', 'user', 'users', 'categories', 'wards'));
     }
 
     function movePosts(Request $request)

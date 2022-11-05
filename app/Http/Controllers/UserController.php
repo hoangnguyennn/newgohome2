@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,6 +135,7 @@ class UserController extends Controller
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->isAdmin()) {
             User::findOrFail($user->id)->delete();
+            Post::where('user_id', $user->id)->update(['user_id' => 8]);
             return redirect()->route('users.index')->with('success', 'Xóa người dùng thành công');
         }
 

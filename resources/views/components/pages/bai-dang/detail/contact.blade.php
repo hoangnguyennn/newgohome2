@@ -4,7 +4,7 @@
         <div class="avatar-wrap">
             <div class="avatar">
                 @php
-                    $url = $post->user->avatar ? url('/avatars/' . $post->user->avatar) : '';
+                    $url = $post->user && $post->user->avatar ? url('/avatars/' . $post->user->avatar) : '';
                 @endphp
                 @if ($url)
                     <img src="{{ $url }}" alt="{{ $post->user->name }}" />

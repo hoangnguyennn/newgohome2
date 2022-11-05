@@ -1,21 +1,21 @@
 @php
-$min = 0;
-$max = 250;
-$price = request()->input('price');
-if ($price) {
-    $priceRange = explode('-', $price);
-
-    if ($priceRange && count($priceRange) == 2) {
-        $min = (float) $priceRange[0];
-        $max = (float) $priceRange[1];
-
-        if ($min > $max) {
-            $temp = $min;
-            $min = $max;
-            $max = $min;
+    $min = 0;
+    $max = 250;
+    $price = request()->input('price');
+    if ($price) {
+        $priceRange = explode('-', $price);
+    
+        if ($priceRange && count($priceRange) == 2) {
+            $min = (float) $priceRange[0];
+            $max = (float) $priceRange[1];
+    
+            if ($min > $max) {
+                $temp = $min;
+                $min = $max;
+                $max = $min;
+            }
         }
     }
-}
 @endphp
 
 <div class="search-form-posts">
@@ -29,6 +29,7 @@ if ($price) {
         </div>
 
         <div class="search-content">
+            <input type="hidden" value="{{ request()->type }}" name="type" />
             <div class="form-group q">
                 <input type="text" id="q" value="{{ request()->input('q') }}" class="form-control"
                     placeholder="Nhập tên bất động sản cần tìm" name="q" />
@@ -119,6 +120,7 @@ if ($price) {
         </div>
 
         <div class="form-group">
+            <input type="hidden" value="{{ request()->type }}" name="type" />
             <input type="text" class="form-control" placeholder="Nhập tên bất động sản cần tìm" name="q"
                 value="{{ request()->input('q') }}" />
         </div>
@@ -198,8 +200,8 @@ if ($price) {
             </div>
             <div class="col-12">
                 <div class="form-group">
-                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm" name="toilet"
-                        value="{{ request()->input('toilet') }}" />
+                    <input type="number" min="0" class="form-control" placeholder="Số phòng tắm"
+                        name="toilet" value="{{ request()->input('toilet') }}" />
                 </div>
             </div>
             <div class="col-12">

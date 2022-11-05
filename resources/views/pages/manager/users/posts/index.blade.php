@@ -3,7 +3,7 @@
 @section('main-content')
     <div class="container my-5">
         <div class="row">
-            <div class="col-lg-10 offset-lg-1">
+            <div class="col">
                 <form action="{{ route('users.posts.index', $user->id) }}" method="GET">
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -30,6 +30,43 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="phone" name="phone"
                                         placeholder="0xxxxxxxxx" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="category" class="col-sm-3 col-form-label">Loại nhà đất</label>
+                                <div class="col-sm-9">
+                                    <select id="category" name="category" class="form-control">
+                                        <option value="">Tất cả</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="location" class="col-sm-3 col-form-label">Khu vực</label>
+                                <div class="col-sm-9">
+                                    <select id="location" name="location" class="form-control">
+                                        <option value="">Tất cả</option>
+                                        @foreach ($wards as $ward)
+                                            <option value="{{ $ward->id }}">
+                                                {{ $ward->district->name . ' - ' . $ward->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="location" class="col-sm-3 col-form-label">Giá tiền</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="price" name="price"
+                                        placeholder="xxx-xxx" />
                                 </div>
                             </div>
                         </div>
@@ -88,7 +125,9 @@
                                 <div class="form-group row">
                                     <label for="user-list" class="col-sm-3 col-form-label">Từ</label>
                                     <div class="col-sm-9">
-                                        <div class="form-control">{{ $user->fullname }} - {{ $user->email }}</div>
+                                        <div class="form-control" style="white-space: nowrap;">
+                                            {{ $user->fullname }} - {{ $user->email }}
+                                        </div>
                                     </div>
                                 </div>
 

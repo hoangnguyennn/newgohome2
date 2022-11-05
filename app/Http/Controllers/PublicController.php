@@ -68,8 +68,21 @@ class PublicController extends Controller
         $bedroom = (int) $request->bedroom;
         $toilet = (int) $request->toilet;
         $floor = (int) $request->floor;
+        $type = 'all';
+
+
 
         $posts = Post::where('is_hide', 0)->where('verify_status', 0);
+
+        if ($request->query('type')) {
+            if ($request->query('type') == 'cheap') {
+                $posts = $posts->where('is_cheap', true);
+                $type = 'cheap';
+            } else if ($request->query('type') == 'featured') {
+                $posts = $posts->where('is_featured', true);
+                $type = 'featured';
+            }
+        }
         // dd($posts->toSql(), $posts->getBindings());
         // echo $posts->count();
 

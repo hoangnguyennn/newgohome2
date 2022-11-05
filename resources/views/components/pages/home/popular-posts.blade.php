@@ -7,8 +7,9 @@
             </div>
 
             <div class="filters">
-                <a href="{{ route('home') }}" class="filter{{ ($type ?? 'all') == 'all' ? ' active' : '' }}">Tất
-                    cả</a>
+                <a href="{{ route('home') }}" class="filter{{ ($type ?? 'all') == 'all' ? ' active' : '' }}">
+                    Tất cả
+                </a>
                 <a href="{{ route('home', ['type' => 'cheap']) }}"
                     class="filter{{ ($type ?? 'all') == 'cheap' ? ' active' : '' }}">Giá rẻ</a>
                 <a href="{{ route('home', ['type' => 'featured']) }}"
@@ -34,7 +35,7 @@
         </div>
 
         <div class="bottom view-all-list">
-            <a href="{{ route('posts') }}" class="btn-view-all-list">Xem tất cả</a>
+            <a href="{{ route('posts', ['type' => $type ?? 'all']) }}" class="btn-view-all-list">Xem tất cả</a>
         </div>
     </div>
 </div>
