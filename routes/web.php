@@ -30,6 +30,8 @@ Route::prefix('manager')->middleware('verified')->group(function () {
             'index', 'create', 'store', 'edit', 'update', 'destroy',
         ]);
 
+        Route::post('/posts/move', [PostController::class, 'movePostsById'])->name('posts.move');
+
         Route::resource('users', UserController::class)->middleware('role:admin')->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy',
         ]);

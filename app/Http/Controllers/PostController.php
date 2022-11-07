@@ -48,6 +48,9 @@ class PostController extends Controller
         $id = $request->query('id');
         $title = $request->query('title');
         $phone = $request->query('phone');
+        $location = $request->query('location');
+        $category = $request->query('category');
+        $price = $request->query('price');
 
         if ($id) {
             $q = strtoupper($id);
@@ -81,6 +84,22 @@ class PostController extends Controller
                 });
         }
 
+        if ($location) {
+            $posts = $posts->where('ward_id', $location);
+        }
+
+        if ($category) {
+            $posts = $posts->where('category_id', $category);
+        }
+
+        if ($price) {
+            $texts = explode('-', $price);
+            if (count($texts) === 2) {
+                $posts = $posts->where('price', '>=', $texts[0]);
+                $posts = $posts->where('price', '<=', $texts[1]);
+            }
+        }
+
         $posts = $posts->orderBy('verify_status', 'desc')->orderBy('created_at', 'desc')->paginate(20);
 
         if ($id) {
@@ -95,6 +114,19 @@ class PostController extends Controller
             $posts->appends(['phone' => $phone]);
         }
 
+        if ($location) {
+            $posts->appends(['location' => $location]);
+        }
+
+        if ($category) {
+            $posts->appends(['category' => $category]);
+        }
+
+        if ($price) {
+            $posts->appends(['price' => $price]);
+        }
+
+
         $postsCount = Post::where('is_hide', 0)
             ->where('verify_status', '!=', 2)
             ->select('category_id', DB::raw('count(*) as total'))
@@ -102,7 +134,11 @@ class PostController extends Controller
             ->orderBy('total', 'desc')
             ->get();
 
-        return view('pages.manager.posts.list', compact('posts', 'postsCount'));
+        $users = User::orderBy('fullname', 'asc')->get();
+        $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
+        $wards = Ward::where('is_hide', 0)->get();
+
+        return view('pages.manager.posts.list', compact('posts', 'postsCount', 'users', 'categories', 'wards'));
     }
 
     /**
@@ -435,6 +471,9 @@ class PostController extends Controller
         $id = $request->query('id');
         $title = $request->query('title');
         $phone = $request->query('phone');
+        $location = $request->query('location');
+        $category = $request->query('category');
+        $price = $request->query('price');
 
         if ($id) {
             $q = strtoupper($id);
@@ -469,6 +508,22 @@ class PostController extends Controller
             $posts = $posts->where('owner_phone', 'LIKE', '%' . $phone . '%');
         }
 
+        if ($location) {
+            $posts = $posts->where('ward_id', $location);
+        }
+
+        if ($category) {
+            $posts = $posts->where('category_id', $category);
+        }
+
+        if ($price) {
+            $texts = explode('-', $price);
+            if (count($texts) === 2) {
+                $posts = $posts->where('price', '>=', $texts[0]);
+                $posts = $posts->where('price', '<=', $texts[1]);
+            }
+        }
+
         $posts = $posts->orderBy('verify_status', 'desc')->orderBy('created_at', 'desc')->paginate(20);
 
         if ($id) {
@@ -483,7 +538,23 @@ class PostController extends Controller
             $posts->appends(['phone' => $phone]);
         }
 
-        return view('pages.manager.posts.rented-list', compact('posts'));
+        if ($location) {
+            $posts->appends(['location' => $location]);
+        }
+
+        if ($category) {
+            $posts->appends(['category' => $category]);
+        }
+
+        if ($price) {
+            $posts->appends(['price' => $price]);
+        }
+
+        $users = User::orderBy('fullname', 'asc')->get();
+        $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
+        $wards = Ward::where('is_hide', 0)->get();
+
+        return view('pages.manager.posts.rented-list', compact('posts', 'users', 'categories', 'wards'));
     }
 
     public function hide(Post $post)
@@ -509,5 +580,23 @@ class PostController extends Controller
 
         Post::where('user_id', $from)->update(['user_id' => $to]);
         return redirect()->route('users.index')->with('success', 'Đã di chuyển tất cả bài đăng của ' . $userFrom->fullname . ' sang cho ' . $userTo->fullname);
+    }
+
+    public function movePostsById(Request $request)
+    {
+        $to = $request->to;
+        $postIds = $request->posts;
+
+        if (!is_array($postIds)) {
+            $postIds = [];
+        }
+
+        $posts = Post::whereIn('id', $postIds)->update([
+            'user_id' => $to,
+        ]);
+
+        $userTo = User::find($to);
+
+        return redirect()->route('posts.index')->with('success', 'Đã chuyển ' . $posts . ' bài đăng sang cho ' . $userTo->fullname);
     }
 }

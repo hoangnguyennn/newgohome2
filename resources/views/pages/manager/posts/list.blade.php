@@ -3,7 +3,7 @@
 @section('main-content')
     <div class="container my-5">
         <div class="row">
-            <div class="col-lg-10 offset-lg-1">
+            <div class="col">
                 <form action="{{ route('posts.index') }}" method="GET">
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -30,6 +30,43 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="phone" name="phone"
                                         placeholder="0xxxxxxxxx" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="category" class="col-sm-3 col-form-label">Loại nhà đất</label>
+                                <div class="col-sm-9">
+                                    <select id="category" name="category" class="form-control">
+                                        <option value="">Tất cả</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="location" class="col-sm-3 col-form-label">Khu vực</label>
+                                <div class="col-sm-9">
+                                    <select id="location" name="location" class="form-control">
+                                        <option value="">Tất cả</option>
+                                        @foreach ($wards as $ward)
+                                            <option value="{{ $ward->id }}">
+                                                {{ $ward->district->name . ' - ' . $ward->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="location" class="col-sm-3 col-form-label">Giá tiền</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="price" name="price"
+                                        placeholder="xxx-xxx" />
                                 </div>
                             </div>
                         </div>
@@ -89,10 +126,76 @@
             </div>
         </div>
 
+        @if (Auth::user()->isAdmin())
+            <div class="d-flex justify-content-start flex-column flex-md-row mb-4">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferPost">
+                    Chuyển
+                </button>
+                <div class="modal fade" id="transferPost">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Di chuyển bài đăng
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{ route('posts.move') }}" id="move-posts">
+                                    @csrf
+
+                                    {{-- <input type="hidden" name="from" value="{{ $user->id }}" /> --}}
+
+                                    {{-- <div class="form-group row">
+                                    <label for="user-list" class="col-sm-3 col-form-label">Từ</label>
+                                    <div class="col-sm-9">
+                                        <div class="form-control" style="white-space: nowrap;">
+                                            {{ $user->fullname }} - {{ $user->email }}
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                    <div class="form-group row">
+                                        <label for="user-list" class="col-sm-3 col-form-label">Sang</label>
+                                        <div class="col-sm-9">
+                                            <select name="to" id="user-list" class="form-control" required>
+                                                @foreach ($users as $usr)
+                                                    <option value="{{ $usr->id }}">
+                                                        {{ $usr->fullname }} - {{ $usr->email }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="user-list" class="col-sm-3 col-form-label">Số lượng</label>
+                                        <div class="col-sm-9">
+                                            <div class="form-control size"><span>0</span> bài đăng</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="postids"></div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="submit" form="move-posts" class="btn btn-primary">Chuyển</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
+                        @if (Auth::user()->isAdmin())
+                            <td><input type="checkbox"></td>
+                        @endif
                         <td style="min-width: 100px;">#</td>
                         <td style="min-width: 100px;">Hình ảnh</td>
                         <td style="min-width: 200px;">Tiêu đề</td>
@@ -117,11 +220,14 @@
                         @endphp
 
                         <tr>
+                            @if (Auth::user()->isAdmin())
+                                <td><input type="checkbox" value="{{ $post->id }}"></td>
+                            @endif
                             <td>{{ $postId }}</td>
                             <td>
                                 @if ($post->images->count() !== 0)
-                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}" alt="{{ $post->name }}"
-                                        class="thumbnail" loading="lazy" />
+                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
+                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
                                 @endif
                             </td>
                             <td>{{ $post->name }}</td>
@@ -263,6 +369,10 @@
                 min-width: 140px !important;
             }
         }
+
+        tr {
+            cursor: pointer;
+        }
     </style>
 @endsection
 
@@ -276,5 +386,77 @@
         idField.value = searchInfo.get('id');
         titleField.value = searchInfo.get('title');
         phoneField.value = searchInfo.get('phone');
+    </script>
+
+    <script>
+        // move posts
+        document.querySelectorAll('tr').forEach(function(tr) {
+            tr.addEventListener('click', function() {
+                const checkbox = tr.querySelector('input');
+                checkbox.checked = !checkbox.checked;
+                const event = new Event('change');
+                checkbox.dispatchEvent(event);
+            });
+        });
+
+        document.querySelectorAll('input').forEach(function(input) {
+            input.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+
+        document.querySelector('thead input').addEventListener('change', function() {
+            const tbodyInputs = document.querySelectorAll('tbody input[type="checkbox"]');
+            let counter = 0;
+
+            tbodyInputs.forEach(input => {
+                input.checked && counter++;
+            })
+
+            if (counter === tbodyInputs.length) {
+                tbodyInputs.forEach(input => {
+                    input.checked = false;
+                })
+            } else {
+                tbodyInputs.forEach(input => {
+                    input.checked = true;
+                })
+            }
+        });
+
+        document.querySelectorAll('tbody input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const tbodyInputs = document.querySelectorAll('tbody input[type="checkbox"]');
+                let counter = 0;
+
+                tbodyInputs.forEach(input => {
+                    input.checked && counter++;
+                });
+
+                if (counter === tbodyInputs.length) {
+                    document.querySelector('thead input').checked = true;
+                } else {
+                    document.querySelector('thead input').checked = false;
+                }
+            });
+        });
+
+        const transferButton = document.querySelector('[data-target="#transferPost"]');
+        const form = document.querySelector('#move-posts');
+        transferButton.addEventListener('click', function(event) {
+            form.querySelector('.postids').innerHTML = '';
+            document.querySelectorAll('tbody input[type="checkbox"]').forEach(input => {
+                if (input.checked) {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'hidden';
+                    newInput.name = 'posts[]';
+                    newInput.value = input.value;
+                    form.querySelector('.postids').appendChild(newInput);
+                }
+            });
+
+            const size = form.querySelectorAll('[name="posts[]"]').length;
+            form.querySelector('.size span').innerHTML = size;
+        });
     </script>
 @endsection
