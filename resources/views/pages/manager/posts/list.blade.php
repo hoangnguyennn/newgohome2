@@ -44,6 +44,11 @@
                                             $item->render_name = $item->name;
                                             return $item;
                                         }),
+                                        'selected' => $categories->map(function ($item) {
+                                            return in_array($item->id, request()->input('category') ?? [])
+                                                ? 'selected'
+                                                : '';
+                                        }),
                                         'nonSelectedText' => 'Loại nhà đất',
                                         'nSelectedText' => ' loại được chọn',
                                     ])

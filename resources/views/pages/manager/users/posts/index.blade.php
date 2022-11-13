@@ -37,12 +37,21 @@
                             <div class="form-group row">
                                 <label for="category" class="col-sm-3 col-form-label">Loại nhà đất</label>
                                 <div class="col-sm-9">
-                                    <select id="category" name="category" class="form-control">
-                                        <option value="">Tất cả</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    @include('components.common.multiple-select', [
+                                        'classes' => 'form-control',
+                                        'name' => 'category[]',
+                                        'items' => $categories->map(function ($item) {
+                                            $item->render_name = $item->name;
+                                            return $item;
+                                        }),
+                                        'selected' => $categories->map(function ($item) {
+                                            return in_array($item->id, request()->input('category') ?? [])
+                                                ? 'selected'
+                                                : '';
+                                        }),
+                                        'nonSelectedText' => 'Loại nhà đất',
+                                        'nSelectedText' => ' loại được chọn',
+                                    ])
                                 </div>
                             </div>
                         </div>
@@ -50,14 +59,21 @@
                             <div class="form-group row">
                                 <label for="location" class="col-sm-3 col-form-label">Khu vực</label>
                                 <div class="col-sm-9">
-                                    <select id="location" name="location" class="form-control">
-                                        <option value="">Tất cả</option>
-                                        @foreach ($wards as $ward)
-                                            <option value="{{ $ward->id }}">
-                                                {{ $ward->district->name . ' - ' . $ward->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    @include('components.common.multiple-select', [
+                                        'classes' => 'form-control',
+                                        'name' => 'location[]',
+                                        'items' => $wards->map(function ($item) {
+                                            $item->render_name = $item->district->name . ' - ' . $item->name;
+                                            return $item;
+                                        }),
+                                        'selected' => $wards->map(function ($location) {
+                                            return in_array($location->id, request()->input('location') ?? [])
+                                                ? 'selected'
+                                                : '';
+                                        }),
+                                        'nonSelectedText' => 'Khu vực',
+                                        'nSelectedText' => ' khu vực được chọn',
+                                    ])
                                 </div>
                             </div>
                         </div>

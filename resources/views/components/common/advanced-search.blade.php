@@ -24,6 +24,11 @@
                                     $item->render_name = $item->district->name . ' - ' . $item->name;
                                     return $item;
                                 }),
+                                'selected' => $wards->map(function ($ward) {
+                                    return in_array($ward->id, request()->input('location') ?? [])
+                                        ? 'selected'
+                                        : '';
+                                }),
                                 'nonSelectedText' => 'Khu vực',
                                 'nSelectedText' => ' khu vực được chọn',
                             ])
@@ -37,6 +42,11 @@
                                 'items' => $categories->map(function ($item) {
                                     $item->render_name = $item->name;
                                     return $item;
+                                }),
+                                'selected' => $categories->map(function ($item) {
+                                    return in_array($item->id, request()->input('category') ?? [])
+                                        ? 'selected'
+                                        : '';
                                 }),
                                 'nonSelectedText' => 'Loại nhà đất',
                                 'nSelectedText' => ' loại được chọn',
