@@ -84,12 +84,20 @@ class PostController extends Controller
                 });
         }
 
-        if ($location) {
-            $posts = $posts->where('ward_id', $location);
+        if ($location && $location != '-1') {
+            if (gettype($location) == 'string') {
+                $posts = $posts->where('ward_id', $location);
+            } else {
+                $posts = $posts->whereIn('ward_id', $location);
+            }
         }
 
-        if ($category) {
-            $posts = $posts->where('category_id', $category);
+        if ($category && $category != '-1') {
+            if (gettype($category) == 'string') {
+                $posts = $posts->where('category_id', $category);
+            } else {
+                $posts = $posts->whereIn('category_id', $category);
+            }
         }
 
         if ($price) {
@@ -508,12 +516,20 @@ class PostController extends Controller
             $posts = $posts->where('owner_phone', 'LIKE', '%' . $phone . '%');
         }
 
-        if ($location) {
-            $posts = $posts->where('ward_id', $location);
+        if ($location && $location != '-1') {
+            if (gettype($location) == 'string') {
+                $posts = $posts->where('ward_id', $location);
+            } else {
+                $posts = $posts->whereIn('ward_id', $location);
+            }
         }
 
-        if ($category) {
-            $posts = $posts->where('category_id', $category);
+        if ($category && $category != '-1') {
+            if (gettype($category) == 'string') {
+                $posts = $posts->where('category_id', $category);
+            } else {
+                $posts = $posts->whereIn('category_id', $category);
+            }
         }
 
         if ($price) {

@@ -36,7 +36,7 @@
     <title>GoHome</title>
 </head>
 
-<body>
+<body style="padding-top: 0;">
     @include('components.layouts.admin.header')
     @include('components.layouts.admin.alert')
     @include('components.layouts.admin.logout-form')

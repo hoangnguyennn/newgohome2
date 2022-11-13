@@ -37,12 +37,16 @@
                             <div class="form-group row">
                                 <label for="category" class="col-sm-3 col-form-label">Loại nhà đất</label>
                                 <div class="col-sm-9">
-                                    <select id="category" name="category" class="form-control">
-                                        <option value="">Tất cả</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    @include('components.common.multiple-select', [
+                                        'classes' => 'form-control',
+                                        'name' => 'category[]',
+                                        'items' => $categories->map(function ($item) {
+                                            $item->render_name = $item->name;
+                                            return $item;
+                                        }),
+                                        'nonSelectedText' => 'Loại nhà đất',
+                                        'nSelectedText' => ' loại được chọn',
+                                    ])
                                 </div>
                             </div>
                         </div>
@@ -50,14 +54,21 @@
                             <div class="form-group row">
                                 <label for="location" class="col-sm-3 col-form-label">Khu vực</label>
                                 <div class="col-sm-9">
-                                    <select id="location" name="location" class="form-control">
-                                        <option value="">Tất cả</option>
-                                        @foreach ($wards as $ward)
-                                            <option value="{{ $ward->id }}">
-                                                {{ $ward->district->name . ' - ' . $ward->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    @include('components.common.multiple-select', [
+                                        'classes' => 'form-control',
+                                        'name' => 'location[]',
+                                        'items' => $wards->map(function ($item) {
+                                            $item->render_name = $item->district->name . ' - ' . $item->name;
+                                            return $item;
+                                        }),
+                                        'selected' => $wards->map(function ($location) {
+                                            return in_array($location->id, request()->input('location') ?? [])
+                                                ? 'selected'
+                                                : '';
+                                        }),
+                                        'nonSelectedText' => 'Khu vực',
+                                        'nSelectedText' => ' khu vực được chọn',
+                                    ])
                                 </div>
                             </div>
                         </div>
@@ -118,10 +129,32 @@
     <div class="container-fluid my-5">
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng</h3>
-            <div class="d-flex">
-                <a href="{{ route('api.posts.export', ['id' => Auth::user()->id]) }}" class="btn btn-success mr-2">
-                    Xuất Excel
-                </a>
+            <div class="d-flex align-items-center">
+                <form action={{ route('api.posts.export') }} method="post" class="d-flex align-items-center mb-0">
+                    @csrf
+
+                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+
+                    <select class="form-control mr-2" id="month" name="month"></select>
+                    <script>
+                        const select = document.querySelector('#month');
+                        const date = new Date();
+                        let counter = 0;
+                        while (counter < 12) {
+                            counter++;
+                            const option = document.createElement('option');
+                            const month = `00${date.getMonth() + 1}`.slice(-2);
+                            const year = date.getFullYear();
+                            option.value = month;
+                            option.innerHTML = `Tháng ${month}/${year}`;
+                            select.appendChild(option);
+                            date.setMonth(date.getMonth() - 1);
+                        }
+                    </script>
+                    <button type="submit" class="btn btn-success mr-2" style="white-space: nowrap;">
+                        Xuất Excel
+                    </button>
+                </form>
                 <a href="{{ route('posts.create') }}" class="btn btn-primary">Thêm bài đăng mới</a>
             </div>
         </div>

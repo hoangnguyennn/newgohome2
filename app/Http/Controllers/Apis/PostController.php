@@ -92,11 +92,11 @@ class PostController extends Controller
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new PostsExport($request->id), 'ds-bai-dang.xlsx');
+        return Excel::download(new PostsExport($request->id, $request->month), 'ds-bai-dang.xlsx');
     }
 
     public function exportExcelRented(Request $request)
     {
-        return Excel::download(new PostsExportRented($request->id), 'ds-bai-dang.xlsx');
+        return Excel::download(new PostsExportRented($request->id, $request->month), 'ds-bai-dang.xlsx');
     }
 }

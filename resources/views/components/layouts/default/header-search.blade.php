@@ -1,21 +1,21 @@
 @php
-$min = 0;
-$max = 250;
-$price = request()->input('price');
-if ($price) {
-    $priceRange = explode('-', $price);
-
-    if ($priceRange && count($priceRange) == 2) {
-        $min = (float) $priceRange[0];
-        $max = (float) $priceRange[1];
-
-        if ($min > $max) {
-            $temp = $min;
-            $min = $max;
-            $max = $min;
+    $min = 0;
+    $max = 250;
+    $price = request()->input('price');
+    if ($price) {
+        $priceRange = explode('-', $price);
+    
+        if ($priceRange && count($priceRange) == 2) {
+            $min = (float) $priceRange[0];
+            $max = (float) $priceRange[1];
+    
+            if ($min > $max) {
+                $temp = $min;
+                $min = $max;
+                $max = $min;
+            }
         }
     }
-}
 @endphp
 
 <form class="header-search-form" action="{{ route('posts') }}">

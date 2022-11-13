@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Post;
 use App\Models\User;
+use DateTime;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -11,9 +12,10 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class PostsExport implements FromCollection, WithHeadings, WithMapping
 {
 
-    public function __construct(int $id)
+    public function __construct(int $id, string $month)
     {
         $this->id = $id;
+        $this->month = $month;
     }
     public function headings(): array
     {
@@ -41,7 +43,7 @@ class PostsExport implements FromCollection, WithHeadings, WithMapping
             $post->category->name,
             $post->ward->district->name,
             $post->ward->name,
-            $post->user->fullname,
+            $post->user ? $post->user->fullname : '',
             $post->commission,
             $post->owner_name,
             $post->owner_phone,
@@ -54,12 +56,24 @@ class PostsExport implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         $user = User::where('id', $this->id)->first();
+        $now = new DateTime();
+        $date = new DateTime();
+        $date->setDate(date('Y'), $this->month, date('d'));
+
+        if ($date > $now) {
+            $date->modify('-1 year');
+        }
 
         if ($user) {
             if ($user->isAdmin()) {
-                return Post::all();
+                return Post::whereMonth('updated_at', $date->format('m'))
+                    ->whereYear('updated_at', $date->format('o'))
+                    ->get();
             } else {
-                return Post::where('user_id', $user->id)->get();
+                return Post::where('user_id', $user->id)
+                    ->whereMonth('updated_at', $date->format('m'))
+                    ->whereYear('updated_at', $date->format('o'))
+                    ->get();
             }
         }
 
