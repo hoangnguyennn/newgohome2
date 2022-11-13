@@ -95,6 +95,13 @@
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng của {{ $user->fullname }}</h3>
             <div class="d-flex">
+                <form action={{ route('api.users.posts.export', $user->id) }} method="post" class="d-flex align-items-center mb-0">
+                    @csrf
+
+                    <button type="submit" class="btn btn-success mr-2" style="white-space: nowrap;">
+                        Xuất Excel
+                    </button>
+                </form>
                 <a href="{{ route('users.index') }}" class="btn btn-secondary">Quay lại danh sách người dùng</a>
             </div>
         </div>

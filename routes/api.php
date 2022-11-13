@@ -8,6 +8,7 @@ use App\Http\Controllers\Apis\PostRequestController;
 use App\Http\Controllers\Apis\UploadImageController;
 use App\Http\Controllers\Apis\WardController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,7 @@ Route::post('posts/export-excel-rented', [PostController::class, 'exportExcelRen
 Route::get('posts/featured', [PostController::class, 'featured'])->name('api.posts.featured');
 Route::get('posts', [PostController::class, 'index'])->name('api.posts.index');
 Route::get('post-requests/export-excel', [PostRequestController::class, 'exportExcel'])->name('api.post-requests.export');
+
+Route::post('users/{user}/posts/export-excel', [UserPostController::class, 'exportExcel'])->name('api.users.posts.export');
 
 Route::post('notifications/mark-as-read', [NotificationController::class, 'markAllAsRead'])->name('api.notifications.mark-all-as-read');

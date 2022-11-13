@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PostsExportUser;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Ward;
+use Excel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserPostController extends Controller
 {
@@ -137,5 +138,10 @@ class UserPostController extends Controller
         $userTo = User::find($to);
 
         return redirect()->route('users.posts.index', $from)->with('success', 'Đã chuyển ' . $posts . ' bài đăng từ ' . $userFrom->fullname . ' sang cho ' . $userTo->fullname);
+    }
+
+    public function exportExcel(User $user)
+    {
+        return Excel::download(new PostsExportUser($user->id), 'ds-bai-dang-' . $user->fullname . '.xlsx');
     }
 }
