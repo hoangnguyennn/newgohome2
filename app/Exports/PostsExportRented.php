@@ -42,8 +42,8 @@ class PostsExportRented implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         $user = User::where('id', $this->id)->first();
-        $now = new DateTime();
         $date = new DateTime();
+        $now = new DateTime();
         $date->setDate(date('Y'), $this->month, date('d'));
 
         if ($date > $now) {

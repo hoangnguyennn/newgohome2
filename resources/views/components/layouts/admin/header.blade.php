@@ -11,8 +11,7 @@
                 <li class="nav-item {{ str_contains(Request::fullUrl(), route('posts.index')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('posts.index') }}">Quản lý bài đăng</a>
                 </li>
-                <li
-                    class="nav-item {{ str_contains(Request::fullUrl(), route('posts.rented-list')) ? 'active' : '' }}">
+                <li class="nav-item {{ str_contains(Request::fullUrl(), route('posts.rented-list')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('posts.rented-list') }}">Quản lý bài đăng đã thuê</a>
                 </li>
                 @if (Auth::user()->isAdmin())
