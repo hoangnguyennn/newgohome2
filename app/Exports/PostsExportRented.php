@@ -22,9 +22,16 @@ class PostsExportRented implements FromCollection, WithHeadings, WithMapping
         return [
             'Mã bài đăng',
             'Tiêu đề',
+            'Loại',
+            'Quận/huyện',
+            'Xã/phường',
+            'Người đăng',
+            'Hoa hồng',
             'Họ tên chủ nhà',
             'SĐT chủ nhà',
-            'Giá trị'
+            'Địa chỉ chủ nhà',
+            'Ngày tạo',
+            'Ngày cập nhập',
         ];
     }
 
@@ -33,9 +40,16 @@ class PostsExportRented implements FromCollection, WithHeadings, WithMapping
         return [
             $post->category->shorthand . '-' . $post->id_by_category,
             $post->name,
+            $post->category->name,
+            $post->ward->district->name,
+            $post->ward->name,
+            $post->user ? $post->user->fullname : '',
+            $post->commission,
             $post->owner_name,
             $post->owner_phone,
-            $post->price
+            $post->owner_address,
+            $post->created_at,
+            $post->updated_at,
         ];
     }
 
