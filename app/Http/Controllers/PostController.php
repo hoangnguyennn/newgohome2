@@ -39,7 +39,7 @@ class PostController extends Controller
         }
 
         $user = Auth::user();
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() || $user->isEditor()) {
             $posts = Post::where('is_hide', 0);
         } else {
             $posts = Post::where('user_id', $user->id)->where('is_hide', 0);
@@ -470,7 +470,7 @@ class PostController extends Controller
         }
 
         $user = Auth::user();
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() || $user->isEditor()) {
             $posts = Post::where('is_hide', true);
         } else {
             $posts = Post::where('user_id', $user->id)->where('is_hide', true);

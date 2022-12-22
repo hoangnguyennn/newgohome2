@@ -58,6 +58,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role == 'admin';
     }
 
+    public function isEditor() {
+        return $this->role == 'editor';
+    }
+
     public function isRoot()
     {
         return in_array($this->email, $this->rootAccountEmails);

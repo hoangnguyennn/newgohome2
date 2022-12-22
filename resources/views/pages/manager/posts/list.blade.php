@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    @if (Auth::user()->isAdmin())
+    @if (Auth::user()->isAdmin() || Auth::user()->isEditor())
         <div class="container-fluid my-5">
             <h3 class="title">Số lượng bài đăng</h3>
 
@@ -135,31 +135,33 @@
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng</h3>
             <div class="d-flex align-items-center">
-                <form action={{ route('api.posts.export') }} method="post" class="d-flex align-items-center mb-0">
-                    @csrf
+                @if (Auth::user()->isAdmin())
+                    <form action={{ route('api.posts.export') }} method="post" class="d-flex align-items-center mb-0">
+                        @csrf
 
-                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="id" value="{{ Auth::user()->id }}">
 
-                    <select class="form-control mr-2" id="month" name="month"></select>
-                    <script>
-                        const select = document.querySelector('#month');
-                        const date = new Date();
-                        let counter = 0;
-                        while (counter < 12) {
-                            counter++;
-                            const option = document.createElement('option');
-                            const month = `00${date.getMonth() + 1}`.slice(-2);
-                            const year = date.getFullYear();
-                            option.value = month;
-                            option.innerHTML = `Tháng ${month}/${year}`;
-                            select.appendChild(option);
-                            date.setMonth(date.getMonth() - 1);
-                        }
-                    </script>
-                    <button type="submit" class="btn btn-success mr-2" style="white-space: nowrap;">
-                        Xuất Excel
-                    </button>
-                </form>
+                        <select class="form-control mr-2" id="month" name="month"></select>
+                        <script>
+                            const select = document.querySelector('#month');
+                            const date = new Date();
+                            let counter = 0;
+                            while (counter < 12) {
+                                counter++;
+                                const option = document.createElement('option');
+                                const month = `00${date.getMonth() + 1}`.slice(-2);
+                                const year = date.getFullYear();
+                                option.value = month;
+                                option.innerHTML = `Tháng ${month}/${year}`;
+                                select.appendChild(option);
+                                date.setMonth(date.getMonth() - 1);
+                            }
+                        </script>
+                        <button type="submit" class="btn btn-success mr-2" style="white-space: nowrap;">
+                            Xuất Excel
+                        </button>
+                    </form>
+                @endif
                 <a href="{{ route('posts.create') }}" class="btn btn-primary">Thêm bài đăng mới</a>
             </div>
         </div>
@@ -182,17 +184,6 @@
                             <div class="modal-body">
                                 <form method="POST" action="{{ route('posts.move') }}" id="move-posts">
                                     @csrf
-
-                                    {{-- <input type="hidden" name="from" value="{{ $user->id }}" /> --}}
-
-                                    {{-- <div class="form-group row">
-                                    <label for="user-list" class="col-sm-3 col-form-label">Từ</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-control" style="white-space: nowrap;">
-                                            {{ $user->fullname }} - {{ $user->email }}
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                     <div class="form-group row">
                                         <label for="user-list" class="col-sm-3 col-form-label">Sang</label>
@@ -345,18 +336,20 @@
                                     <a class="btn btn-success mr-md-2 mb-2" href={{ route('post', $post->slug) }}
                                         target="_blank">Xem</a>
 
-                                    @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin())
+                                    @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin() || Auth::user()->isEditor())
                                         <a class="btn btn-primary mr-md-2 mb-2" href={{ route('posts.edit', $post->id) }}>
                                             Chỉnh sửa
                                         </a>
-                                        {{ Form::open([
-                                            'route' => ['posts.destroy', $post->id],
-                                            'method' => 'delete',
-                                            'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng ' . $postId . '?");',
-                                            'class' => 'm-0 mr-md-2 mb-2',
-                                        ]) }}
-                                        <button type="submit" class="btn btn-danger w-100">Xóa</button>
-                                        {{ Form::close() }}
+                                        @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin())
+                                            {{ Form::open([
+                                                'route' => ['posts.destroy', $post->id],
+                                                'method' => 'delete',
+                                                'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng ' . $postId . '?");',
+                                                'class' => 'm-0 mr-md-2 mb-2',
+                                            ]) }}
+                                            <button type="submit" class="btn btn-danger w-100">Xóa</button>
+                                            {{ Form::close() }}
+                                        @endif
 
                                         {{ Form::open([
                                             'route' => ['posts.hide', $post->id],

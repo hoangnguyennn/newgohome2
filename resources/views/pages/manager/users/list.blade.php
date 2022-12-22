@@ -43,6 +43,9 @@
                                     if ($user->isAdmin()) {
                                         $role = 'Quản trị viên';
                                         $badge = 'badge-primary';
+                                    } elseif ($user->isEditor()) {
+                                        $role = 'Biên tập viên';
+                                        $badge = 'badge-warning';
                                     } else {
                                         $role = 'Người dùng';
                                         $badge = 'badge-secondary';

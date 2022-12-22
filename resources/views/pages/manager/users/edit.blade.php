@@ -49,7 +49,10 @@
                         <div class="col-sm-9">
                             <select class="form-control" id="role" name="role" required>
                                 <option value="admin" {{ $user->isAdmin() ? 'selected' : '' }}>Quản trị viên</option>
-                                <option value="user" {{ $user->isAdmin() ? '' : 'selected' }}>Người dùng</option>
+                                <option value="editor" {{ $user->isEditor() ? 'selected' : '' }}>Biên tập viên</option>
+                                <option value="user" {{ $user->isAdmin() || $user->isEditor() ? '' : 'selected' }}>
+                                    Người dùng
+                                </option>
                             </select>
                             <div class="invalid-feedback">
                                 Vai trò là trường bắt buộc

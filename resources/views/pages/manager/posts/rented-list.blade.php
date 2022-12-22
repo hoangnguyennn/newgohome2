@@ -110,31 +110,34 @@
     <div class="container-fluid my-5">
         <div class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách bài đăng đã thuê</h3>
-            <form action={{ route('api.posts.export-rented') }} method="post" class="d-flex align-items-center mb-0">
-                @csrf
 
-                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+            @if (Auth::user()->isAdmin())
+                <form action={{ route('api.posts.export-rented') }} method="post" class="d-flex align-items-center mb-0">
+                    @csrf
 
-                <select class="form-control mr-2" id="month" name="month"></select>
-                <script>
-                    const select = document.querySelector('#month');
-                    const date = new Date();
-                    let counter = 0;
-                    while (counter < 12) {
-                        counter++;
-                        const option = document.createElement('option');
-                        const month = `00${date.getMonth() + 1}`.slice(-2);
-                        const year = date.getFullYear();
-                        option.value = month;
-                        option.innerHTML = `Tháng ${month}/${year}`;
-                        select.appendChild(option);
-                        date.setMonth(date.getMonth() - 1);
-                    }
-                </script>
-                <button type="submit" class="btn btn-success mr-2" style="white-space: nowrap;">
-                    Xuất Excel
-                </button>
-            </form>
+                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+
+                    <select class="form-control mr-2" id="month" name="month"></select>
+                    <script>
+                        const select = document.querySelector('#month');
+                        const date = new Date();
+                        let counter = 0;
+                        while (counter < 12) {
+                            counter++;
+                            const option = document.createElement('option');
+                            const month = `00${date.getMonth() + 1}`.slice(-2);
+                            const year = date.getFullYear();
+                            option.value = month;
+                            option.innerHTML = `Tháng ${month}/${year}`;
+                            select.appendChild(option);
+                            date.setMonth(date.getMonth() - 1);
+                        }
+                    </script>
+                    <button type="submit" class="btn btn-success mr-2" style="white-space: nowrap;">
+                        Xuất Excel
+                    </button>
+                </form>
+            @endif
         </div>
 
         @if (Auth::user()->isAdmin())
@@ -155,17 +158,6 @@
                             <div class="modal-body">
                                 <form method="POST" action="{{ route('posts.move') }}" id="move-posts">
                                     @csrf
-
-                                    {{-- <input type="hidden" name="from" value="{{ $user->id }}" /> --}}
-
-                                    {{-- <div class="form-group row">
-                                    <label for="user-list" class="col-sm-3 col-form-label">Từ</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-control" style="white-space: nowrap;">
-                                            {{ $user->fullname }} - {{ $user->email }}
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                     <div class="form-group row">
                                         <label for="user-list" class="col-sm-3 col-form-label">Sang</label>
@@ -294,23 +286,25 @@
                                     <a class="btn btn-success mr-md-2 mb-2" href={{ route('post', $post->slug) }}
                                         target="_blank">Xem</a>
                                     <a class="btn btn-primary mr-md-2 mb-2"
-                                        href={{ route('posts.edit', $post->id) }}>Chỉnh
-                                        sửa</a>
-                                    {{ Form::open([
-                                        'route' => ['posts.destroy', $post->id],
-                                        'method' => 'delete',
-                                        'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng GH-' . $postId . '?");',
-                                        'class' => 'm-0',
-                                    ]) }}
-                                    <button type="submit" class="btn btn-danger mr-md-2 mb-2 w-100">Xóa</button>
-                                    {{ Form::close() }}
+                                        href={{ route('posts.edit', $post->id) }}>Chỉnh sửa
+                                    </a>
+                                    @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin())
+                                        {{ Form::open([
+                                            'route' => ['posts.destroy', $post->id],
+                                            'method' => 'delete',
+                                            'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng GH-' . $postId . '?");',
+                                            'class' => 'm-0',
+                                        ]) }}
+                                        <button type="submit" class="btn btn-danger mr-md-2 mb-2 w-100">Xóa</button>
+                                        {{ Form::close() }}
+                                    @endif
                                 </div>
                             </td>
                         </tr>
                     @endforeach
 
                     @php
-                        if (Auth::user()->isAdmin()) {
+                        if (Auth::user()->isAdmin() || Auth::user()->isEditor()) {
                             $colSpan = 11;
                         } else {
                             $colSpan = 10;
