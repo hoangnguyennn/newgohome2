@@ -1,6 +1,40 @@
 @extends('layouts.admin')
 
 @section('main-content')
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <form method="GET" autocomplete="off">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="me@example.com" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <button type="submit" class="btn btn-primary">Lọc</button>
+                                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Xóa bộ lọc</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid my-5">
         <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
             <h3 class="title">Danh sách người dùng</h3>
@@ -118,7 +152,7 @@
                     @endforeach
 
                     @php
-                        $colSpan = 7;
+                        $colSpan = 9;
                     @endphp
                     @if ($users->count() == 0)
                         <tr>

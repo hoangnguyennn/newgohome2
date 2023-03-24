@@ -16,9 +16,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(20);
+        $email = $request->query('email');
+
+        if($email) {
+            $users = User::where('email', 'LIKE', '%' . $email . '%')->paginate(20);
+        } else {
+            $users = User::paginate(20);
+        }
+
         $users2 = User::all();
         return view('pages.manager.users.list', compact('users', 'users2'));
     }
