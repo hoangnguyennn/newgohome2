@@ -43,10 +43,52 @@
             </div>
         </div>
 
+        @if (Auth::user()->isAdmin())
+            <div class="d-flex justify-content-start flex-column flex-md-row mb-4">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMultiple">
+                    Xóa nhiều
+                </button>
+                <div class="modal fade" id="deleteMultiple">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Xóa nhiều người dùng
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{ route('users.deleteMultiple') }}" id="delete-users">
+                                    @csrf
+
+                                    <div class="form-group row">
+                                        <label for="user-list" class="col-sm-3 col-form-label">Số lượng</label>
+                                        <div class="col-sm-9">
+                                            <div class="form-control size"><span>0</span> người dùng</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="userids"></div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="submit" form="delete-users" class="btn btn-danger">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
+                        @if (Auth::user()->isAdmin())
+                            <td><input type="checkbox"></td>
+                        @endif
                         <td style="min-width: 100px;">#</td>
                         <td style="min-width: 100px;">Avatar</td>
                         <td style="min-width: 100px;">Họ và tên</td>
@@ -61,6 +103,9 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
+                            @if (Auth::user()->isAdmin())
+                                <td><input type="checkbox" value="{{ $user->id }}"></td>
+                            @endif
                             <td>{{ $user->id }}</td>
                             <td>
                                 @php
@@ -171,4 +216,78 @@
             </table>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        // delete users
+        document.querySelectorAll('tr').forEach(function(tr) {
+            tr.addEventListener('click', function() {
+                const checkbox = tr.querySelector('input');
+                checkbox.checked = !checkbox.checked;
+                const event = new Event('change');
+                checkbox.dispatchEvent(event);
+            });
+        });
+
+        document.querySelectorAll('input').forEach(function(input) {
+            input.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
+
+        document.querySelector('thead input').addEventListener('change', function() {
+            const tbodyInputs = document.querySelectorAll('tbody input[type="checkbox"]');
+            let counter = 0;
+
+            tbodyInputs.forEach(input => {
+                input.checked && counter++;
+            })
+
+            if (counter === tbodyInputs.length) {
+                tbodyInputs.forEach(input => {
+                    input.checked = false;
+                })
+            } else {
+                tbodyInputs.forEach(input => {
+                    input.checked = true;
+                })
+            }
+        });
+
+        document.querySelectorAll('tbody input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const tbodyInputs = document.querySelectorAll('tbody input[type="checkbox"]');
+                let counter = 0;
+
+                tbodyInputs.forEach(input => {
+                    input.checked && counter++;
+                });
+
+                if (counter === tbodyInputs.length) {
+                    document.querySelector('thead input').checked = true;
+                } else {
+                    document.querySelector('thead input').checked = false;
+                }
+            });
+        });
+
+        const transferButton = document.querySelector('[data-target="#deleteMultiple"]');
+        const form = document.querySelector('#delete-users');
+        transferButton.addEventListener('click', function(event) {
+            form.querySelector('.userids').innerHTML = '';
+            document.querySelectorAll('tbody input[type="checkbox"]').forEach(input => {
+                if (input.checked) {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'hidden';
+                    newInput.name = 'users[]';
+                    newInput.value = input.value;
+                    form.querySelector('.userids').appendChild(newInput);
+                }
+            });
+
+            const size = form.querySelectorAll('[name="users[]"]').length;
+            form.querySelector('.size span').innerHTML = size;
+        });
+    </script>
 @endsection

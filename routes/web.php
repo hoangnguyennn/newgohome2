@@ -36,6 +36,8 @@ Route::prefix('manager')->middleware('verified')->group(function () {
             'index', 'create', 'store', 'edit', 'update', 'destroy',
         ]);
 
+        Route::post('/users/delete-multiple', [UserController::class, 'deleteMultiple'])->name('users.deleteMultiple');
+
         Route::resource('users.posts', UserPostController::class)->middleware('role:admin')->only([
             'index',
         ]);

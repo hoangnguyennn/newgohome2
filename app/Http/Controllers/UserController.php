@@ -177,4 +177,16 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('users.index')->with('success', 'Xác thực user thành công');
     }
+
+    public function deleteMultiple(Request $request)
+    {
+        $userIds = $request->users;
+
+        if (!is_array($userIds)) {
+            $userIds = [];
+        }
+
+        User::whereIn('id', $userIds)->delete();
+        return redirect()->route('users.index')->with('success', 'Đã xóa thành công ' . count($userIds) . ' người dùng');
+    }
 }
