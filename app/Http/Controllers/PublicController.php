@@ -322,4 +322,25 @@ class PublicController extends Controller
 
         return 'Done ' . $postImages->count();
     }
+    
+    public function removeUnusedImages()
+    {
+        $filesInFolder = \File::files(public_path('uploads'));
+
+        foreach($filesInFolder as $path) {
+            $file = pathinfo($path);
+            $filename = $file['basename'];
+
+            if($filename == 'logo.jpg') {
+                continue;
+            }
+
+            $image = PostImage::where('filename', $filename)->orWhere('originalFilename', $filename)->first();
+
+            if(!$image) {
+                unlink(public_path('uploads') . '/' . $filename);
+                echo $filename . ' không được sử dụng';
+            }
+        }
+    }
 }

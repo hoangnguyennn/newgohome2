@@ -79,4 +79,5 @@ Route::middleware([])->group(function () {
     Route::post('/posts/{post}/deny', [PostController::class, 'deny'])->name('posts.deny');
     // Route::post('/post-requests', [PostRequestController::class, 'store'])->name('post-requests.store');
     Route::get('/update', [PublicController::class, 'update'])->name('update');
+    Route::get('/remove-unused-images', [PublicController::class, 'removeUnusedImages'])->name('remove-unused-images');
 });
