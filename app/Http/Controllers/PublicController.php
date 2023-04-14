@@ -325,7 +325,7 @@ class PublicController extends Controller
     
     public function removeUnusedImages()
     {
-        $filesInFolder = \File::files(public_path('uploads'));
+        $filesInFolder = \Storage::allFiles(public_path('uploads'));
 
         foreach($filesInFolder as $path) {
             $file = pathinfo($path);
@@ -340,6 +340,22 @@ class PublicController extends Controller
             if(!$image) {
                 unlink(public_path('uploads') . '/' . $filename);
                 echo $filename . ' không được sử dụng';
+            }
+        }
+
+        $filesInFolder = array_diff(scandir(public_path()), array('.', '..'));
+
+        foreach($filesInFolder as $path) {
+            $file = pathinfo($path);
+            $filename = $file['basename'];
+
+            if(!is_dir($filename) && !empty($file['extension'])) {
+                $fileExtension = $file['extension'];
+                
+                if($fileExtension == 'zip') {
+                    unlink(public_path('') . '/' . $filename);
+                    echo $filename . ' không được sử dụng';
+                }
             }
         }
     }
