@@ -101,7 +101,8 @@ class PostController extends Controller
         }
 
         if ($price) {
-            $texts = explode('-', $price);
+            $texts = str_replace(',', '', $price);
+            $texts = explode('-', $texts);
             if (count($texts) === 2) {
                 $posts = $posts->where('price', '>=', $texts[0]);
                 $posts = $posts->where('price', '<=', $texts[1]);

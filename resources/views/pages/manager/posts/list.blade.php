@@ -367,9 +367,9 @@
 
                     @php
                         if (Auth::user()->isAdmin()) {
-                            $colSpan = 13;
+                            $colSpan = 14;
                         } else {
-                            $colSpan = 12;
+                            $colSpan = 13;
                         }
                     @endphp
                     @if ($posts->count() == 0)
@@ -408,6 +408,35 @@
 @endsection
 
 @section('scripts')
+    <script>
+        const priceInput = document.querySelector('#price')
+        priceInput.addEventListener('input', (event) => {
+            const value = event.target.value
+            const minMax = value.split('-')
+
+            if(minMax.length) {
+                let min = minMax[0]
+                let max = minMax[1]
+                const result = []
+
+                if(min) {
+                    min = String(min).replaceAll(',', '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                    result.push(min)
+                }
+
+                if(max) {
+                    max = String(max).replaceAll(',', '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                    result.push(max)                    
+                } else if(value.includes('-')) {
+                    result.push('')
+                }
+
+                console.log({min, max})
+                priceInput.value = result.join('-')
+            }
+        })
+    </script>
+
     <script>
         const searchInfo = new URLSearchParams(window.location.search);
         const idField = document.getElementById('id');
