@@ -112,7 +112,7 @@
             </div class="col-12 col-lg-6">
 
             @if (Auth::check())
-                @if (Auth::user()->isAdmin() || Auth::user()->isEditor())
+                @if (Auth::user()->is_verify == 1)
                     <div class="col-12 col-lg-6">
                         <b>Họ tên chủ nhà: </b>
                         <span>{{ $post->owner_name }}</span>
