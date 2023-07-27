@@ -33,6 +33,10 @@
         integrity="sha512-lENse+XF5kSp7h+shBUOqTCpGUNeomUR+2HI8j2wWWL48vjRyRoCoRFV01skx3iqDk151oRpJFeqxn2nc5Bd7A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-video.min.css"
+        integrity="sha512-89gDQOHnYjji90NPJ7+M5tgA/0E+fjL4KuSFhi6tjH6sZ54yUEogPMmOAgbI599fW1CtCyrsJbch8k/QzuoXzw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
 
@@ -76,6 +80,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/plugins/rotate/lg-rotate.min.js"
         integrity="sha512-kL5j+xORkwH0MgFBuO30uHoDCxGQBnXJzmQsXCP/hlWKYj+wjqNh2kHvITLpCP4nuLbXVRWGkfmAg2cTANA51Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/video/lg-video.min.js"
+        integrity="sha512-mjdf6tU1Mksu9Hq2YXfbxdzzYHU7SJYmAsMnrhBf80SkHFvk6eHa2d79JM0q5w5ft5nQyBQ0EMB+XTmnvhcFgA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>

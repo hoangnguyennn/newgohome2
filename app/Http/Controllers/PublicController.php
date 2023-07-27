@@ -322,22 +322,22 @@ class PublicController extends Controller
 
         return 'Done ' . $postImages->count();
     }
-    
+
     public function removeUnusedImages()
     {
         $filesInFolder = \Storage::allFiles(public_path('uploads'));
 
-        foreach($filesInFolder as $path) {
+        foreach ($filesInFolder as $path) {
             $file = pathinfo($path);
             $filename = $file['basename'];
 
-            if($filename == 'logo.jpg') {
+            if ($filename == 'logo.jpg') {
                 continue;
             }
 
             $image = PostImage::where('filename', $filename)->orWhere('originalFilename', $filename)->first();
 
-            if(!$image) {
+            if (!$image) {
                 unlink(public_path('uploads') . '/' . $filename);
                 echo $filename . ' không được sử dụng';
             }
@@ -345,14 +345,14 @@ class PublicController extends Controller
 
         $filesInFolder = array_diff(scandir(public_path()), array('.', '..'));
 
-        foreach($filesInFolder as $path) {
+        foreach ($filesInFolder as $path) {
             $file = pathinfo($path);
             $filename = $file['basename'];
 
-            if(!is_dir($filename) && !empty($file['extension'])) {
+            if (!is_dir($filename) && !empty($file['extension'])) {
                 $fileExtension = $file['extension'];
-                
-                if($fileExtension == 'zip') {
+
+                if ($fileExtension == 'zip') {
                     unlink(public_path('') . '/' . $filename);
                     echo $filename . ' không được sử dụng';
                 }

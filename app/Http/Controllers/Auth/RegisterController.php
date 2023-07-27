@@ -52,11 +52,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = array(
+            'email:unique' => 'Email đã được sử dụng.',
+            'email:email' => 'Email không đúng định dạng.',
+            'password.required' => 'Vui lòng nhập mật khẩu.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
+            'password.confirmed' => 'Mật khẩu phải trùng khớp.',
+        );
         return Validator::make($data, [
             'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], $messages);
     }
 
     /**

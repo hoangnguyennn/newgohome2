@@ -162,6 +162,17 @@
                         </div>
                     </div>
 
+                    <div class="form-group row specific">
+                        <label for="video" class="col-sm-3 col-form-label">Video</label>
+                        <div class="col-sm-9">
+                            <div class="dropzone form-control" id="post-video-dropzone">
+                            </div>
+                            <div class="invalid-feedback">
+                                Video là bắt buộc
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="description" class="col-sm-3 col-form-label">Mô tả
                             <span class="text-danger">(*)</span>
@@ -399,6 +410,7 @@
         const form = document.querySelector('#add-post-form');
         const btnSubmit = document.querySelector('#btn-submit');
         const uploadedImage = {};
+        const uploadedVideo = {};
 
         Dropzone.options.postImageDropzone = {
             url: "{{ route('api.post-images.upload-single') }}",
@@ -467,6 +479,72 @@
                 }, false);
             }
         };
+
+        Dropzone.options.postVideoDropzone = {
+            url: "{{ route('api.post-video.upload-video') }}",
+            addRemoveLinks: true,
+            maxFiles: 1,
+            dictDefaultMessage: 'Kéo video vào đây để tải video lên',
+            dictRemoveFile: 'Xóa video',
+            dictCancelUpload: 'Hủy tải video lên',
+            dictCancelUploadConfirmation: 'Xác nhận hủy tải video lên',
+            dictMaxFilesExceeded: 'Video tải lên đã đạt tới mức giới hạn',
+            timeout: 50000,
+            acceptedFiles: 'video/mp4,video/x-m4v,video/*',
+            maxFilesize: 5,
+            sending: function(file, xhr, formData) {
+                formData.append('_token', '{{ csrf_token() }}');
+                btnSubmit.disabled = true;
+            },
+            success: function(file, response) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'video';
+                input.value = response;
+                form.appendChild(input);
+                uploadedVideo[file.name] = response;
+                btnSubmit.disabled = false;
+            },
+            removedfile: function(file) {
+                file.previewElement.remove();
+
+                const videoId = uploadedVideo[file.name];
+                const input = form.querySelector(`[name="video"][value="${videoId}"]`);
+                input && input.remove();
+                axios.delete(`/post-video/${imageId}`);
+            },
+            init: function() {
+                const postVideoDropzone = this;
+                postVideoDropzone.on('addedfile', function() {
+                    const fileCount = postVideoDropzone.files.length;
+                    if (fileCount !== 0 && form.classList.contains('was-validated')) {
+                        const dropzone = document.querySelector('#post-video-dropzone');
+                        calculateClass(dropzone, true); // valid
+                    }
+                });
+
+                postVideoDropzone.on('removedfile', function() {
+                    const fileCount = postVideoDropzone.files.length;
+                    if (fileCount === 0 && form.classList.contains('was-validated')) {
+                        const dropzone = document.querySelector('#post-video-dropzone');
+                        calculateClass(dropzone, false); // invalid
+                    }
+                });
+
+                form.addEventListener('submit', function(event) {
+                    const fileCount = postVideoDropzone.files.length;
+                    if (fileCount === 0) {
+                        const dropzone = document.querySelector('#post-video-dropzone');
+                        calculateClass(dropzone, false); // invalid
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    postVideoDropzone.processQueue();
+                    return true;
+                }, false);
+            }
+        }
 
         function calculateClass(element, isValid = true) {
             if (isValid) {

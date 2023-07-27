@@ -8,9 +8,29 @@
             }
         @endphp
         <div class="img-wrap">
+            @if ($post->video)
+                @php
+                    $isHide = true;
+                @endphp
+                <div class="d-flex justify-content-center align-items-center"
+                    data-video='{"source": [{"src":"{{ url('/uploads/' . $post->video->filename) }}", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'>
+                    <a class="d-flex" class="gallery-item" href="{{ url('/uploads/' . $post->video->filename) }}">
+                        <video height="280">
+                            <source src="{{ url('/uploads/' . $post->video->filename) }}" type="video/mp4">
+                        </video>
+                    </a>
+                </div>
+            @else
+                @php
+                    $isHide = false;
+                @endphp
+            @endif
+
             @foreach ($post->images as $image)
                 @php
-                    $isHide = $loop->index != 0;
+                    if (!$isHide) {
+                        $isHide = $loop->index != 0;
+                    }
                     $url = url('/uploads/' . $image->filename);
                 @endphp
                 <div class="{{ $isHide ? 'd-none' : '' }}" data-src="{{ $url }}">
@@ -143,7 +163,7 @@
                     download: false
                 },
                 speed: 100,
-                plugins: [lgRotate]
+                plugins: [lgRotate, lgVideo]
             });
         });
     </script>

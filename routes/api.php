@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('wards', WardController::class)->only(['index']);
 
 Route::post('upload-single', [UploadImageController::class, 'uploadSingle'])->name('api.post-images.upload-single');
+Route::post('upload-video', [UploadImageController::class, 'uploadVideo'])->name('api.post-video.upload-video');
 Route::get('posts/{post}/download-images', [PostController::class, 'downloadImages'])->name('api.posts.download');
 Route::post('posts/export-excel', [PostController::class, 'exportExcel'])->name('api.posts.export');
 Route::post('posts/export-excel-rented', [PostController::class, 'exportExcelRented'])->name('api.posts.export-rented');

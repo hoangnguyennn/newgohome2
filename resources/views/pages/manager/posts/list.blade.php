@@ -79,10 +79,20 @@
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group row">
-                                <label for="location" class="col-sm-3 col-form-label">Giá tiền</label>
+                                <label for="price" class="col-sm-3 col-form-label">Giá tiền</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="price" name="price"
                                         placeholder="xxx-xxx" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group row">
+                                <label for="address" class="col-sm-3 col-form-label">Địa chỉ</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="address" name="address"
+                                        placeholder="Địa chỉ" />
                                 </div>
                             </div>
                         </div>
@@ -231,15 +241,16 @@
                         @if (Auth::user()->isAdmin())
                             <td style="min-width: 120px;">Người đăng</td>
                         @endif
+                        <td style="min-width: 120px;">Địa chỉ chủ nhà</td>
                         <td style="min-width: 100px;">Hoa hồng</td>
-                        <td style="min-width: 150px;">Tình trạng duyệt</td>
+                        <td style="min-width: 68px;">Tình trạng duyệt</td>
                         <td style="min-width: 130px;">Lý do từ chối</td>
-                        <td style="min-width: 100px;">Ẩn/hiện</td>
-                        <td style="min-width: 100px;">Ngày ẩn (gần nhất)</td>
-                        <td style="min-width: 100px;">Ngày hiện (gần nhất)</td>
-                        <td style="min-width: 100px;">Ngày tạo</td>
-                        <td style="min-width: 140px;">Ngày cập nhật</td>
-                        <td style="min-width: 355px;">Hành động</td>
+                        <td style="min-width: 81px;">Ẩn/hiện</td>
+                        <td style="min-width: 106px;">Ngày ẩn (gần nhất)</td>
+                        <td style="min-width: 106px;">Ngày hiện (gần nhất)</td>
+                        <td style="min-width: 106px;">Ngày tạo</td>
+                        <td style="min-width: 106px;">Ngày cập nhật</td>
+                        <td style="min-width: 200px;">Hành động</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -263,6 +274,188 @@
                             @if (Auth::user()->isAdmin())
                                 <td>{{ $post->user ? $post->user->fullname : '' }}</td>
                             @endif
+                            <td>{{ $post->owner_address }}</td>
+                            <td class="currency">{{ $post->commission }}</td>
+                            <td>
+                                @php
+                                    if ($post->verify_status == 0) {
+                                        $status = 'Đã duyệt';
+                                        $badgeClass = 'badge-success';
+                                    } elseif ($post->verify_status == 1) {
+                                        $status = 'Chờ duyệt';
+                                        $badgeClass = 'badge-warning';
+                                    } else {
+                                        $status = 'Đã bị từ chối';
+                                        $badgeClass = 'badge-danger';
+                                    }
+                                @endphp
+                                <span class="badge {{ $badgeClass }}">{{ $status }}</span>
+                            </td>
+                            <td>{{ $post->deny_reason }}</td>
+                            <td>
+                                @php
+                                    if ($post->is_hide == 1) {
+                                        $status = 'Đang ẩn';
+                                        $badgeClass = 'badge-secondary';
+                                        $title = 'Bài đăng đang không được hiển thị lên website';
+                                    } else {
+                                        $status = 'Hiện';
+                                        $badgeClass = 'badge-success';
+                                        $title = 'Bài đăng sẽ được hiển thị trên website nếu được duyệt';
+                                    }
+                                @endphp
+                                <span class="badge {{ $badgeClass }}"
+                                    title="{{ $title }}">{{ $status }}</span>
+                            </td>
+                            @php
+                                $created_at = $post->created_at;
+                                $created_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                $updated_at = $post->updated_at;
+                                $updated_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                
+                                if ($post->hidden_at) {
+                                    $hidden_at = new DateTime($post->hidden_at);
+                                    $hidden_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                } else {
+                                    $hidden_at = null;
+                                }
+                                
+                                if ($post->hidden_at) {
+                                    $shown_at = new DateTime($post->shown_at);
+                                    $shown_at->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
+                                } else {
+                                    $shown_at = null;
+                                }
+                            @endphp
+                            <td>
+                                <span>{{ $hidden_at ? $hidden_at->format('H:i:s') : '' }}</span>
+                                <span>{{ $hidden_at ? $hidden_at->format('d/m/Y') : '' }}</span>
+                            </td>
+                            <td>
+                                <span>{{ $shown_at ? $shown_at->format('H:i:s') : '' }}</span>
+                                <span>{{ $shown_at ? $shown_at->format('d/m/Y') : '' }}</span>
+                            </td>
+                            <td>
+                                <span>{{ $created_at->format('H:i:s') }}</span>
+                                <span>{{ $created_at->format('d/m/Y') }}</span>
+                            </td>
+                            <td>
+                                <span>{{ $updated_at->format('H:i:s') }}</span>
+                                <span>{{ $updated_at->format('d/m/Y') }}</span>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
+                                    <a class="btn btn-success mr-md-2 mb-2" href={{ route('post', $post->slug) }}
+                                        target="_blank">Xem</a>
+
+                                    @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin() || Auth::user()->isEditor())
+                                        <a class="btn btn-primary mr-md-2 mb-2" href={{ route('posts.edit', $post->id) }}>
+                                            Chỉnh sửa
+                                        </a>
+                                        @if (Auth::user()->id == $post->user_id || Auth::user()->isAdmin())
+                                            {{ Form::open([
+                                                'route' => ['posts.destroy', $post->id],
+                                                'method' => 'delete',
+                                                'onsubmit' => 'return confirm("Bạn có chắc chắn muốn xóa bài đăng ' . $postId . '?");',
+                                                'class' => 'm-0 mr-md-2 mb-2',
+                                            ]) }}
+                                            <button type="submit" class="btn btn-danger w-100">Xóa</button>
+                                            {{ Form::close() }}
+                                        @endif
+
+                                        {{ Form::open([
+                                            'route' => ['posts.hide', $post->id],
+                                            'method' => 'post',
+                                            'onsubmit' => 'return confirm("Sau khi đã thuê, bài đăng sẽ bị ẩn, bạn có muốn ẩn bài đăng ' . $postId . '?");',
+                                            'class' => 'm-0 mr-md-2 mb-2',
+                                        ]) }}
+                                        <button type="submit" class="btn btn-warning w-100">Đã thuê</button>
+                                        {{ Form::close() }}
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    @php
+                        if (Auth::user()->isAdmin()) {
+                            $colSpan = 16;
+                        } else {
+                            $colSpan = 15;
+                        }
+                    @endphp
+                    @if ($posts->count() == 0)
+                        <tr>
+                            <td colspan="{{ $colSpan }}" style="text-align: center;">Không có dữ liệu</td>
+                        </tr>
+                    @endif
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="{{ $colSpan }}">{{ $posts->count() }} bài đăng tất cả</td>
+                    </tr>
+                    <tr>
+                        <td colspan="{{ $colSpan }}">
+                            <div class="custom-pagination">
+                                {{ $posts->links() }}
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between flex-column flex-md-row mb-4">
+            <h3 class="title">Danh sách bài đăng đã ẩn</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        @if (Auth::user()->isAdmin())
+                            <td><input type="checkbox"></td>
+                        @endif
+                        <td style="min-width: 100px;">#</td>
+                        <td style="min-width: 100px;">Hình ảnh</td>
+                        <td style="min-width: 200px;">Tiêu đề</td>
+                        @if (Auth::user()->isAdmin())
+                            <td style="min-width: 120px;">Người đăng</td>
+                        @endif
+                        <td style="min-width: 120px;">Địa chỉ chủ nhà</td>
+                        <td style="min-width: 100px;">Hoa hồng</td>
+                        <td style="min-width: 68px;">Tình trạng duyệt</td>
+                        <td style="min-width: 130px;">Lý do từ chối</td>
+                        <td style="min-width: 81px;">Ẩn/hiện</td>
+                        <td style="min-width: 106px;">Ngày ẩn (gần nhất)</td>
+                        <td style="min-width: 106px;">Ngày hiện (gần nhất)</td>
+                        <td style="min-width: 106px;">Ngày tạo</td>
+                        <td style="min-width: 106px;">Ngày cập nhật</td>
+                        <td style="min-width: 200px;">Hành động</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($hidden_posts as $post)
+                        @php
+                            $postId = $post->category->shorthand . '-' . $post->id_by_category;
+                        @endphp
+
+                        <tr>
+                            @if (Auth::user()->isAdmin())
+                                <td><input type="checkbox" value="{{ $post->id }}"></td>
+                            @endif
+                            <td>{{ $postId }}</td>
+                            <td>
+                                @if ($post->images->count() !== 0)
+                                    <img src="{{ url('/uploads/' . $post->images[0]->filename) }}"
+                                        alt="{{ $post->name }}" class="thumbnail" loading="lazy" />
+                                @endif
+                            </td>
+                            <td>{{ $post->name }}</td>
+                            @if (Auth::user()->isAdmin())
+                                <td>{{ $post->user ? $post->user->fullname : '' }}</td>
+                            @endif
+                            <td>{{ $post->owner_address }}</td>
                             <td class="currency">{{ $post->commission }}</td>
                             <td>
                                 @php
@@ -332,7 +525,7 @@
                                 <span>{{ $updated_at->format('d/m/Y') }}</span>
                             </td>
                             <td>
-                                <div class="d-flex flex-column flex-lg-row">
+                                <div class="d-flex flex-column flex-lg-row flex-wrap">
                                     <a class="btn btn-success mr-md-2 mb-2" href={{ route('post', $post->slug) }}
                                         target="_blank">Xem</a>
 
@@ -367,12 +560,12 @@
 
                     @php
                         if (Auth::user()->isAdmin()) {
-                            $colSpan = 14;
+                            $colSpan = 16;
                         } else {
-                            $colSpan = 13;
+                            $colSpan = 15;
                         }
                     @endphp
-                    @if ($posts->count() == 0)
+                    @if ($hidden_posts->count() == 0)
                         <tr>
                             <td colspan="{{ $colSpan }}" style="text-align: center;">Không có dữ liệu</td>
                         </tr>
@@ -380,12 +573,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="{{ $colSpan }}">{{ $posts->count() }} bài đăng tất cả</td>
+                        <td colspan="{{ $colSpan }}">{{ $hidden_posts->count() }} bài đăng tất cả</td>
                     </tr>
                     <tr>
                         <td colspan="{{ $colSpan }}">
                             <div class="custom-pagination">
-                                {{ $posts->links() }}
+                                {{ $hidden_posts->links() }}
                             </div>
                         </td>
                     </tr>
@@ -414,24 +607,27 @@
             const value = event.target.value
             const minMax = value.split('-')
 
-            if(minMax.length) {
+            if (minMax.length) {
                 let min = minMax[0]
                 let max = minMax[1]
                 const result = []
 
-                if(min) {
+                if (min) {
                     min = String(min).replaceAll(',', '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
                     result.push(min)
                 }
 
-                if(max) {
+                if (max) {
                     max = String(max).replaceAll(',', '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                    result.push(max)                    
-                } else if(value.includes('-')) {
+                    result.push(max)
+                } else if (value.includes('-')) {
                     result.push('')
                 }
 
-                console.log({min, max})
+                console.log({
+                    min,
+                    max
+                })
                 priceInput.value = result.join('-')
             }
         })

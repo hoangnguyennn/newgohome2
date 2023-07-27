@@ -8,6 +8,7 @@ use App\Models\District;
 use App\Models\Duration;
 use App\Models\Post;
 use App\Models\PostImage;
+use App\Models\PostVideo;
 use App\Models\User;
 use App\Models\Ward;
 use DateTime;
@@ -29,21 +30,15 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        // mark noti as read
-        if ($request->query('noti')) {
-            $noti = DatabaseNotification::find($request->query('noti'));
-
-            if ($noti) {
-                $noti->markAsRead();
-            }
-        }
-
         $user = Auth::user();
         if ($user->isAdmin() || $user->isEditor()) {
             $posts = Post::where('is_hide', 0);
+            $hidden_posts = Post::where('is_hide', 1);
         } else {
             $posts = Post::where('user_id', $user->id)->where('is_hide', 0);
+            $hidden_posts = Post::where('user_id', $user->id)->where('is_hide', 1);
         }
+
 
         $id = $request->query('id');
         $title = $request->query('title');
@@ -51,6 +46,7 @@ class PostController extends Controller
         $location = $request->query('location');
         $category = $request->query('category');
         $price = $request->query('price');
+        $address = $request->query('address');
 
         if ($id) {
             $q = strtoupper($id);
@@ -62,8 +58,10 @@ class PostController extends Controller
 
                 if ($cat == null) {
                     $posts = $posts->where('id', -1);
+                    $hidden_posts = $hidden_posts->where('id', -1);
                 } else {
                     $posts = $posts->where('id_by_category', $id)->where('category_id', $cat->id);
+                    $hidden_posts = $hidden_posts->where('id_by_category', $id)->where('category_id', $cat->id);
                 }
             }
         }
@@ -75,10 +73,31 @@ class PostController extends Controller
                 $query->where('name', 'LIKE', '%' . $title . '%')
                     ->orWhereRaw("MATCH (name) AGAINST (? IN BOOLEAN MODE)", $qSeparate);
             });
+
+            $hidden_posts = $hidden_posts->where(function ($query) use ($title, $qSeparate) {
+                $query->where('name', 'LIKE', '%' . $title . '%')
+                    ->orWhereRaw("MATCH (name) AGAINST (? IN BOOLEAN MODE)", $qSeparate);
+            });
+        }
+
+        if ($address) {
+            $qSeparate = explode(' ', $address);
+            $posts = $posts->where(function ($query) use ($address) {
+                $query->where('owner_address', 'LIKE', '%' . $address . '%');
+            });
+
+            $hidden_posts = $hidden_posts->where(function ($query) use ($address) {
+                $query->where('owner_address', 'LIKE', '%' . $address . '%');
+            });
         }
 
         if ($phone) {
             $posts = $posts->where('owner_phone', 'LIKE', '%' . $phone . '%')
+                ->orWhere(function ($query) use ($phone) {
+                    $query->where('owner_phone', $phone);
+                });
+
+            $hidden_posts = $hidden_posts->where('owner_phone', 'LIKE', '%' . $phone . '%')
                 ->orWhere(function ($query) use ($phone) {
                     $query->where('owner_phone', $phone);
                 });
@@ -87,16 +106,20 @@ class PostController extends Controller
         if ($location && $location != '-1') {
             if (gettype($location) == 'string') {
                 $posts = $posts->where('ward_id', $location);
+                $hidden_posts = $hidden_posts->where('ward_id', $location);
             } else {
                 $posts = $posts->whereIn('ward_id', $location);
+                $hidden_posts = $hidden_posts->whereIn('ward_id', $location);
             }
         }
 
         if ($category && $category != '-1') {
             if (gettype($category) == 'string') {
                 $posts = $posts->where('category_id', $category);
+                $hidden_posts = $hidden_posts->where('category_id', $category);
             } else {
                 $posts = $posts->whereIn('category_id', $category);
+                $hidden_posts = $hidden_posts->where('category_id', $category);
             }
         }
 
@@ -106,10 +129,14 @@ class PostController extends Controller
             if (count($texts) === 2) {
                 $posts = $posts->where('price', '>=', $texts[0]);
                 $posts = $posts->where('price', '<=', $texts[1]);
+
+                $hidden_posts = $hidden_posts->where('price', '>=', $texts[0]);
+                $hidden_posts = $hidden_posts->where('price', '<=', $texts[1]);
             }
         }
 
         $posts = $posts->orderBy('verify_status', 'desc')->orderBy('created_at', 'desc')->paginate(20);
+        $hidden_posts = $hidden_posts->orderBy('verify_status', 'desc')->orderBy('created_at', 'desc')->paginate(20);
 
         if ($id) {
             $posts->appends(['id' => $id]);
@@ -135,6 +162,9 @@ class PostController extends Controller
             $posts->appends(['price' => $price]);
         }
 
+        if ($address) {
+            $posts->appends(['address' => $address]);
+        }
 
         $postsCount = Post::where('is_hide', 0)
             ->where('verify_status', '!=', 2)
@@ -147,7 +177,7 @@ class PostController extends Controller
         $categories = Category::where('is_hide', 0)->orderBy('name', 'asc')->get();
         $wards = Ward::where('is_hide', 0)->get();
 
-        return view('pages.manager.posts.list', compact('posts', 'postsCount', 'users', 'categories', 'wards'));
+        return view('pages.manager.posts.list', compact('posts', 'postsCount', 'hidden_posts', 'users', 'categories', 'wards'));
     }
 
     /**
@@ -218,6 +248,13 @@ class PostController extends Controller
 
                 GenerateImageHelper::generate($postImage->id, $post);
             }
+        }
+
+        if ($request->has('video')) {
+            $videoId = $request->video;
+            $video = PostVideo::findOrFail($videoId);
+            $video->post_id = $post->id;
+            $video->save();
         }
 
         // gửi mail đến admin
@@ -345,6 +382,13 @@ class PostController extends Controller
                 $postImage->post_id = null;
                 $postImage->save();
             }
+        }
+
+        if ($request->has('video')) {
+            $videoId = $request->video;
+            $video = PostVideo::findOrFail($videoId);
+            $video->post_id = $post->id;
+            $video->save();
         }
 
         // gửi mail đến admin
